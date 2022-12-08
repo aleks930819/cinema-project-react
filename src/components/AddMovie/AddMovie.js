@@ -1,13 +1,15 @@
 import { useState } from 'react';
+import { addMovie } from '../../services/movieServices';
 
 const AddMovie = () => {
-    
+
   const [values, setValues] = useState({
     title: '',
     director: '',
     actors: '',
     poster: '',
     overview: '',
+    runtime:''
   });
 
   const changeHandler = (e) => {
@@ -17,6 +19,7 @@ const AddMovie = () => {
 
   const submitHandler = (e) => {
     e.preventDefault();
+    addMovie(values);
   };
 
   return (
@@ -65,6 +68,19 @@ const AddMovie = () => {
             value={values.poster}
           ></input>
         </div>
+
+        
+        <div>
+          <label id="poster-url">Runtime</label>
+          <input
+            type="text"
+            htmlFor="runtime"
+            name="runtime"
+            onChange={changeHandler}
+            value={values.runtime}
+          ></input>
+        </div>
+
 
         <div>
           <label id="overview">Overview</label>

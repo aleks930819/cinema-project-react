@@ -6,11 +6,11 @@ const MoviesCard = ({ movie }) => {
 
   return (
 
-    <Link to={`/details/${movie.id}`}>
-      <div key={movie.id} id={movie.id} className="movie-card">
+    <Link to={`/details/${movie._id}`}>
+      <div key={movie._id} id={movie._id} className="movie-card">
         <img
           className="movie-card-img"
-          src={movie.posterUrl}
+          src={movie.poster}
           alt="poster"
         />
       </div>

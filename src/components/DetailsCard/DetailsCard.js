@@ -18,7 +18,7 @@ const DetailsCard = () => {
           <div className="details-box">
             <img
               className="movie-details-img"
-              src={movie.posterUrl}
+              src={movie.poster}
               alt={movie.title}
             />
           </div>
@@ -27,7 +27,7 @@ const DetailsCard = () => {
             <p className="details-card-budget">Runtime: {movie.runtime} min.</p>
             <p>Director: {movie.director}</p>
             <p>Actors: {movie.actors}</p>
-            <p className="details-card-overview">{movie.plot}</p>
+            <p className="details-card-overview">{movie.overview}</p>
             <div className='details-buttons'>
               <Link  to='/tickets'>Tickets</Link>
               <Link  to='/edit'>Edit</Link>
