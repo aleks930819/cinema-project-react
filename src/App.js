@@ -1,12 +1,12 @@
 import { Route, Routes } from 'react-router-dom';
 import AddMovie from './components/AddMovie/AddMovie';
+import ContactUs from './components/ContactUs/ContactUs';
 import DetailsCard from './components/DetailsCard/DetailsCard';
 import ErrorPage from './components/ErrorPage/ErrorPage';
 import Header from './components/Header/Header';
 import Login from './components/Login/Login';
 import MoviesData from './components/MoviesCatalog/Movies';
 import Register from './components/Register/Register';
-import WeeklyProgram from './components/WeeklyProgram/WeeklyProgram';
 
 function App() {
   return (
@@ -19,6 +19,7 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
           <Route path="/add-movie" element={<AddMovie/>}/>
+          <Route path="/contact-us" element={<ContactUs />} />
           <Route path="*" element={<ErrorPage />} />
         </Routes>
     </>

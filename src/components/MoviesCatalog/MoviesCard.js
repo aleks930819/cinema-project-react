@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 
 const MoviesCard = ({ movie }) => {
-
+console.log(movie._id);
   return (
 
     <Link to={`/details/${movie._id}`}>
