@@ -2,6 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 
 @import url('reset.css');
+@import url('add-movie.css');
 @import url('form.css');
 @import url('spinner.css');
 @import url('not-found.css');

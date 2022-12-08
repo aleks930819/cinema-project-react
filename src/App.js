@@ -1,4 +1,5 @@
 import { Route, Routes } from 'react-router-dom';
+import AddMovie from './components/AddMovie/AddMovie';
 import DetailsCard from './components/DetailsCard/DetailsCard';
 import ErrorPage from './components/ErrorPage/ErrorPage';
 import Header from './components/Header/Header';
@@ -17,6 +18,7 @@ function App() {
           <Route path="/details/:id" element={<DetailsCard />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/add-movie" element={<AddMovie/>}/>
           <Route path="*" element={<ErrorPage />} />
         </Routes>
     </>
