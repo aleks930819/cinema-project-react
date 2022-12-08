@@ -14,6 +14,7 @@
     width: 50vw;
     padding: 4rem;
     background-color: var(--color-border);
+    border-radius: 1rem;
 
     
 }
