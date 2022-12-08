@@ -1,0 +1,12 @@
+.not-found{
+    grid-column: 2 / 3  ;
+    margin:0 auto;
+    
+}
+
+.not-found-h2{
+  text-align: center;
+  font-size: 4rem;
+  letter-spacing: 1.2px;
+}
+

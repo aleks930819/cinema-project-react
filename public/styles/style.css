@@ -1,0 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=PT+Sans+Narrow&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+@import url('reset.css');
+@import url('form.css');
+@import url('spinner.css');
+@import url('not-found.css');
+@import url('search.css');
+@import url('icons.css');
+@import url('header.css');
+@import url('main.css');
+@import url('card.css');
+@import url('details.css');
+
+
+
+:root {
+    --color-primary: #273469;
+    --color-border: #1e2953;
+
+    --color-header: #374A95;
+    --color-details: #374A95;
+
+    --color-white: #FAFAFF;
+    --f-family: 'PT Sans Narrow', sans-serif;
+    --f-famly-details: 'Montserrat', sans-serif;
+}
