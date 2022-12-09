@@ -21,7 +21,7 @@ export function addMovie(data) {
 
 export function editMovie(id, data) {
   return fetch(`${URL}/${id}`, {
-    method: 'PATCH',
+    method: 'PUT',
     headers: {
       'Content-type': 'application/json',
     },

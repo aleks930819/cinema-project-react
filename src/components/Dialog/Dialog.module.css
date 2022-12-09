@@ -1,0 +1,45 @@
+
+
+.dialog-box {
+    position: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 120%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.845);
+    padding: 6rem;
+
+}
+
+.dialog-box h3 {
+    font-size: 2rem;
+}
+
+.dialogs-btns {
+    display: flex;
+    gap: 2rem;
+    font-size: 1.5rem;
+    margin-top: 2rem;
+}
+
+
+.dialog-btn-y {
+    background-color: rgb(29, 132, 29);
+    color: var(--color-white);
+    cursor: pointer;
+    border: none;
+    padding: .5rem 2rem;
+    border-radius: 1rem;
+}
+
+.dialog-btn-n {
+    background-color: rgb(176, 30, 30);
+    color: var(--color-white);
+    cursor: pointer;
+    border: none;
+    padding: .5rem 2rem;
+    border-radius: 1rem;
+
+}

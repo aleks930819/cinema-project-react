@@ -78,6 +78,11 @@
 
 }
 
+.details-likes{
+    cursor: pointer;
+    display: flex;
+}
+
 
 
 

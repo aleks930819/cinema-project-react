@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import styles from './DetailsCard.module.css';
+import { BsFillHeartFill } from 'react-icons/bs';
 
 import * as movieService from '../../services/movieServices';
 
@@ -12,7 +13,7 @@ const DetailsCard = () => {
     movieService.getByID(id).then((movie) => setMovie(movie));
   }, [id]);
 
-  return (
+  return ( 
     <>
       <div className={styles['container-details']}>
         <div className={styles['container-details-box']}>
@@ -29,6 +30,10 @@ const DetailsCard = () => {
             <p>Director: {movie.director}</p>
             <p>Actors: {movie.actors}</p>
             <p>{movie.overview}</p>
+            <div className={styles['details-likes']}>
+            <p><span className={styles['details-icon']}><BsFillHeartFill/></span>Likes: {movie.likes}</p>
+            </div>
+
             <div className={styles['details-buttons']}>
               <Link to="/tickets">Tickets</Link>
               <Link to={`/edit/${movie._id}`}>Edit</Link>
