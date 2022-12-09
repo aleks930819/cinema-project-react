@@ -34,7 +34,7 @@
     width: 30vw;
     font-size: 2rem;
     border-radius: 1rem;
-    padding: .5rem;
+    padding: 1rem;
 
 }
 
@@ -44,6 +44,8 @@
     width: 30vw;
     outline: none;
     border-radius: 1rem;
+    padding: 1rem;
+
 
 
 }
@@ -58,6 +60,7 @@
     font-style: inherit;
     letter-spacing: 1.2px;
     border: none;
+    margin-right: 1rem;
 
 }
 

@@ -1,9 +1,10 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { addMovie } from '../../services/movieServices';
 import styles from './AddMovie.module.css';
 
-
 const AddMovie = () => {
+  const navigate = useNavigate();
 
   const [values, setValues] = useState({
     title: '',
@@ -21,20 +22,11 @@ const AddMovie = () => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    addMovie(values);
-    
-
-    setValues((oldState) => ({
-      ...oldState,
-      title: '',
-      director: '',
-      actors: '',
-      poster: '',
-      overview: '',
-      runtime: '',
-    }));
-
-
+    addMovie(values)
+      .then((response) => response.json())
+      .then((data) => navigate(`/details/${data._id}`))
+      .catch((err) => err.message);
+      
   };
 
   return (
@@ -63,7 +55,6 @@ const AddMovie = () => {
             onChange={changeHandler}
             placeholder="Director"
             required
-
           ></input>
         </div>
 
@@ -77,7 +68,6 @@ const AddMovie = () => {
             onChange={changeHandler}
             placeholder="Actors"
             required
-
           ></input>
         </div>
 
@@ -91,7 +81,6 @@ const AddMovie = () => {
             value={values.poster}
             placeholder="Poster URL"
             required
-
           ></input>
         </div>
 
@@ -105,7 +94,6 @@ const AddMovie = () => {
             value={values.runtime}
             placeholder="Runtime"
             required
-
           ></input>
         </div>
 
@@ -120,11 +108,10 @@ const AddMovie = () => {
             value={values.overview}
             placeholder="Overview"
             required
-
           ></textarea>
         </div>
         <div>
-          <button className={styles['form-btn']}>Send</button>
+          <button className={styles['form-btn']}>Add Movie</button>
         </div>
       </form>
     </div>

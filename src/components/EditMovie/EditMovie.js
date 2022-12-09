@@ -29,8 +29,11 @@ const EditMovie = () => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    movieService.editMovie(id, values);
-    navigate('/');
+    movieService
+      .editMovie(id, values)
+      .then((response) => response.json())
+      .then((data) => navigate(`/details/${data._id}`))
+      .catch((err) => err.message);
   };
 
   const deleteMovie = () => {
@@ -49,6 +52,7 @@ const EditMovie = () => {
             name="title"
             value={values.title}
             onChange={changeHandler}
+            required
           ></input>
         </div>
 
@@ -60,6 +64,7 @@ const EditMovie = () => {
             name="director"
             value={values.director}
             onChange={changeHandler}
+            required
           ></input>
         </div>
 
@@ -71,6 +76,7 @@ const EditMovie = () => {
             name="actors"
             value={values.actors}
             onChange={changeHandler}
+            required
           ></input>
         </div>
 
@@ -82,6 +88,7 @@ const EditMovie = () => {
             name="poster"
             onChange={changeHandler}
             value={values.poster}
+            required
           ></input>
         </div>
 
@@ -93,6 +100,7 @@ const EditMovie = () => {
             name="runtime"
             onChange={changeHandler}
             value={values.runtime}
+            required
           ></input>
         </div>
 
@@ -105,12 +113,13 @@ const EditMovie = () => {
             rows="6"
             onChange={changeHandler}
             value={values.overview}
+            required
           ></textarea>
         </div>
         <div>
-          <button className={styles['form-btn']}>Send</button>
+          <button className={styles['form-btn']}>Edit</button>
           <span className={styles['form-btn']} onClick={deleteMovie}>
-            Delete
+            Delete Movie
           </span>
         </div>
       </form>

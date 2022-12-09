@@ -16,7 +16,7 @@ export function addMovie(data) {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(data),
-  }).catch((err) => err);
+  });
 }
 
 export function editMovie(id, data) {
@@ -26,7 +26,7 @@ export function editMovie(id, data) {
       'Content-type': 'application/json',
     },
     body: JSON.stringify(data),
-  }).catch((err) => err);
+  });
 }
 
 export function deleteMovie(id) {
