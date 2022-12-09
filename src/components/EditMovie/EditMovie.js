@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
-import { addMovie } from '../../services/movieServices';
+
 import styles from './EditMovie.module.css';
 import * as movieService from '../../services/movieServices';
-import { Navigate, useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 const EditMovie = () => {
   const [values, setValues] = useState({
@@ -14,14 +14,12 @@ const EditMovie = () => {
     runtime: '',
   });
 
-  const [movie, setMovie] = useState([]);
   const { id } = useParams();
 
-  console.log(movie);
   const navigate = useNavigate();
 
   useEffect(() => {
-    movieService.getByID(id).then((movie) => setMovie(movie));
+    movieService.getByID(id).then((movie) => setValues(movie));
   }, [id]);
 
   const changeHandler = (e) => {
@@ -31,18 +29,8 @@ const EditMovie = () => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    console.log(id, values);
-    let url = `${'http://localhost:3030/jsonstore/movies-spa'}/${id}`;
-
-    fetch(url, {
-      method: 'PATCH',
-      headers: {
-        'Content-type': 'application/json',
-      },
-      body: JSON.stringify(values),
-    })
-      .then((response) => response.json())
-      .then((json) => console.log(json));
+    movieService.editMovie(id, values);
+    navigate('/');
   };
 
   const deleteMovie = () => {

@@ -7,7 +7,7 @@ import Header from './components/Header/Header';
 import Login from './components/Forms/Login';
 import MoviesData from './components/MoviesCatalog/Movies';
 import Register from './components/Forms/Register';
-import EditMovie from './components/Edit/EditMovie';
+import EditMovie from './components/EditMovie/EditMovie';
 
 function App() {
   return (

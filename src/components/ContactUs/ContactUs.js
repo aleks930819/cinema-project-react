@@ -21,8 +21,7 @@ const ContactUs = () => {
       message: '',
     }));
 
-    // e.currentTarget.email.value = '';
-    // e.currentTarget.message.value = '';
+  
   };
 
   return (

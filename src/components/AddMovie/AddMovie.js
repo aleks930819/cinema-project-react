@@ -22,6 +22,7 @@ const AddMovie = () => {
   const submitHandler = (e) => {
     e.preventDefault();
     addMovie(values);
+    
 
     setValues((oldState) => ({
       ...oldState,

@@ -1,6 +1,6 @@
 .contact-us {
     margin: 0 auto;
-    width: 35vw;
+    width: 40vw;
 }
 
 .contact-us-form {
@@ -31,7 +31,7 @@
     border: none;
     font-size: 1.6rem;
     border-radius: .3rem;
-    
+
 
 }
 
@@ -57,7 +57,7 @@
 
 }
 
-.form-btn{
+.form-btn {
     font-size: 2rem;
     border-radius: 1rem;
     background-color: white;
@@ -82,7 +82,7 @@
         width: 15vw;
     }
 
-   .contact-us-message textarea {
+    .contact-us-message textarea {
         width: 40vw;
     }
 
@@ -107,7 +107,7 @@
         width: 40vw;
     }
 
-     .contact-us-message textarea {
+    .contact-us-message textarea {
         width: 55vw;
     }
 }

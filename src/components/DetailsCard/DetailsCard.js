@@ -30,10 +30,9 @@ const DetailsCard = () => {
             <p>Actors: {movie.actors}</p>
             <p>{movie.overview}</p>
             <div className={styles['details-buttons']}>
-              <Link  to='/tickets'>Tickets</Link>
-              <Link  to={`/edit/${movie._id}`}>Edit</Link>
+              <Link to="/tickets">Tickets</Link>
+              <Link to={`/edit/${movie._id}`}>Edit</Link>
             </div>
-
           </div>
         </div>
       </div>
