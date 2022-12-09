@@ -1,4 +1,13 @@
 
+.movie-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 5rem;
+    padding: 10rem 7rem ;
+
+}
+
+
 .movie-card-img {
     height: auto;
     object-fit:center;
@@ -29,29 +38,18 @@
     position: relative;
 }
 
-.movie-card-content  .movie-card-h2{
+ .movie-card-h2{
      text-align: center;
      letter-spacing: 1.5px;
 }
 
-.movie-card-content  .movie-card-p{
+ .movie-card-text{
     letter-spacing: 1.1px;
     text-align: start;
 }
 
 
-.movie-card-rating{
-    display: flex;
-    gap:.6rem;
-    justify-content: space-between;
 
-}
-
-.rating {
-    display: flex;
-    gap:.6rem;
-
-}
 
 
 
@@ -88,14 +86,36 @@
         
     }
 
-      /* img:hover + .details-hover{
-        display: block;
-    }
-   */
+   
 
   
 
 
    
 }
+
+@media only screen and (max-width: 1200px) {
+   
+
+  
+    .movie-container  {
+        display:flex;
+        flex-direction: column;
+
+    }
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
 

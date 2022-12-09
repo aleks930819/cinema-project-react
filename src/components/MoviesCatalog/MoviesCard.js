@@ -1,15 +1,17 @@
 import { Link } from 'react-router-dom';
 
+import styles from './Movie.module.css';
+
 
 
 const MoviesCard = ({ movie }) => {
-console.log(movie._id);
+
   return (
 
     <Link to={`/details/${movie._id}`}>
-      <div key={movie._id} id={movie._id} className="movie-card">
+      <div key={movie._id} id={movie._id} className={styles['movie-card']}>
         <img
-          className="movie-card-img"
+          className={styles['movie-card-img']}
           src={movie.poster}
           alt="poster"
         />

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import styles from './ContactUs.module.css';
 
 const ContactUs = () => {
   const [values, setValues] = useState({
@@ -13,14 +14,22 @@ const ContactUs = () => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    console.log(values);
+
+    setValues((oldState) => ({
+      ...oldState,
+      email: '',
+      message: '',
+    }));
+
+    // e.currentTarget.email.value = '';
+    // e.currentTarget.message.value = '';
   };
 
-
   return (
-    <div className="contact-us">
-      <form className="contact-us-form" onSubmit={submitHandler}>
-        <div className="contact-us-email">
+    <div className={styles['contact-us']}>
+
+      <form className={styles['contact-us-form']} onSubmit={submitHandler}>
+        <div className={styles['contact-us-email']}>
           <input
             type="email"
             placeholder="Your email"
@@ -29,10 +38,10 @@ const ContactUs = () => {
             onChange={changeHandler}
             required
           />
-          <p className="contact-us-phone">Phone: +1 234 235</p>
+          <p className={styles['contact-us-phone']}>Phone: +1 234 235</p>
         </div>
 
-        <div className="contact-us-message">
+        <div className={styles['contact-us-message']}>
           <label>Your Message:</label>
           <textarea
             type="textarea"
@@ -45,7 +54,7 @@ const ContactUs = () => {
           />
         </div>
 
-        <button className="form-btn">Send</button>
+        <button className={styles['form-btn']}>Send</button>
       </form>
     </div>
   );

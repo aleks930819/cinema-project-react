@@ -1,0 +1,152 @@
+.add-movie {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+
+    &__form {
+
+        display: flex;
+        flex-direction: column;
+        gap: 4rem;
+        justify-content: center;
+        align-items: center;
+        border: 3px solid $color-white;
+        width: 50vw;
+        padding: 4rem;
+        background-color: $color-border;
+        border-radius: 1rem;
+
+        & label {
+            color: $color-white;
+            font-size: 2rem;
+        
+        }
+
+        & input {
+                display: block;
+                margin-top: .5rem;
+                outline: none;
+                width: 30vw;
+                font-size: 2rem;  
+        }
+
+        & textarea{
+            display: block;
+            font-size: 2rem;
+            width: 30vw;
+            outline: none;
+        
+        }
+        &__btn {
+            font-size: 1.7rem;
+            text-transform: uppercase;
+            padding: .5rem 2rem;
+            border-radius: 1rem;
+        }
+      
+    
+    }
+
+    // &__btn {
+    //     font-size: 1.7rem;
+    //     text-transform: uppercase;
+    //     padding: .5rem 2rem;
+    //     border-radius: 1rem;
+        
+    // }
+
+
+}
+
+
+
+@media only screen and (max-width: 600px) {
+
+    .add-movie {
+
+        &__form {
+            width: 80vw;
+
+
+            & input {
+                width: 60vw;
+            }
+
+            & textarea {
+                width: 60vw;
+            }
+        }
+
+        
+
+    }
+  
+
+}
+
+
+// .add-movie-form {
+//     display: flex;
+//     flex-direction: column;
+//     gap: 4rem;
+//     justify-content: center;
+//     align-items: center;
+//     border: 3px solid $color-white;
+//     width: 50vw;
+//     padding: 4rem;
+//     background-color: $color-border;
+//     border-radius: 1rem;
+
+
+// }
+
+// .add-movie-form label {
+//     color: $color-white;
+//     font-size: 2rem;
+
+// }
+
+// .add-movie-form input {
+//     display: block;
+//     margin-top: .5rem;
+//     outline: none;
+//     width: 30vw;
+//     font-size: 2rem;
+
+// }
+
+// .add-movie-form textarea {
+//     display: block;
+//     font-size: 2rem;
+//     width: 30vw;
+//     outline: none;
+
+
+// }
+
+// .add-movie-btn {
+//     font-size: 1.7rem;
+//     text-transform: uppercase;
+//     padding: .5rem 2rem;
+//     border-radius: 1rem;
+// }
+
+
+
+// @media only screen and (max-width: 600px) {
+//     .add-movie-form {
+//         width: 80vw;
+//     }
+
+//     .add-movie-form input {
+//         width: 60vw;
+
+//     }
+
+//     .add-movie-form textarea {
+
+//         width: 60vw;
+
+//     }
+// }

@@ -1,7 +1,13 @@
 import { useEffect, useState } from 'react';
 import * as movieService from '../../services/movieServices';
+
+import styles from './Movie.module.css';
+
 import MoviesCard from './MoviesCard';
 import LoadingSpinner from '../Spinner/Spinner';
+import WeeklyProgram from '../WeeklyProgram/WeeklyProgram';
+
+
 
 const MoviesData = () => {
   const [movies, setMovies] = useState([]);
@@ -16,12 +22,16 @@ const MoviesData = () => {
   }, []);
 
   return (
-        <div className='container'>
-      {loading ? (<LoadingSpinner />) : (
-        movies.map((x) => <MoviesCard key={x.id} movie={x} />)
-      )}
-        </div>
-
+    <>
+      <WeeklyProgram />
+      <div className={styles['movie-container']}>
+        {loading ? (
+          <LoadingSpinner />
+        ) : (
+          movies.map((x) => <MoviesCard key={x._id} movie={x} />)
+        )}
+      </div>
+    </>
   );
 };
 

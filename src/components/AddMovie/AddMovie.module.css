@@ -27,7 +27,7 @@
 
 }
 
-.add-movie-form input {
+.add-movie-form  input {
     display: block;
     margin-top: .5rem;
     outline: none;
@@ -38,7 +38,7 @@
 
 }
 
-.add-movie-form textarea {
+.add-movie-form  textarea {
     display: block;
     font-size: 2rem;
     width: 30vw;
@@ -48,21 +48,28 @@
 
 }
 
-.add-movie-btn {
-    font-size: 1.7rem;
-    text-transform: uppercase;
-    padding: .5rem 2rem;
+.form-btn{
+    font-size: 2rem;
     border-radius: 1rem;
+    background-color: white;
+    display: inline-block;
+    padding: 1rem 2rem;
+    cursor: pointer;
+    font-style: inherit;
+    letter-spacing: 1.2px;
+    border: none;
+
 }
 
 
 
+
 @media only screen and (max-width: 600px) {
-    .add-movie-form {
+    .add-movie-form{
         width: 80vw;
     }
 
-    .add-movie-form input {
+    .add-movie-form  input {
         width: 60vw;
 
     }

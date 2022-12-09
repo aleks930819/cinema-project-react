@@ -4,12 +4,11 @@
     font-size: 1.5rem;
     text-align: center;
     gap: 1rem;
-    background-color: var(--color-details);
+    background-color: $color-details;
     color: black !important;
     border-radius: .9rem;
     overflow: hidden;
     box-shadow: 11px 7px 47px 5px rgba(0, 0, 0, 0.75);
-
 
 }
 
@@ -38,46 +37,24 @@
 
 .details-buttons  a{
  font-size: 2.2rem;
- color:var(--color-white);
+ color:$color-white;
  text-decoration: none;
- border: 2px solid var(--color-details);
+ border: 2px solid $color-details;
  align-self: center;
  padding: .5rem 3rem;
  border-radius: 100px;
- background-color: var(--color-primary);
+ background-color: $color-primary;
  transition: all .5s ease-in-out;
  margin-right: .5rem;
  margin-bottom: 1rem;
 }
 
 .details-buttons  a:hover{
-    background-color: var(--color-white);
-    color:var(--color-primary)
+    background-color: $color-white;
+    color:$color-primary;
 }
 
 
-/* 
-.details-buttons  a{
-    display: inline;
-    cursor: pointer;
-    
-    color:var(--color-white);
-    border: 2px solid var(--color-details);
-    align-self: center;
-    padding: .5rem 3rem;
-    border-radius: 100px;
-    background-color: var(--color-primary);
-    transition: all .5s ease-in-out;
-    margin-right: .5rem;
-    margin-bottom: 1rem;
-    
-}
-
-.details-btn:hover{
-    background-color: var(--color-white);
-    color:var(--color-primary)
-    
-} */
 
 
 @media only screen and (max-width: 900px) {

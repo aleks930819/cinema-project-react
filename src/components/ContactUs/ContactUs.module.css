@@ -49,13 +49,27 @@
     text-align: center;
 }
 
-.contact-us-form .contact-us-message textarea {
+.contact-us-message textarea {
     width: 30vw;
     font-size: 2rem;
     outline: none;
     border-radius: .3rem;
 
 }
+
+.form-btn{
+    font-size: 2rem;
+    border-radius: 1rem;
+    background-color: white;
+    display: inline-block;
+    padding: 1rem 2rem;
+    cursor: pointer;
+    font-style: inherit;
+    letter-spacing: 1.2px;
+    border: none;
+
+}
+
 
 
 
@@ -64,11 +78,11 @@
         width: 55vw;
     }
 
-    .contact-us-email input {
+    .contact-us-emailinput {
         width: 15vw;
     }
 
-    .contact-us-form .contact-us-message textarea {
+   .contact-us-message textarea {
         width: 40vw;
     }
 
@@ -93,7 +107,7 @@
         width: 40vw;
     }
 
-    .contact-us-form .contact-us-message textarea {
+     .contact-us-message textarea {
         width: 55vw;
     }
 }

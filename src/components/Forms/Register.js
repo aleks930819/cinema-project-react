@@ -1,12 +1,18 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import styles from './Form.module.css';
+
+import * as authServices from '../../services/authServices';
 
 const Register = () => {
   const [values, setValues] = useState({
-    username: '',
+    email: '',
     password: '',
     repassword: '',
   });
+
+  const navigate = useNavigate();
+
 
   const changeHandler = (e) => {
     setValues((state) => ({ ...state, [e.target.name]: e.target.value }));
@@ -15,24 +21,32 @@ const Register = () => {
 
   const submitHandler = (e) => {
     e.preventDefault();
+
+    authServices
+      .register(values.email, values.password)
+      .then((result) => console.log(result));
+
+      navigate('/');
+
   };
 
   return (
-    <div className="form-box">
-      <form className="form" onSubmit={submitHandler}>
+    <div className={styles['form-box']}>
+    <form className={styles['form']} onSubmit={submitHandler}>
         <h2>REGISTER</h2>
-        <div className="username">
-          {/* <label id="username">Username</label> */}
+        <div className={styles.email}>
+          {/* <label id="email">email</label> */}
           <input
             type="text"
-            htmlFor="username"
-            placeholder="Username"
-            name="username"
-            value={values.username}
+            htmlFor="email"
+            placeholder="Your Email"
+            name="email"
+            value={values.email}
             onChange={changeHandler}
+            required
           />
         </div>
-        <div className="password">
+        <div className={styles.password}>
           {/* <label id="password">Password</label> */}
           <input
             type="password"
@@ -41,10 +55,12 @@ const Register = () => {
             name="password"
             value={values.password}
             onChange={changeHandler}
+            required
+
           />
         </div>
 
-        <div className="password">
+        <div className={styles.password}>
           {/* <label id="password">Confirm Password</label> */}
           <input
             type="password"
@@ -53,9 +69,11 @@ const Register = () => {
             name="repassword"
             value={values.repassword}
             onChange={changeHandler}
+            required
+
           />
         </div>
-        <button className="form-btn">Register</button>
+        <button className={styles['form-btn']}>Register</button>
 
         <Link to="/login">You already have an account? Login</Link>
       </form>

@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
+import styles from './DetailsCard.module.css';
 
 import * as movieService from '../../services/movieServices';
 
@@ -13,24 +14,24 @@ const DetailsCard = () => {
 
   return (
     <>
-      <div className="container-details">
-        <div className="container-details-box">
-          <div className="details-box">
+      <div className={styles['container-details']}>
+        <div className={styles['container-details-box']}>
+          <div>
             <img
-              className="movie-details-img"
+              className={styles['movie-details-img']}
               src={movie.poster}
               alt={movie.title}
             />
           </div>
-          <div className="details-content">
-            <h2 className="details-card-h2">{movie.title}</h2>
-            <p className="details-card-budget">Runtime: {movie.runtime} min.</p>
+          <div className={styles['details-content']}>
+            <h2 className={styles['details-card-title']}>{movie.title}</h2>
+            <p>Runtime: {movie.runtime} min.</p>
             <p>Director: {movie.director}</p>
             <p>Actors: {movie.actors}</p>
-            <p className="details-card-overview">{movie.overview}</p>
-            <div className='details-buttons'>
+            <p>{movie.overview}</p>
+            <div className={styles['details-buttons']}>
               <Link  to='/tickets'>Tickets</Link>
-              <Link  to='/edit'>Edit</Link>
+              <Link  to={`/edit/${movie._id}`}>Edit</Link>
             </div>
 
           </div>

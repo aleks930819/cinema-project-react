@@ -1,10 +1,10 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { addMovie } from '../../services/movieServices';
-import styles from './AddMovie.module.css';
+import styles from './EditMovie.module.css';
+import * as movieService from '../../services/movieServices';
+import { Navigate, useNavigate, useParams } from 'react-router-dom';
 
-
-const AddMovie = () => {
-
+const EditMovie = () => {
   const [values, setValues] = useState({
     title: '',
     director: '',
@@ -14,6 +14,16 @@ const AddMovie = () => {
     runtime: '',
   });
 
+  const [movie, setMovie] = useState([]);
+  const { id } = useParams();
+
+  console.log(movie);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    movieService.getByID(id).then((movie) => setMovie(movie));
+  }, [id]);
+
   const changeHandler = (e) => {
     setValues((state) => ({ ...state, [e.target.name]: e.target.value }));
     e.value = e.target.value;
@@ -21,19 +31,23 @@ const AddMovie = () => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    addMovie(values);
+    console.log(id, values);
+    let url = `${'http://localhost:3030/jsonstore/movies-spa'}/${id}`;
 
-    setValues((oldState) => ({
-      ...oldState,
-      title: '',
-      director: '',
-      actors: '',
-      poster: '',
-      overview: '',
-      runtime: '',
-    }));
+    fetch(url, {
+      method: 'PATCH',
+      headers: {
+        'Content-type': 'application/json',
+      },
+      body: JSON.stringify(values),
+    })
+      .then((response) => response.json())
+      .then((json) => console.log(json));
+  };
 
-
+  const deleteMovie = () => {
+    movieService.deleteMovie(id);
+    navigate('/');
   };
 
   return (
@@ -47,8 +61,6 @@ const AddMovie = () => {
             name="title"
             value={values.title}
             onChange={changeHandler}
-            placeholder="Movie Title"
-            required
           ></input>
         </div>
 
@@ -60,9 +72,6 @@ const AddMovie = () => {
             name="director"
             value={values.director}
             onChange={changeHandler}
-            placeholder="Director"
-            required
-
           ></input>
         </div>
 
@@ -74,9 +83,6 @@ const AddMovie = () => {
             name="actors"
             value={values.actors}
             onChange={changeHandler}
-            placeholder="Actors"
-            required
-
           ></input>
         </div>
 
@@ -88,9 +94,6 @@ const AddMovie = () => {
             name="poster"
             onChange={changeHandler}
             value={values.poster}
-            placeholder="Poster URL"
-            required
-
           ></input>
         </div>
 
@@ -102,9 +105,6 @@ const AddMovie = () => {
             name="runtime"
             onChange={changeHandler}
             value={values.runtime}
-            placeholder="Runtime"
-            required
-
           ></input>
         </div>
 
@@ -117,17 +117,17 @@ const AddMovie = () => {
             rows="6"
             onChange={changeHandler}
             value={values.overview}
-            placeholder="Overview"
-            required
-
           ></textarea>
         </div>
         <div>
           <button className={styles['form-btn']}>Send</button>
+          <span className={styles['form-btn']} onClick={deleteMovie}>
+            Delete
+          </span>
         </div>
       </form>
     </div>
   );
 };
 
-export default AddMovie;
+export default EditMovie;

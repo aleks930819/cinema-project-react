@@ -10,16 +10,16 @@
     justify-content: center;
     gap: 3.5rem;
     padding: 8rem 2rem;
-    background-color: var(--color-border);
+    background-color:$color-border;
     border-radius: 1rem;
-    border: 3px solid var(--color-white);
+    border: 3px solid $color-white;
 
 }
 
 .form-btn{
     font-size: 2rem;
     border-radius: 1rem;
-    background-color: white;
+    background-color:$color-white;
     display: inline-block;
     padding: 1rem 2rem;
     cursor: pointer;
@@ -67,6 +67,19 @@ input:focus {
   }
 
 
+
+/* .form  label {
+font-size: 1.5rem;
+letter-spacing: 1.2px;
+position: absolute;
+left:10px;
+top:10px;
+font-family:inherit;
+color:#564E58;
+} */
+
+
+
 .form h2 {
     text-align: center;
     font-size: 3rem;
@@ -75,7 +88,7 @@ input:focus {
 
 .form a {
     text-decoration: none;
-    color:var(--color-white);
+    color:$color-white;
     font-size: 1.9rem;
     text-align: center;
 }

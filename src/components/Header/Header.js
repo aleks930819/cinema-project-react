@@ -1,15 +1,57 @@
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
+import styles from './Header.module.css';
+
+
+let activeStyle = {
+  // textDecoration: 'underline',
+  borderBottom: '2px solid white',
+  paddingBottom: '2px',
+};
 
 const Header = () => {
   return (
-    <header className="header">
-      <div className="links">
-        <Link to="/login">LOGIN</Link>
-        <Link to="/register">REGISTER</Link>
-        <Link to="/weekly-program">WEEKLY PROGRAM</Link>
-        <Link to="/add-movie">ADD MOVIE</Link>
-        <Link to="/contact-us">CONTACT US</Link>
-        <Link to="/logout">LOGOUT</Link>
+    <header className={styles.header}>
+
+      <div className={styles.links}>
+        <NavLink
+          style={({ isActive }) => (isActive ? activeStyle : undefined)}
+          to="/login"
+        >
+          login
+        </NavLink>
+        <NavLink
+          style={({ isActive }) => (isActive ? activeStyle : undefined)}
+          to="/register"
+        >
+          register
+        </NavLink>
+        <NavLink
+          style={({ isActive }) => (isActive ? activeStyle : undefined)}
+          to="/weekly-program"
+        >
+          weekly program
+        </NavLink>
+
+        <NavLink
+          style={({ isActive }) => (isActive ? activeStyle : undefined)}
+          to="/contact-us"
+        >
+          contact us
+        </NavLink>
+        
+        <NavLink
+          style={({ isActive }) => (isActive ? activeStyle : undefined)}
+          to="/add-movie"
+        >
+          add movie
+        </NavLink>
+       
+        <NavLink
+          style={({ isActive }) => (isActive ? activeStyle : undefined)}
+          to="/logout"
+        >
+          logout
+        </NavLink>
       </div>
     </header>
   );
