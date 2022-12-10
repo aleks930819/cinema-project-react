@@ -3,8 +3,8 @@
     justify-content: space-between;
     margin-bottom: 10rem;
 
-  
-    border-bottom: 2px solid black;
+    background-color: var(--color-border);
+    border-bottom: 2px solid var(--color-border);
   
   }
   

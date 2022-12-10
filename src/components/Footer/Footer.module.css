@@ -3,10 +3,11 @@
     width: 100%;
     display:flex;
     font-size: 1.5rem;
-    border-top: 2px solid black;
+    border-top: 2px solid var(--color-border);
     padding: 4rem 15rem;
     justify-content: space-between;
     color:var(--color-white);
+    background-color: var(--color-border);
 
 }
 .footer-links ul {
