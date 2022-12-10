@@ -17,8 +17,17 @@ const Footer = () => {
             <li>Privacy Policy</li>
            </ul>
       </div>
+
+      <div className={styles['footer-links']}>
+           <ul>
+            <li>Contact Us</li>
+            <li>About Us</li>
+            <li>Privacy Policy</li>
+           </ul>
+      </div>
       <div className={styles['footer-icons']}>
-           <ul>Follow Us
+           <ul>
+               <p>Follow Us</p>
               <BsFacebook/>
               <BsTwitter/>
               <BsInstagram/>

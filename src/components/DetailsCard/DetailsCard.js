@@ -35,7 +35,7 @@ const DetailsCard = () => {
             <p>Actors: {movie.actors}</p>
             <p>{movie.overview}</p>
             <div className={styles['details-likes']}>
-            <p><span className={styles['details-icon']}><BsFillHeartFill/></span>Likes: {movie.likes}</p>
+            <p><span className={styles['details-icon']}><BsFillHeartFill/></span>Likes: {movie?.likes}</p>
             </div>
 
             <div className={styles['details-buttons']}>

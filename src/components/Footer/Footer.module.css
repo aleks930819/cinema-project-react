@@ -8,11 +8,14 @@
     justify-content: space-between;
     color:var(--color-white);
     background-color: var(--color-border);
+    text-align: center;
 
 }
 .footer-links ul {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
     gap:1rem;
 
 }
@@ -25,6 +28,8 @@
 .footer-icons ul {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
     gap:1rem;
 }
 .footer-icons ul {
