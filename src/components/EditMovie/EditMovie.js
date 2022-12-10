@@ -1,13 +1,14 @@
-import { createContext, useContext, useEffect, useState } from 'react';
+import {useEffect, useState } from 'react';
 
 import styles from './EditMovie.module.css';
 import * as movieService from '../../services/movieServices';
 import { useNavigate, useParams } from 'react-router-dom';
 import Dialog from '../Dialog/Dialog';
+import { MovieContext } from '../../contexts/MovieContext';
 
-export const Context = createContext();
 
 const EditMovie = () => {
+
   const [dialog, setDialog] = useState({
     isLoading: false,
   });
@@ -23,7 +24,7 @@ const EditMovie = () => {
 
   const { id } = useParams();
 
-  const navigate = useNavigate();
+  const navigate = useNavigate(); 
 
   useEffect(() => {
     movieService.getByID(id).then((movie) => setValues(movie));
@@ -47,6 +48,7 @@ const EditMovie = () => {
     setDialog({
       isLoading: true,
     });
+   
   };
 
   const deleteMovie = () => {
@@ -55,7 +57,7 @@ const EditMovie = () => {
   };
 
   return (
-    <Context.Provider value={deleteMovie}>
+    <MovieContext.Provider value={{deleteMovie,setDialog}}>
       <div className={styles['add-movie']}>
         <form className={styles['add-movie-form']} onSubmit={submitHandler}>
           <div>
@@ -139,7 +141,7 @@ const EditMovie = () => {
           {dialog.isLoading && <Dialog />}
         </form>
       </div>
-    </Context.Provider>
+    </MovieContext.Provider>
   );
 };
 

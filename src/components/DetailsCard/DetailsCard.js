@@ -1,9 +1,10 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import styles from './DetailsCard.module.css';
 import { BsFillHeartFill } from 'react-icons/bs';
 
 import * as movieService from '../../services/movieServices';
+import { AuthCotnext } from '../../contexts/AuthContext';
 
 const DetailsCard = () => {
   const [movie, setMovie] = useState([]);
@@ -12,6 +13,9 @@ const DetailsCard = () => {
   useEffect(() => {
     movieService.getByID(id).then((movie) => setMovie(movie));
   }, [id]);
+
+  const { user } = useContext(AuthCotnext);
+
 
   return ( 
     <>
@@ -36,7 +40,11 @@ const DetailsCard = () => {
 
             <div className={styles['details-buttons']}>
               <Link to="/tickets">Tickets</Link>
+              {user.email === 'admin@abv.bg' ? 
               <Link to={`/edit/${movie._id}`}>Edit</Link>
+              :
+              ''
+              }
             </div>
           </div>
         </div>

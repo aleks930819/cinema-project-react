@@ -1,9 +1,12 @@
-import { useEffect, useState } from 'react';
-import { Link, redirect, useNavigate } from 'react-router-dom';
+import { useContext, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import styles from './Form.module.css';
 import * as authServices from '../../services/authServices';
+import { AuthCotnext } from '../../contexts/AuthContext';
 
 const Login = () => {
+  const { userLogin } = useContext(AuthCotnext);
+
   const [values, setValues] = useState({
     email: '',
     password: '',
@@ -21,9 +24,8 @@ const Login = () => {
 
     authServices
       .login(values.email, values.password)
-      .then((result) => console.log(result));
-
-      navigate('/');
+      .then((result) => userLogin(result));
+       navigate('/');
   };
 
   return (
@@ -40,7 +42,6 @@ const Login = () => {
             name="email"
             onChange={changeHandler}
             required
-
           />
         </div>
         <div className={styles.password}>
@@ -53,7 +54,6 @@ const Login = () => {
             name="password"
             onChange={changeHandler}
             required
-
           />
         </div>
         <button className={styles['form-btn']}>Login</button>

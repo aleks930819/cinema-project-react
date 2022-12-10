@@ -19,6 +19,15 @@
     text-transform: uppercase;
   
   }
+
+  .welcome{
+    font-size: 2rem;
+    color:var(--color-white);
+    position: absolute;
+    font-style: italic;
+    right:7rem;
+
+  }
   
   
   

@@ -45,3 +45,13 @@ export async function register(email, password) {
     throw err;
   }
 }
+
+export async function logout(accessToken) {
+  try {
+    let response = await fetch(`${URL}/logout`, {
+      headers: {
+        'X-Authorization': accessToken,
+      },
+    });
+  } catch (err) {}
+}

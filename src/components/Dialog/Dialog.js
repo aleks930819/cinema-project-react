@@ -1,19 +1,21 @@
 import { useContext } from 'react';
-import { Context } from '../EditMovie/EditMovie';
+import { MovieContext } from '../../contexts/MovieContext';
 import styles from './Dialog.module.css';
 
 
+
 const Dialog = () => {
-  const value = useContext(Context);
+  const {deleteMovie,setDialog} = useContext(MovieContext);
+
 
   return (
     <div className={styles['dialog-box']}>
       <h3>Are you sure?</h3>
       <div className={styles['dialogs-btns']}>
-        <button onClick={() => value()} className={styles['dialog-btn-y']}>
+        <button onClick={() => deleteMovie()} className={styles['dialog-btn-y']}>
           YES
         </button>
-        <button className={styles['dialog-btn-n']}>NO</button>
+        <button onClick= {() => setDialog({isLoading:false})} className={styles['dialog-btn-n']}>NO</button>
       </div>
     </div>
   );
