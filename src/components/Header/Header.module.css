@@ -2,13 +2,16 @@
     display: flex;
     justify-content: space-between;
     margin-bottom: 10rem;
+
   
+    border-bottom: 2px solid black;
   
   }
   
   .links {
     display: flex;
     gap:2rem;
+    padding: 5rem;
   }
   
   .links a {

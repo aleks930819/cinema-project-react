@@ -4,7 +4,6 @@ import { AuthCotnext } from '../../contexts/AuthContext';
 import { addMovie } from '../../services/movieServices';
 import styles from './AddMovie.module.css';
 
-
 const AddMovie = () => {
   const navigate = useNavigate();
 

@@ -8,12 +8,16 @@ import Login from './components/Forms/Login';
 import MoviesData from './components/MoviesCatalog/Movies';
 import Register from './components/Forms/Register';
 import EditMovie from './components/EditMovie/EditMovie';
-import { AuthCotnext } from './contexts/AuthContext';
+import { AuthCotnext} from './contexts/AuthContext';
 import { useState } from 'react';
 import Logout from './components/Logout/Logout';
+import Footer from './components/Footer/Footer';
+
+
 
 function App() {
   const [auth, setAuth] = useState({});
+
 
   const userLogin = (authData) => {
     setAuth(authData);
@@ -24,7 +28,7 @@ function App() {
   };
   return (
     <>
-      <AuthCotnext.Provider value={{ user: auth, userLogin, userLogout }}>
+     <AuthCotnext.Provider value={{ user: auth, userLogin, userLogout }}>
         <Header />
         <Routes>
           <Route path="/" element={<MoviesData />} />
@@ -38,6 +42,7 @@ function App() {
           <Route path="/edit/:id" element={<EditMovie />} />
           <Route path="*" element={<ErrorPage />} />
         </Routes>
+        <Footer />
       </AuthCotnext.Provider>
     </>
   );

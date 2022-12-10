@@ -42,6 +42,7 @@ const EditMovie = () => {
 
   const submitHandler = (e) => {
     e.preventDefault();
+    console.log(user.accessToken);
     movieService
       .editMovie(id, values,user.accessToken)
       .then((response) => response.json())
