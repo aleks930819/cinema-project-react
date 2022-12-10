@@ -24,6 +24,7 @@ export async function login(email, password) {
 }
 
 export async function register(email, password) {
+  
   try {
     let response = await fetch(`${URL}/register`, {
       method: 'POST',

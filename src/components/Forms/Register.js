@@ -1,10 +1,15 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import styles from './Form.module.css';
 
+import styles from './Form.module.css';
 import * as authServices from '../../services/authServices';
+import { AuthCotnext } from '../../contexts/AuthContext';
+
 
 const Register = () => {
+
+  const {userLogin} = useContext(AuthCotnext);
+
   const [values, setValues] = useState({
     email: '',
     password: '',
@@ -12,7 +17,6 @@ const Register = () => {
   });
 
   const navigate = useNavigate();
-
 
   const changeHandler = (e) => {
     setValues((state) => ({ ...state, [e.target.name]: e.target.value }));
@@ -22,17 +26,21 @@ const Register = () => {
   const submitHandler = (e) => {
     e.preventDefault();
 
-    authServices
-      .register(values.email, values.password)
-      .then((result) => console.log(result));
-
-      navigate('/');
+    if (values.password !== values.repassword) {
+      console.log('Password dont match');
+      
+    } else {
+      authServices
+        .register(values.email, values.password)
+        .then((authData) => userLogin(authData));
+        navigate('/');
+      }
 
   };
 
   return (
     <div className={styles['form-box']}>
-    <form className={styles['form']} onSubmit={submitHandler}>
+      <form className={styles['form']} onSubmit={submitHandler}>
         <h2>REGISTER</h2>
         <div className={styles.email}>
           {/* <label id="email">email</label> */}
@@ -56,7 +64,6 @@ const Register = () => {
             value={values.password}
             onChange={changeHandler}
             required
-
           />
         </div>
 
@@ -70,7 +77,6 @@ const Register = () => {
             value={values.repassword}
             onChange={changeHandler}
             required
-
           />
         </div>
         <button className={styles['form-btn']}>Register</button>
