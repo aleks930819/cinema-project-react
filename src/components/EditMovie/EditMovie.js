@@ -1,17 +1,22 @@
-import {useEffect, useState } from 'react';
+import {useContext, useEffect, useState } from 'react';
 
 import styles from './EditMovie.module.css';
 import * as movieService from '../../services/movieServices';
 import { useNavigate, useParams } from 'react-router-dom';
 import Dialog from '../Dialog/Dialog';
 import { MovieContext } from '../../contexts/MovieContext';
-
+import { AuthCotnext } from '../../contexts/AuthContext';
 
 const EditMovie = () => {
+
+  
+  const {user} = useContext(AuthCotnext);
+
 
   const [dialog, setDialog] = useState({
     isLoading: false,
   });
+
 
   const [values, setValues] = useState({
     title: '',
@@ -38,7 +43,7 @@ const EditMovie = () => {
   const submitHandler = (e) => {
     e.preventDefault();
     movieService
-      .editMovie(id, values)
+      .editMovie(id, values,user.accessToken)
       .then((response) => response.json())
       .then((data) => navigate(`/details/${data._id}`))
       .catch((err) => err.message);
@@ -52,7 +57,7 @@ const EditMovie = () => {
   };
 
   const deleteMovie = () => {
-    movieService.deleteMovie(id);
+    movieService.deleteMovie(id,user.accessToken);
     navigate('/');
   };
 

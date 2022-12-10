@@ -1,10 +1,14 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { AuthCotnext } from '../../contexts/AuthContext';
 import { addMovie } from '../../services/movieServices';
 import styles from './AddMovie.module.css';
 
+
 const AddMovie = () => {
   const navigate = useNavigate();
+
+  const {user} = useContext(AuthCotnext);
 
   const [values, setValues] = useState({
     title: '',
@@ -15,6 +19,8 @@ const AddMovie = () => {
     runtime: '',
   });
 
+
+
   const changeHandler = (e) => {
     setValues((state) => ({ ...state, [e.target.name]: e.target.value }));
     e.value = e.target.value;
@@ -22,7 +28,7 @@ const AddMovie = () => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    addMovie(values)
+    addMovie(values,user.accessToken)
       .then((response) => response.json())
       .then((data) => navigate(`/details/${data._id}`))
       .catch((err) => err.message);
