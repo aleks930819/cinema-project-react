@@ -76,6 +76,9 @@
       display: none;
 
     }
+    .links a {
+      display: inline-block;
+    }
     .hamburger {
       display: block;
     }

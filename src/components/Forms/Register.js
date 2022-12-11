@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import styles from './Form.module.css';
 import * as authServices from '../../services/authServices';
 import { AuthCotnext, useAuthContext } from '../../contexts/AuthContext';
+import Button from '../Button/Button';
 
 const Register = () => {
   const { user, userLogin } = useContext(AuthCotnext);
@@ -78,7 +79,7 @@ const Register = () => {
             required
           />
         </div>
-        <button className={styles['form-btn']}>Register</button>
+        <Button>Register</Button>
 
         <Link to="/login">You already have an account? Login</Link>
       </form>

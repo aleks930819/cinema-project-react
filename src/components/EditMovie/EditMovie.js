@@ -6,6 +6,8 @@ import { useNavigate, useParams } from 'react-router-dom';
 import Dialog from '../Dialog/Dialog';
 import { MovieContext } from '../../contexts/MovieContext';
 import { AuthCotnext } from '../../contexts/AuthContext';
+import Button from '../Button/Button';
+
 
 const EditMovie = () => {
   const { user } = useContext(AuthCotnext);
@@ -134,7 +136,7 @@ const EditMovie = () => {
             ></textarea>
           </div>
           <div>
-            <button className={styles['form-btn']}>Edit</button>
+            <Button>Edit</Button>
             <span className={styles['form-btn']} onClick={showAreUSure}>
               Delete Movie
             </span>

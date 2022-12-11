@@ -71,11 +71,10 @@ const DetailsCard = () => {
 
             <div className={styles['details-buttons']}>
               <Link to="/tickets">Tickets</Link>
-              {user.email === 'admin@abv.bg' ? (
+              {user.email === 'admin@abv.bg' && (
                 <Link to={`/edit/${movie._id}`}>Edit</Link>
-              ) : (
-                ''
               )}
+              
             </div>
           </div>
         </div>

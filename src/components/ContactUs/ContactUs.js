@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import Button from '../Button/Button';
 import styles from './ContactUs.module.css';
+
 
 const ContactUs = () => {
   const [values, setValues] = useState({
@@ -51,9 +53,9 @@ const ContactUs = () => {
           />
         </div>
 
-        <Link to="/message-send" className={styles['form-btn']}>
+        <Button to="/message-send">
           Send
-        </Link>
+        </Button>
       </form>
     </div>
   );
