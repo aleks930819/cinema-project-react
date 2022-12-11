@@ -6,6 +6,7 @@ import styles from './Movie.module.css';
 import MoviesCard from './MoviesCard';
 import LoadingSpinner from '../Spinner/Spinner';
 import WeeklyProgram from '../WeeklyProgram/WeeklyProgram';
+import ImageSlider from '../ImageSlider/ImageSlider';
 
 
 
@@ -21,9 +22,12 @@ const MoviesData = () => {
     });
   }, []);
 
+
   return (
     <>
-      <WeeklyProgram />
+    <ImageSlider/>
+    
+      {/* <WeeklyProgram /> */}
       <div className={styles['movie-container']}>
         {loading ? (
           <LoadingSpinner />
