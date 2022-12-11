@@ -82,6 +82,14 @@ const Header = () => {
           >
             contact us
           </NavLink>
+
+          <NavLink
+            style={({ isActive }) => (isActive ? activeStyle : undefined)}
+            to="/cinemas"
+            onClick={() => setOpen(false)}
+          >
+            cinemas
+          </NavLink>
           {user.username && (
             <span className={styles.welcome}>
               Welcome back {user.username}!

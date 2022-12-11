@@ -13,6 +13,7 @@ import { useState } from 'react';
 import Logout from './components/Logout/Logout';
 import Footer from './components/Footer/Footer';
 import MessageSend from './components/MessageSend/MessageSend';
+import Cinemas from './components/CInemas/Cinemas';
 
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
   const userLogin = (authData) => {
     setAuth(authData);
   };
+  
 
   const userLogout = () => {
     setAuth({});
@@ -41,7 +43,9 @@ function App() {
           <Route path="/contact-us" element={<ContactUs />} />
           <Route path="/edit/:id" element={<EditMovie />} />
           <Route path="/message-send" element={<MessageSend />} />
+          <Route path="/cinemas" element={<Cinemas />} />
           <Route path="*" element={<ErrorPage />} />
+
         </Routes>
       </AuthCotnext.Provider>
         <Footer />
