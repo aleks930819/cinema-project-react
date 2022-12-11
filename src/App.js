@@ -8,11 +8,11 @@ import Login from './components/Forms/Login';
 import MoviesData from './components/MoviesCatalog/Movies';
 import Register from './components/Forms/Register';
 import EditMovie from './components/EditMovie/EditMovie';
-import { AuthCotnext} from './contexts/AuthContext';
+import { AuthCotnext, AuthProvider} from './contexts/AuthContext';
 import { useState } from 'react';
 import Logout from './components/Logout/Logout';
 import Footer from './components/Footer/Footer';
-
+import MessageSend from './components/MessageSend/MessageSend';
 
 
 function App() {
@@ -40,10 +40,11 @@ function App() {
           <Route path="/add-movie" element={<AddMovie />} />
           <Route path="/contact-us" element={<ContactUs />} />
           <Route path="/edit/:id" element={<EditMovie />} />
+          <Route path="/message-send" element={<MessageSend />} />
           <Route path="*" element={<ErrorPage />} />
         </Routes>
-        <Footer />
       </AuthCotnext.Provider>
+        <Footer />
     </>
   );
 }

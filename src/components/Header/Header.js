@@ -1,6 +1,6 @@
 import { useContext, useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import { AuthCotnext } from '../../contexts/AuthContext';
+import { AuthCotnext, useAuthContext } from '../../contexts/AuthContext';
 import styles from './Header.module.css';
 
 import { FiAlignJustify } from 'react-icons/fi';
@@ -12,6 +12,7 @@ let activeStyle = {
 
 const Header = () => {
   const { user } = useContext(AuthCotnext);
+
   const [open, setOpen] = useState(false);
 
   return (

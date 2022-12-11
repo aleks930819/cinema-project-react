@@ -1,7 +1,7 @@
 .footer {
-    margin-top: 10rem;
     width: 100%;
     display:flex;
+    margin-top: 15rem;
     font-size: 1.5rem;
     border-top: 2px solid var(--color-border);
     padding: 4rem 15rem;
@@ -9,6 +9,7 @@
     color:var(--color-white);
     background-color: var(--color-border);
     text-align: center;
+    min-height: 20vh;
 
 }
 .footer-links ul {

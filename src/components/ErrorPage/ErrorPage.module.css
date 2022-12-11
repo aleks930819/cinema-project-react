@@ -1,11 +1,25 @@
-.not-found{
-    margin:0 auto;
-    
+.not-found {
+  margin: 0 auto;
+  padding: 15rem;
+
 }
 
-.not-found-text{
+.not-found-text {
   text-align: center;
   font-size: 4rem;
   letter-spacing: 1.2px;
 }
 
+
+
+@media only screen and (max-width: 600px) {
+  .not-found {
+    padding: 9rem 5rem;
+  }
+
+  .not-found-text {
+    font-size: 3rem;
+
+  }
+
+}

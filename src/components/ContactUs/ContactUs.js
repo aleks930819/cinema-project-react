@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import styles from './ContactUs.module.css';
 
 const ContactUs = () => {
@@ -20,13 +21,10 @@ const ContactUs = () => {
       email: '',
       message: '',
     }));
-
-  
   };
 
   return (
     <div className={styles['contact-us']}>
-
       <form className={styles['contact-us-form']} onSubmit={submitHandler}>
         <div className={styles['contact-us-email']}>
           <input
@@ -53,7 +51,9 @@ const ContactUs = () => {
           />
         </div>
 
-        <button className={styles['form-btn']}>Send</button>
+        <Link to="/message-send" className={styles['form-btn']}>
+          Send
+        </Link>
       </form>
     </div>
   );

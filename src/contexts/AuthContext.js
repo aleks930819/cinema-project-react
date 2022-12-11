@@ -1,12 +1,8 @@
-import { createContext, useState } from 'react';
+import { createContext, useContext, useState } from 'react';
 
 export const AuthCotnext = createContext();
 
-const initialState = {
-  _id: '',
-  email: '',
-  accesstoken: '',
-};
+
 
 export const AuthProvider = ({ children }) => {
   const [auth, setAuth] = useState({});
@@ -19,6 +15,14 @@ export const AuthProvider = ({ children }) => {
     setAuth({});
   };
   return (
-    <AuthCotnext.Provider value={{ auth,userLogin,userLogout}}>{children}</AuthCotnext.Provider>
+    <AuthCotnext.Provider value={{ auth, userLogin, userLogout }}>
+      {children}
+    </AuthCotnext.Provider>
   );
+};
+
+export const useAuthContext = () => {
+  const authState = useContext(AuthCotnext);
+
+  return authState;
 };

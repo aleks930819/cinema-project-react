@@ -1,11 +1,13 @@
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import styles from './Form.module.css';
 import * as authServices from '../../services/authServices';
-import { AuthCotnext } from '../../contexts/AuthContext';
+import { AuthCotnext, useAuthContext } from '../../contexts/AuthContext';
 
 const Login = () => {
-  const { userLogin } = useContext(AuthCotnext);
+  const { user, userLogin } = useContext(AuthCotnext);
+
+
 
   const [values, setValues] = useState({
     email: '',
@@ -25,8 +27,14 @@ const Login = () => {
     authServices
       .login(values.email, values.password)
       .then((result) => userLogin(result));
-       navigate('/');
-  };
+    };
+    
+ 
+  useEffect(() => {
+    if (user.email) {
+      navigate('/');
+    }
+  }, [user.email,navigate]);
 
   return (
     <div className={styles['form-box']}>

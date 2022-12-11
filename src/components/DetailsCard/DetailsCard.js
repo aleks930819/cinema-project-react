@@ -4,20 +4,46 @@ import styles from './DetailsCard.module.css';
 import { BsFillHeartFill } from 'react-icons/bs';
 
 import * as movieService from '../../services/movieServices';
-import { AuthCotnext } from '../../contexts/AuthContext';
+import { AuthCotnext, useAuthContext } from '../../contexts/AuthContext';
 
 const DetailsCard = () => {
   const [movie, setMovie] = useState([]);
+  const [likeCounts,setLikeCounts] = useState(0);
+  const { user } = useContext(AuthCotnext);
+
+
   const { id } = useParams();
 
   useEffect(() => {
     movieService.getByID(id).then((movie) => setMovie(movie));
   }, [id]);
 
-  const { user } = useContext(AuthCotnext);
+  // TODO add likes button logic
+
+  movieService.getLikes().then((result) => setLikeCounts(result.length));
+  console.log(likeCounts);
 
 
-  return ( 
+  const likeButtonClick = () => {
+    
+
+    // movieService.like(user.email, user.accessToken,movie._id)
+    //     .then((result) => console.log(result));
+    
+    // movieService.getLikes().then((result) => console.log(result.user));
+  
+
+  //   let likes = [...movie.likes, user._id];
+  //   if (movie.likes.includes(user._id)) {
+  //     return;
+  //   }
+   
+  //   movieService.like(movie, user.accessToken)
+  //     .then((result) => console.log(result));
+  };
+
+  
+  return (
     <>
       <div className={styles['container-details']}>
         <div className={styles['container-details-box']}>
@@ -35,16 +61,21 @@ const DetailsCard = () => {
             <p>Actors: {movie.actors}</p>
             <p>{movie.overview}</p>
             <div className={styles['details-likes']}>
-            <p><span className={styles['details-icon']}><BsFillHeartFill/></span>Likes: {movie?.likes}</p>
+              <p>
+                <span  onClick={likeButtonClick} className={styles['details-icon']}>
+                  <BsFillHeartFill />
+                </span>
+                Likes: {likeCounts}
+              </p>
             </div>
 
             <div className={styles['details-buttons']}>
               <Link to="/tickets">Tickets</Link>
-              {user.email === 'admin@abv.bg' ? 
-              <Link to={`/edit/${movie._id}`}>Edit</Link>
-              :
-              ''
-              }
+              {user.email === 'admin@abv.bg' ? (
+                <Link to={`/edit/${movie._id}`}>Edit</Link>
+              ) : (
+                ''
+              )}
             </div>
           </div>
         </div>

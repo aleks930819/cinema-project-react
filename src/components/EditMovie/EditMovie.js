@@ -1,4 +1,4 @@
-import {useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 
 import styles from './EditMovie.module.css';
 import * as movieService from '../../services/movieServices';
@@ -8,15 +8,11 @@ import { MovieContext } from '../../contexts/MovieContext';
 import { AuthCotnext } from '../../contexts/AuthContext';
 
 const EditMovie = () => {
-
-  
-  const {user} = useContext(AuthCotnext);
-
+  const { user } = useContext(AuthCotnext);
 
   const [dialog, setDialog] = useState({
     isLoading: false,
   });
-
 
   const [values, setValues] = useState({
     title: '',
@@ -29,7 +25,7 @@ const EditMovie = () => {
 
   const { id } = useParams();
 
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
   useEffect(() => {
     movieService.getByID(id).then((movie) => setValues(movie));
@@ -44,7 +40,7 @@ const EditMovie = () => {
     e.preventDefault();
     console.log(user.accessToken);
     movieService
-      .editMovie(id, values,user.accessToken)
+      .editMovie(id, values, user.accessToken)
       .then((response) => response.json())
       .then((data) => navigate(`/details/${data._id}`))
       .catch((err) => err.message);
@@ -54,16 +50,15 @@ const EditMovie = () => {
     setDialog({
       isLoading: true,
     });
-   
   };
 
   const deleteMovie = () => {
-    movieService.deleteMovie(id,user.accessToken);
+    movieService.deleteMovie(id, user.accessToken);
     navigate('/');
   };
 
   return (
-    <MovieContext.Provider value={{deleteMovie,setDialog}}>
+    <MovieContext.Provider value={{ deleteMovie, setDialog }}>
       <div className={styles['add-movie']}>
         <form className={styles['add-movie-form']} onSubmit={submitHandler}>
           <div>

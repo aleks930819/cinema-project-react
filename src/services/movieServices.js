@@ -1,4 +1,6 @@
 const URL = 'http://localhost:3030/data/movies';
+const URL_LIKES = 'http://localhost:3030/data';
+
 
 export function getAll() {
   return fetch(URL).then((res) => res.json());
@@ -41,4 +43,37 @@ export function deleteMovie(id, accessToken) {
       'X-Authorization': accessToken,
     },
   }).catch((err) => err);
+}
+
+
+// export function like(movieId,data,accessToken){
+//   return fetch(`${URL}/${movieId}`, {
+//      method: 'POST',
+//      headers: {
+//          'content-type': 'application/json',
+//          'X-Authorization': accessToken,
+//      },
+//      body: JSON.stringify({
+//       data
+//      })
+//   }).then(res => res.json());
+// }
+
+
+export function like(user,accessToken,movieID){
+  return fetch(`${URL_LIKES}/likes`, {
+     method: 'POST',
+     headers: {
+         'content-type': 'application/json',
+         'X-Authorization': accessToken,
+     },
+     body: JSON.stringify({
+      user,
+      movieID
+     })
+  }).then(res => res.json());
+}
+
+export function getLikes() {
+  return fetch(`${URL_LIKES}/likes`).then((res) => res.json());
 }

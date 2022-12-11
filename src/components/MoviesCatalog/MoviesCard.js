@@ -5,7 +5,6 @@ import styles from './Movie.module.css';
 
 
 const MoviesCard = ({ movie }) => {
-
   return (
 
     <Link to={`/details/${movie._id}`}>

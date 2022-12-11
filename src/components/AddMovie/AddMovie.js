@@ -1,6 +1,6 @@
 import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { AuthCotnext } from '../../contexts/AuthContext';
+import { AuthCotnext, useAuthContext } from '../../contexts/AuthContext';
 import { addMovie } from '../../services/movieServices';
 import styles from './AddMovie.module.css';
 
@@ -8,6 +8,9 @@ const AddMovie = () => {
   const navigate = useNavigate();
 
   const {user} = useContext(AuthCotnext);
+
+  
+
 
   const [values, setValues] = useState({
     title: '',
