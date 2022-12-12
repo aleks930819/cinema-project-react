@@ -8,8 +8,10 @@ import * as cinemaServices from '../../services/cinemaServices';
 import Button from '../Button/Button';
 import AddForm from '../AddForm/AddForm';
 import AddFormInput from '../AddForm/AddFormInput';
+import setChangedValue from '../Utils/changeHandler';
 
 const AddCinema = () => {
+  
   const navigate = useNavigate();
 
   const { user } = useContext(AuthCotnext);
@@ -22,18 +24,18 @@ const AddCinema = () => {
     phone: '',
     imgUrl: '',
   });
-
+  
   const changeHandler = (e) => {
-    setValues((state) => ({ ...state, [e.target.name]: e.target.value }));
-    e.value = e.target.value;
+    setChangedValue(e, setValues);
   };
 
   const submitHandler = (e) => {
     e.preventDefault();
-         cinemaServices.addCinema(values,user.accessToken)
-        .then((response) => response.json())
-        .then((data) => navigate('/cinemas'))
-        .catch((err) => err.message);
+    cinemaServices
+      .addCinema(values, user.accessToken)
+      .then((response) => response.json())
+      .then((data) => navigate('/cinemas'))
+      .catch((err) => err.message);
   };
 
   return (

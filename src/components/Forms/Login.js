@@ -7,6 +7,9 @@ import styles from './Form.module.css';
 import * as authServices from '../../services/authServices';
 import { AuthCotnext } from '../../contexts/AuthContext';
 import Button from '../Button/Button';
+import setChangedValue from '../Utils/changeHandler';
+import AddForm from '../AddForm/AddForm';
+import AddFormInput from '../AddForm/AddFormInput';
 
 
 const Login = () => {
@@ -21,9 +24,9 @@ const Login = () => {
 
   const navigate = useNavigate();
 
+
   const changeHandler = (e) => {
-    setValues((state) => ({ ...state, [e.target.name]: e.target.value }));
-    e.value = e.target.value;
+    setChangedValue(e,setValues);
   };
 
   const submitHandler = (e) => {
@@ -42,12 +45,20 @@ const Login = () => {
   }, [user.email,navigate]);
 
   return (
-    <div className={styles['form-box']}>
-      <form className={styles['form']} onSubmit={submitHandler}>
+    <AddForm handler={submitHandler}>
+   
         <h2>LOGIN</h2>
-        <div className={styles.email}>
-          {/* <label id="email">email</label> */}
-          <input
+          <AddFormInput
+            element="input"
+            type="text"
+            htmlFor="email"
+            placeholder="Your Email"
+            name="email"
+            value={values.name}
+            handler={changeHandler}
+
+          />
+          {/* <input
             type="text"
             htmlFor="email"
             placeholder="Your Email"
@@ -55,11 +66,19 @@ const Login = () => {
             name="email"
             onChange={changeHandler}
             required
+          /> */}
+
+          <AddFormInput
+            element="input"
+            type="password"
+            htmlFor="password"
+            placeholder="Password"
+            name="password"
+            value={values.name}
+            handler={changeHandler}
+
           />
-        </div>
-        <div className={styles.password}>
-          {/* <label id="password">Password</label> */}
-          <input
+          {/* <input
             type="password"
             htmlFor="password"
             placeholder="Password"
@@ -67,13 +86,11 @@ const Login = () => {
             name="password"
             onChange={changeHandler}
             required
-          />
-        </div>
+          /> */}
         
         <Button>Login</Button>
         <Link to="/register">Don't have an account? Register</Link>
-      </form>
-    </div>
+    </AddForm>
   );
 };
 

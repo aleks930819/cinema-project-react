@@ -26,7 +26,6 @@ const MoviesData = () => {
     <>
     <ImageSlider/>
     
-      {/* <WeeklyProgram /> */}
       <div className={styles['movie-container']}>
         {loading ? (
           <LoadingSpinner />

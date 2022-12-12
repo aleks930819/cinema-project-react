@@ -10,6 +10,7 @@ import { addMovie } from '../../services/movieServices';
 import Button from '../Button/Button';
 import AddFormInput from '../AddForm/AddFormInput';
 import AddForm from '../AddForm/AddForm';
+import setChangedValue from '../Utils/changeHandler';
 
 const AddMovie = () => {
   const navigate = useNavigate();
@@ -25,13 +26,15 @@ const AddMovie = () => {
     runtime: '',
   });
 
-  console.log(values);
 
-
-  const changeHandler = (e) => {
-    setValues((state) => ({ ...state, [e.target.name]: e.target.value }));
-    e.value = e.target.value;
-  };
+const changeHandler = (e) => {
+  setChangedValue(e,setValues);
+};
+ 
+  // const changeHandler = (e) => {
+  //   setValues((state) => ({ ...state, [e.target.name]: e.target.value }));
+  //   e.value = e.target.value;
+  // };
 
   const submitHandler = (e) => {
     e.preventDefault();

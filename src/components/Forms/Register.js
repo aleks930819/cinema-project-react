@@ -6,6 +6,9 @@ import styles from './Form.module.css';
 import * as authServices from '../../services/authServices';
 import { AuthCotnext } from '../../contexts/AuthContext';
 import Button from '../Button/Button';
+import setChangedValue from '../Utils/changeHandler';
+import AddForm from '../AddForm/AddForm';
+import AddFormInput from '../AddForm/AddFormInput';
 
 const Register = () => {
   const { user, userLogin } = useContext(AuthCotnext);
@@ -21,17 +24,15 @@ const Register = () => {
   const navigate = useNavigate();
 
   const changeHandler = (e) => {
-    setValues((state) => ({ ...state, [e.target.name]: e.target.value }));
-    e.value = e.target.value;
+    setChangedValue(e, setValues);
   };
 
   const submitHandler = (e) => {
     e.preventDefault();
-      authServices
-        .register(values.email, values.password)
-        .then((authData) => userLogin(authData));
-    };
-  
+    authServices
+      .register(values.email, values.password)
+      .then((authData) => userLogin(authData));
+  };
 
   useEffect(() => {
     if (user.email) {
@@ -40,51 +41,75 @@ const Register = () => {
   }, [user.email, navigate]);
 
   return (
-    <div className={styles['form-box']}>
-      <form className={styles['form']} onSubmit={submitHandler}>
-        <h2>REGISTER</h2>
-        <div className={styles.email}>
-          {/* <label id="email">email</label> */}
-          <input
-            type="text"
-            htmlFor="email"
-            placeholder="Your Email"
-            name="email"
-            value={values.email}
-            onChange={changeHandler}
-            required
-          />
-        </div>
-        <div className={styles.password}>
-          {/* <label id="password">Password</label> */}
-          <input
-            type="password"
-            htmlFor="password"
-            placeholder="Password"
-            name="password"
-            value={values.password}
-            onChange={changeHandler}
-            required
-          />
-        </div>
+    <AddForm handler={submitHandler}>
+      <h2>REGISTER</h2>
+      {/* <div className={styles.email}>
+        <input
+          type="text"
+          htmlFor="email"
+          placeholder="Your Email"
+          name="email"
+          value={values.email}
+          onChange={changeHandler}
+          required
+        />
+      </div> */}
 
-        <div className={styles.password}>
-          {/* <label id="password">Confirm Password</label> */}
-          <input
-            type="password"
-            htmlFor="password"
-            placeholder="Confirm Password"
-            name="repassword"
-            value={values.repassword}
-            onChange={changeHandler}
-            required
-          />
-        </div>
-        <Button>Register</Button>
+      <AddFormInput
+        element="input"
+        type="text"
+        htmlFor="email"
+        placeholder="Your Email"
+        name="email"
+        value={values.name}
+        handler={changeHandler}
+      />
 
-        <Link to="/login">You already have an account? Login</Link>
-      </form>
-    </div>
+      <AddFormInput
+        element="input"
+        type="password"
+        htmlFor="password"
+        placeholder="Password"
+        name="password"
+        value={values.name}
+        handler={changeHandler}
+      />
+
+      <AddFormInput
+        element="input"
+        type="password"
+        htmlFor="password"
+        placeholder="Confirm Password"
+        name="repassword"
+        value={values.name}
+        handler={changeHandler}
+      />
+      {/* <div className={styles.password}>
+        <input
+          type="password"
+          htmlFor="password"
+          placeholder="Password"
+          name="password"
+          value={values.password}
+          onChange={changeHandler}
+          required
+        />
+      </div> */}
+
+      {/* <div className={styles.password}>
+        <input
+          type="password"
+          htmlFor="password"
+          placeholder="Confirm Password"
+          name="repassword"
+          value={values.repassword}
+          onChange={changeHandler}
+          required
+        />
+      </div> */}
+      <Button>Register</Button>
+      <Link to="/login">You already have an account? Login</Link>
+    </AddForm>
   );
 };
 

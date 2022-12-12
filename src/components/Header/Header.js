@@ -3,8 +3,9 @@ import { FiAlignJustify } from 'react-icons/fi';
 
 import { useContext, useState } from 'react';
 
-import { AuthCotnext } from '../../contexts/AuthContext';
 import styles from './Header.module.css';
+
+import { AuthCotnext } from '../../contexts/AuthContext';
 
 let activeStyle = {
   borderBottom: '2px solid white',
