@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 
 import { AuthCotnext } from '../../contexts/AuthContext';
 import * as cinemaServices from '../../services/cinemaServices';
@@ -12,6 +12,10 @@ import setChangedValue from '../Utils/changeHandler';
 
 const AddCinema = () => {
   
+  useEffect(() => {
+    window.scrollTo({top: 15, left: 0, behavior: 'smooth'});
+  }, []);
+
   const navigate = useNavigate();
 
   const { user } = useContext(AuthCotnext);

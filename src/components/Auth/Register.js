@@ -13,6 +13,8 @@ import AddFormInput from '../AddForm/AddFormInput';
 const Register = () => {
   const { user, userLogin } = useContext(AuthCotnext);
 
+  
+
   const errors = {};
 
   const [values, setValues] = useState({
@@ -43,18 +45,6 @@ const Register = () => {
   return (
     <AddForm handler={submitHandler}>
       <h2>REGISTER</h2>
-      {/* <div className={styles.email}>
-        <input
-          type="text"
-          htmlFor="email"
-          placeholder="Your Email"
-          name="email"
-          value={values.email}
-          onChange={changeHandler}
-          required
-        />
-      </div> */}
-
       <AddFormInput
         element="input"
         type="text"
@@ -64,7 +54,6 @@ const Register = () => {
         value={values.name}
         handler={changeHandler}
       />
-
       <AddFormInput
         element="input"
         type="password"
@@ -74,7 +63,6 @@ const Register = () => {
         value={values.name}
         handler={changeHandler}
       />
-
       <AddFormInput
         element="input"
         type="password"
@@ -84,29 +72,6 @@ const Register = () => {
         value={values.name}
         handler={changeHandler}
       />
-      {/* <div className={styles.password}>
-        <input
-          type="password"
-          htmlFor="password"
-          placeholder="Password"
-          name="password"
-          value={values.password}
-          onChange={changeHandler}
-          required
-        />
-      </div> */}
-
-      {/* <div className={styles.password}>
-        <input
-          type="password"
-          htmlFor="password"
-          placeholder="Confirm Password"
-          name="repassword"
-          value={values.repassword}
-          onChange={changeHandler}
-          required
-        />
-      </div> */}
       <Button>Register</Button>
       <Link to="/login">You already have an account? Login</Link>
     </AddForm>

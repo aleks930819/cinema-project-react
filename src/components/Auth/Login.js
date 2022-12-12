@@ -16,7 +16,6 @@ const Login = () => {
   const { user, userLogin } = useContext(AuthCotnext);
 
 
-
   const [values, setValues] = useState({
     email: '',
     password: '',
@@ -46,7 +45,6 @@ const Login = () => {
 
   return (
     <AddForm handler={submitHandler}>
-   
         <h2>LOGIN</h2>
           <AddFormInput
             element="input"
@@ -56,18 +54,7 @@ const Login = () => {
             name="email"
             value={values.name}
             handler={changeHandler}
-
           />
-          {/* <input
-            type="text"
-            htmlFor="email"
-            placeholder="Your Email"
-            value={values.email}
-            name="email"
-            onChange={changeHandler}
-            required
-          /> */}
-
           <AddFormInput
             element="input"
             type="password"
@@ -76,18 +63,7 @@ const Login = () => {
             name="password"
             value={values.name}
             handler={changeHandler}
-
           />
-          {/* <input
-            type="password"
-            htmlFor="password"
-            placeholder="Password"
-            value={values.password}
-            name="password"
-            onChange={changeHandler}
-            required
-          /> */}
-        
         <Button>Login</Button>
         <Link to="/register">Don't have an account? Register</Link>
     </AddForm>

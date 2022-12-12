@@ -10,6 +10,8 @@ const Cinemas = () => {
 
     const [cinemas,setCinemas] = useState([]);
 
+
+
     useEffect(() => {
      cinemaServices.getAll().then((cinemas) => {
       setCinemas(Object.values(cinemas));

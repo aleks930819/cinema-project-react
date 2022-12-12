@@ -4,6 +4,8 @@
     grid-template-columns: repeat(3, 1fr);
     gap: 5rem;
     padding: 10rem 7rem ;
+    width: 70vw;
+    margin:0 auto;
 
 }
 
@@ -104,6 +106,13 @@
 
     }
 
+
+}
+
+@media only screen and (max-width: 600px) {
+    .movie-container {
+    width: 100vw;
+    }
 
 }
 

@@ -10,6 +10,8 @@ import { AuthCotnext } from '../../contexts/AuthContext';
 
 import Button from '../Button/Button';
 import Dialog from '../Dialog/Dialog';
+import AddForm from '../AddForm/AddForm';
+import setChangedValue from '../Utils/changeHandler';
 
 
 const EditMovie = () => {
@@ -18,6 +20,9 @@ const EditMovie = () => {
   const [dialog, setDialog] = useState({
     isLoading: false,
   });
+
+
+
 
   const [values, setValues] = useState({
     title: '',
@@ -37,13 +42,11 @@ const EditMovie = () => {
   }, [id]);
 
   const changeHandler = (e) => {
-    setValues((state) => ({ ...state, [e.target.name]: e.target.value }));
-    e.value = e.target.value;
-  };
+    setChangedValue(e, setValues);
+  };;
 
   const submitHandler = (e) => {
     e.preventDefault();
-    console.log(user.accessToken);
     movieService
       .editMovie(id, values, user.accessToken)
       .then((response) => response.json())
