@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
+
 import styles from './Cinemas.module.css';
+
 import * as cinemaServices from '../../services/cinemaServices';
 import CinemaCard from './CinemaCard';
 
@@ -14,7 +16,6 @@ const Cinemas = () => {
      });
     },[]);
 
-    cinemas.map((x) => console.log(x) );
 
 
     return (

@@ -1,9 +1,10 @@
-import { useContext, useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { useContext, useEffect, useState } from 'react';
 
 import styles from './Form.module.css';
+
 import * as authServices from '../../services/authServices';
-import { AuthCotnext, useAuthContext } from '../../contexts/AuthContext';
+import { AuthCotnext } from '../../contexts/AuthContext';
 import Button from '../Button/Button';
 
 const Register = () => {

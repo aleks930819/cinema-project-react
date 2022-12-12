@@ -1,6 +1,8 @@
-import { useEffect, useState } from 'react';
-import styles from './ImageSlider.module.css';
 import { BiChevronLeft, BiChevronRight } from 'react-icons/bi';
+
+import { useEffect, useState } from 'react';
+
+import styles from './ImageSlider.module.css';
 
 const images = [
   'https://i.pinimg.com/564x/92/28/40/92284053943e39309aed00ada47306ed.jpg',

@@ -1,12 +1,15 @@
+import { useNavigate, useParams } from 'react-router-dom';
+
 import { useContext, useEffect, useState } from 'react';
 
 import styles from './EditMovie.module.css';
+
 import * as movieService from '../../services/movieServices';
-import { useNavigate, useParams } from 'react-router-dom';
-import Dialog from '../Dialog/Dialog';
 import { MovieContext } from '../../contexts/MovieContext';
 import { AuthCotnext } from '../../contexts/AuthContext';
+
 import Button from '../Button/Button';
+import Dialog from '../Dialog/Dialog';
 
 
 const EditMovie = () => {

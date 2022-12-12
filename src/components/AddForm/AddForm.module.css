@@ -1,4 +1,4 @@
-.add-movie {
+.add-form-box {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -6,7 +6,7 @@
 
 }
 
-.add-movie-form {
+.add-form {
     display: flex;
     flex-direction: column;
     gap: 4rem;
@@ -21,13 +21,13 @@
 
 }
 
-.add-movie-form label {
+.add-form label {
     color: white;
     font-size: 2rem;
 
 }
 
-.add-movie-form  input {
+.add-form  input {
     display: block;
     margin-top: .5rem;
     outline: none;
@@ -38,7 +38,7 @@
 
 }
 
-.add-movie-form  textarea {
+.add-form  textarea {
     display: block;
     font-size: 2rem;
     width: 30vw;
@@ -55,16 +55,16 @@
 
 
 @media only screen and (max-width: 600px) {
-    .add-movie-form{
+    .add-form{
         width: 80vw;
     }
 
-    .add-movie-form  input {
+    .add-form  input {
         width: 60vw;
 
     }
 
-    .add-movie-form textarea {
+    .add-form textarea {
 
         width: 60vw;
 

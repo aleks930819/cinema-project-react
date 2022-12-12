@@ -1,10 +1,15 @@
-import { useContext, useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import styles from './DetailsCard.module.css';
 import { BsFillHeartFill } from 'react-icons/bs';
 
+import { useContext, useEffect, useState } from 'react';
+
+import styles from './DetailsCard.module.css';
+
+import { AuthCotnext } from '../../contexts/AuthContext';
 import * as movieService from '../../services/movieServices';
-import { AuthCotnext, useAuthContext } from '../../contexts/AuthContext';
+
+import FancyButton from '../Button/FancyButton';
+
 
 const DetailsCard = () => {
   const [movie, setMovie] = useState([]);
@@ -70,11 +75,11 @@ const DetailsCard = () => {
             </div>
 
             <div className={styles['details-buttons']}>
-              <Link to="/tickets">Tickets</Link>
+              <FancyButton to="/tickets">Tickets</FancyButton>
               {user.email === 'admin@abv.bg' && (
-                <Link to={`/edit/${movie._id}`}>Edit</Link>
+                <FancyButton to={`/edit/${movie._id}`}>Edit</FancyButton>
               )}
-              
+
             </div>
           </div>
         </div>

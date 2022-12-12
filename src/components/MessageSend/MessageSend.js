@@ -4,7 +4,7 @@ const MessageSend = () => {
     return (
         <div className={styles['message-send']}>
                <h2>Your message has successfully  sent!</h2>
-               <p>You will resirve an answer as soon as possible </p>
+               <p>You will receive an answer as soon as possible </p>
         </div>
     );
 };

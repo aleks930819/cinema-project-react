@@ -1,6 +1,8 @@
 import { useContext } from 'react';
-import { MovieContext } from '../../contexts/MovieContext';
+
 import styles from './Dialog.module.css';
+
+import { MovieContext } from '../../contexts/MovieContext';
 
 
 

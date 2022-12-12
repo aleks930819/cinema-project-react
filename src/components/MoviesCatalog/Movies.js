@@ -1,11 +1,10 @@
 import { useEffect, useState } from 'react';
-import * as movieService from '../../services/movieServices';
 
 import styles from './Movie.module.css';
 
 import MoviesCard from './MoviesCard';
+import * as movieService from '../../services/movieServices';
 import LoadingSpinner from '../Spinner/Spinner';
-import WeeklyProgram from '../WeeklyProgram/WeeklyProgram';
 import ImageSlider from '../ImageSlider/ImageSlider';
 
 

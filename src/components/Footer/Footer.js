@@ -1,6 +1,8 @@
-import styles from './Footer.module.css';
 
 import { BsFacebook,BsTwitter,BsInstagram,BsYoutube } from "react-icons/bs";
+
+import styles from './Footer.module.css';
+
 
 
 

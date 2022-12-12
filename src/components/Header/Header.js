@@ -1,9 +1,11 @@
-import { useContext, useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import { AuthCotnext, useAuthContext } from '../../contexts/AuthContext';
+import { FiAlignJustify } from 'react-icons/fi';
+
+import { useContext, useState } from 'react';
+
+import { AuthCotnext } from '../../contexts/AuthContext';
 import styles from './Header.module.css';
 
-import { FiAlignJustify } from 'react-icons/fi';
 
 let activeStyle = {
   borderBottom: '2px solid white',

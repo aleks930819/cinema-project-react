@@ -1,5 +1,7 @@
-import ImageSlider from '../ImageSlider/ImageSlider';
+
 import styles from './WeeklyProgram.module.css';
+
+import ImageSlider from '../ImageSlider/ImageSlider';
 
 
 const WeeklyProgram = () => {
