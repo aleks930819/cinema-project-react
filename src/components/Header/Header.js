@@ -6,7 +6,6 @@ import { useContext, useState } from 'react';
 import { AuthCotnext } from '../../contexts/AuthContext';
 import styles from './Header.module.css';
 
-
 let activeStyle = {
   borderBottom: '2px solid white',
   paddingBottom: '2px',
@@ -46,6 +45,18 @@ const Header = () => {
                   onClick={() => setOpen(false)}
                 >
                   add movie
+                </NavLink>
+              ) : (
+                ''
+              )}
+
+              {user.email === 'admin@abv.bg' ? (
+                <NavLink
+                  style={({ isActive }) => (isActive ? activeStyle : undefined)}
+                  to="/add-cinema"
+                  onClick={() => setOpen(false)}
+                >
+                  add cinema
                 </NavLink>
               ) : (
                 ''
@@ -92,6 +103,7 @@ const Header = () => {
           >
             cinemas
           </NavLink>
+
           {user.username && (
             <span className={styles.welcome}>
               Welcome back {user.username}!

@@ -14,6 +14,7 @@ import Logout from './components/Logout/Logout';
 import Footer from './components/Footer/Footer';
 import MessageSend from './components/MessageSend/MessageSend';
 import Cinemas from './components/CInemas/Cinemas';
+import AddCinema from './components/AddCinema/AddCinema';
 
 
 function App() {
@@ -44,6 +45,8 @@ function App() {
           <Route path="/edit/:id" element={<EditMovie />} />
           <Route path="/message-send" element={<MessageSend />} />
           <Route path="/cinemas" element={<Cinemas />} />
+          <Route path="/add-cinema" element={<AddCinema/>} />
+
           <Route path="*" element={<ErrorPage />} />
 
         </Routes>
