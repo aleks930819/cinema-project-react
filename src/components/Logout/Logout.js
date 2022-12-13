@@ -15,6 +15,7 @@ const Logout = () => {
       .logout(user.accessToken)
       .then(() => {
         userLogout();
+        localStorage.clear();
         navigate('/');
       })
       .catch(() => {

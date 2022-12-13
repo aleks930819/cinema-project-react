@@ -11,10 +11,10 @@ import setChangedValue from '../Utils/changeHandler';
 import AddForm from '../AddForm/AddForm';
 import AddFormInput from '../AddForm/AddFormInput';
 
-
 const Login = () => {
   const { user, userLogin } = useContext(AuthCotnext);
 
+  const [currentUser, setCurrentUser] = useState();
 
   const [values, setValues] = useState({
     email: '',
@@ -23,9 +23,8 @@ const Login = () => {
 
   const navigate = useNavigate();
 
-
   const changeHandler = (e) => {
-    setChangedValue(e,setValues);
+    setChangedValue(e, setValues);
   };
 
   const submitHandler = (e) => {
@@ -34,38 +33,39 @@ const Login = () => {
     authServices
       .login(values.email, values.password)
       .then((result) => userLogin(result));
-    };
-    
- 
+  };
+
+  localStorage.setItem('user', JSON.stringify(user));
+
   useEffect(() => {
     if (user.email) {
       navigate('/');
     }
-  }, [user.email,navigate]);
+  }, [user.email, navigate]);
 
   return (
     <AddForm handler={submitHandler}>
-        <h2>LOGIN</h2>
-          <AddFormInput
-            element="input"
-            type="text"
-            htmlFor="email"
-            placeholder="Your Email"
-            name="email"
-            value={values.name}
-            handler={changeHandler}
-          />
-          <AddFormInput
-            element="input"
-            type="password"
-            htmlFor="password"
-            placeholder="Password"
-            name="password"
-            value={values.name}
-            handler={changeHandler}
-          />
-        <Button>Login</Button>
-        <Link to="/register">Don't have an account? Register</Link>
+      <h2>LOGIN</h2>
+      <AddFormInput
+        element="input"
+        type="text"
+        htmlFor="email"
+        placeholder="Your Email"
+        name="email"
+        value={values.name}
+        handler={changeHandler}
+      />
+      <AddFormInput
+        element="input"
+        type="password"
+        htmlFor="password"
+        placeholder="Password"
+        name="password"
+        value={values.name}
+        handler={changeHandler}
+      />
+      <Button>Login</Button>
+      <Link to="/register">Don't have an account? Register</Link>
     </AddForm>
   );
 };

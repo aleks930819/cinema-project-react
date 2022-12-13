@@ -11,16 +11,27 @@ import Login from './components/Auth/Login';
 import MoviesData from './components/MoviesCatalog/Movies';
 import Register from './components/Auth/Register';
 import EditMovie from './components/EditMovie/EditMovie';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Logout from './components/Logout/Logout';
 import Footer from './components/Footer/Footer';
 import MessageSend from './components/MessageSend/MessageSend';
 import Cinemas from './components/CInemas/Cinemas';
 import AddCinema from './components/AddCinema/AddCinema';
 import ScrollToTop from './components/Utils/ScrollToTop';
+import { useLocalStorage } from './hooks/useLocalStorage';
 
 function App() {
   const [auth, setAuth] = useState({});
+
+
+  useEffect(() => {
+    const loggedInUser = localStorage.getItem('user');
+    if (loggedInUser) {
+      const foundUser = JSON.parse(loggedInUser);
+      setAuth(foundUser);
+    }
+  }, []);
+
 
   const userLogin = (authData) => {
     setAuth(authData);

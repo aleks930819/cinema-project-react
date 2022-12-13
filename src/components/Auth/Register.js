@@ -35,6 +35,9 @@ const Register = () => {
       .register(values.email, values.password)
       .then((authData) => userLogin(authData));
   };
+  
+  localStorage.setItem('user', JSON.stringify(user));
+
 
   useEffect(() => {
     if (user.email) {
