@@ -2,6 +2,7 @@ import { Route, Routes } from 'react-router-dom';
 
 import { AuthCotnext, AuthProvider } from './contexts/AuthContext';
 
+
 import AddMovie from './components/AddMovie/AddMovie';
 import ContactUs from './components/ContactUs/ContactUs';
 import DetailsCard from './components/DetailsCard/DetailsCard';
@@ -18,7 +19,8 @@ import MessageSend from './components/MessageSend/MessageSend';
 import Cinemas from './components/CInemas/Cinemas';
 import AddCinema from './components/AddCinema/AddCinema';
 import ScrollToTop from './components/Utils/ScrollToTop';
-import { useLocalStorage } from './hooks/useLocalStorage';
+import Tickets from './components/Tickets/TicketView';
+import Ticket from './components/Tickets/Ticket';
 
 function App() {
   const [auth, setAuth] = useState({});
@@ -59,6 +61,9 @@ function App() {
           <Route path="/message-send" element={<MessageSend />} />
           <Route path="/cinemas" element={<Cinemas />} />
           <Route path="/add-cinema" element={<AddCinema />} />
+          <Route path="/ticket/:id" element={<Ticket />} />
+          
+
           <Route path="*" element={<ErrorPage />} />
         </Routes>
       </AuthCotnext.Provider>

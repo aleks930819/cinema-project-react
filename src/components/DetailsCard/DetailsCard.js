@@ -11,6 +11,7 @@ import * as movieService from '../../services/movieServices';
 import FancyButton from '../Button/FancyButton';
 
 
+
 const DetailsCard = () => {
   const [movie, setMovie] = useState([]);
   const [likeCounts,setLikeCounts] = useState(0);
@@ -26,7 +27,6 @@ const DetailsCard = () => {
   // TODO add likes button logic
 
   movieService.getLikes().then((result) => setLikeCounts(result.length));
-  console.log(likeCounts);
 
 
   const likeButtonClick = () => {
@@ -75,7 +75,7 @@ const DetailsCard = () => {
             </div>
 
             <div className={styles['details-buttons']}>
-              <FancyButton to="/tickets">Tickets</FancyButton>
+              <FancyButton to={`/ticket/${movie._id}`}>Tickets</FancyButton>
               {user.email === 'admin@abv.bg' && (
                 <FancyButton to={`/edit/${movie._id}`}>Edit</FancyButton>
               )}

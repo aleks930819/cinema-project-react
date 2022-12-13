@@ -30,12 +30,34 @@ const Header = () => {
           }}
           className={styles.links}
         >
+         {user.username && (
+            <div className={styles.welcome}>
+              Welcome back {user.username}!
+            </div>
+          )}
+          
           <NavLink
             style={({ isActive }) => (isActive ? activeStyle : undefined)}
             to="/weekly-program"
             onClick={() => setOpen(false)}
           >
             weekly program
+          </NavLink>
+
+          <NavLink
+            style={({ isActive }) => (isActive ? activeStyle : undefined)}
+            to="/contact-us"
+            onClick={() => setOpen(false)}
+          >
+            contact us
+          </NavLink>
+
+          <NavLink
+            style={({ isActive }) => (isActive ? activeStyle : undefined)}
+            to="/cinemas"
+            onClick={() => setOpen(false)}
+          >
+            cinemas
           </NavLink>
           {user.email ? (
             <>
@@ -89,27 +111,9 @@ const Header = () => {
               </NavLink>
             </>
           )}
-          <NavLink
-            style={({ isActive }) => (isActive ? activeStyle : undefined)}
-            to="/contact-us"
-            onClick={() => setOpen(false)}
-          >
-            contact us
-          </NavLink>
+        
 
-          <NavLink
-            style={({ isActive }) => (isActive ? activeStyle : undefined)}
-            to="/cinemas"
-            onClick={() => setOpen(false)}
-          >
-            cinemas
-          </NavLink>
-
-          {user.username && (
-            <span className={styles.welcome}>
-              Welcome back {user.username}!
-            </span>
-          )}
+         
         </div>
       </header>
     </>

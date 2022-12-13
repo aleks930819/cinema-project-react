@@ -2,7 +2,6 @@
     display: flex;
     justify-content: space-between;
     margin-bottom: 10rem;
-
     background-color: var(--color-border);
     border-bottom: 2px solid var(--color-border);
   
@@ -34,10 +33,9 @@
   .welcome{
     font-size: 2rem;
     color:var(--color-white);
-    position: absolute;
     font-style: italic;
-    right:7rem;
-
+    padding-right: 5rem;
+   
   }
   
   
@@ -70,6 +68,10 @@
       gap:2rem;
      
     }
+    .welcome {
+      padding-right: 0;
+    }
+ 
   
     .links {
       flex-direction: column;

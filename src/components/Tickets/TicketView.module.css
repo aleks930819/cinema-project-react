@@ -1,0 +1,79 @@
+.tickets-box {
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-white);
+    font-size: 2.3rem;
+    padding: 10rem;
+
+}
+
+.tickets-container {
+    border: 2px solid var(--color-white);
+    padding: 5rem;
+    background-color: var(--color-border);
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 5rem;
+
+}
+
+.tickets-container h2 {
+    text-align: center;
+    letter-spacing: 1.4px;
+}
+
+.projections ul {
+
+    display: flex;
+    gap: 2rem;
+
+}
+
+.projections ul li {
+    list-style: none;
+    background-color: var(--color-white);
+    color: var(--color-dark);
+    padding: .5rem;
+    cursor: pointer;
+}
+
+.tickets-count {
+    display: flex;
+    gap: 2rem;
+    justify-self: center;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.left-arrow,
+.right-arrow {
+    cursor: pointer;
+    font-size: 3rem;
+}
+.price-per-ticket {
+    text-align: center;
+}
+
+
+
+@media only screen and (max-width: 600px) {
+
+.tickets-box {
+    padding:2.5rem;
+}
+    .projections ul {
+       flex-direction: column;
+       justify-content: center;
+       align-items: center;
+    }
+
+    .projections ul li{
+      text-align: center;
+     
+    }
+
+}
