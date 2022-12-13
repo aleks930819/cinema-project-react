@@ -1,18 +1,20 @@
 import { useContext } from 'react';
-import { AuthCotnext } from '../../contexts/AuthContext';
-import Button from '../Button/Button';
-import LoginRedirect from '../LoginRedirect/LoginRedirect';
+
 import styles from './TicketView.module.css';
 
-const TicketView = ({ticket}) => {
-  const { user } = useContext(AuthCotnext);
+import { AuthCotnext } from '../../contexts/AuthContext';
 
+import LoginRedirect from '../LoginRedirect/LoginRedirect';
+import Button from '../Button/Button';
+
+const TicketView = (props) => {
+  const { user } = useContext(AuthCotnext);
   return (
 <>   
  {user.email ?  (
      <div className={styles['tickets-box']}>
       <div className={styles['tickets-container']}>
-        <h2>{ticket.title}</h2>
+        <h2>{props.title}</h2>
         <div className={styles.projections}>
           <ul>
             <li>12:30</li>
@@ -23,7 +25,7 @@ const TicketView = ({ticket}) => {
           </ul>
         </div>
         <div className={styles['price-per-ticket']}>
-           <p>Price per ticket: $<span>{ticket.price}</span></p>
+           <p>Price per ticket: $<span>{props.price}</span></p>
         </div>
 
         <div className={styles['tickets-count']}>
@@ -34,7 +36,7 @@ const TicketView = ({ticket}) => {
           
         </div>
         <div className={styles.total}>
-             <p>Total: $<span>{ticket.price}</span></p>
+             <p>Total: $<span>{props.price}</span></p>
         </div>
         <Button>Book Tickets</Button>
       </div>

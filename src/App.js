@@ -1,6 +1,9 @@
 import { Route, Routes } from 'react-router-dom';
 
+import { useEffect, useState } from 'react';
+
 import { AuthCotnext, AuthProvider } from './contexts/AuthContext';
+import { MovieProvider } from './contexts/MovieContext';
 
 
 import AddMovie from './components/AddMovie/AddMovie';
@@ -12,15 +15,15 @@ import Login from './components/Auth/Login';
 import MoviesData from './components/MoviesCatalog/Movies';
 import Register from './components/Auth/Register';
 import EditMovie from './components/EditMovie/EditMovie';
-import { useEffect, useState } from 'react';
 import Logout from './components/Logout/Logout';
 import Footer from './components/Footer/Footer';
 import MessageSend from './components/MessageSend/MessageSend';
 import Cinemas from './components/CInemas/Cinemas';
 import AddCinema from './components/AddCinema/AddCinema';
 import ScrollToTop from './components/Utils/ScrollToTop';
-import Tickets from './components/Tickets/TicketView';
 import Ticket from './components/Tickets/Ticket';
+import UserProfile from './components/UserProfile/UserProfile';
+import EditUser from './components/UserProfile/EditUser';
 
 function App() {
   const [auth, setAuth] = useState({});
@@ -42,11 +45,11 @@ function App() {
   const userLogout = () => {
     setAuth({});
   };
-
   return (
     <>
       <AuthCotnext.Provider value={{ user: auth, userLogin, userLogout }}>
         <Header />
+        <MovieProvider>
     <ScrollToTop/>
         <Routes>
           <Route path="/" element={<MoviesData />} />
@@ -62,10 +65,13 @@ function App() {
           <Route path="/cinemas" element={<Cinemas />} />
           <Route path="/add-cinema" element={<AddCinema />} />
           <Route path="/ticket/:id" element={<Ticket />} />
-          
+          <Route path="/profile" element={<UserProfile />} />
+          <Route path="/profile/edit" element={<EditUser />} />
 
           <Route path="*" element={<ErrorPage />} />
         </Routes>
+        </MovieProvider>
+          
       </AuthCotnext.Provider>
       <Footer />
     </>

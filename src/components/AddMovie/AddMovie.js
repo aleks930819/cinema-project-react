@@ -30,10 +30,7 @@ const AddMovie = () => {
     setChangedValue(e, setValues);
   };
 
-  // const changeHandler = (e) => {
-  //   setValues((state) => ({ ...state, [e.target.name]: e.target.value }));
-  //   e.value = e.target.value;
-  // };
+ 
 
   const submitHandler = (e) => {
     e.preventDefault();

@@ -6,8 +6,7 @@ import MoviesCard from './MoviesCard';
 import * as movieService from '../../services/movieServices';
 import LoadingSpinner from '../Spinner/Spinner';
 import ImageSlider from '../ImageSlider/ImageSlider';
-
-
+import { MovieProvider } from '../../contexts/MovieContext';
 
 const MoviesData = () => {
   const [movies, setMovies] = useState([]);
@@ -21,18 +20,16 @@ const MoviesData = () => {
     });
   }, []);
 
-
   return (
     <>
-    <ImageSlider/>
-    
-      <div className={styles['movie-container']}>
-        {loading ? (
-          <LoadingSpinner />
-        ) : (
-          movies.map((x) => <MoviesCard key={x._id} movie={x} />)
-        )}
-      </div>
+      <ImageSlider />
+        <div className={styles['movie-container']}>
+          {loading ? (
+            <LoadingSpinner />
+          ) : (
+            movies.map((x) => <MoviesCard key={x._id} movie={x} />)
+          )}
+        </div>
     </>
   );
 };

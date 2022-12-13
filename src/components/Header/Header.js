@@ -92,6 +92,14 @@ const Header = () => {
               >
                 logout
               </NavLink>
+
+              <NavLink
+                style={({ isActive }) => (isActive ? activeStyle : undefined)}
+                to="/profile"
+                onClick={() => setOpen(false)}
+              >
+                profile
+              </NavLink>
             </>
           ) : (
             <>
