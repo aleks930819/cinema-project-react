@@ -32,7 +32,7 @@ const Header = () => {
         >
          {user.username && (
             <div className={styles.welcome}>
-              Welcome back {user.username}!
+              Welcome {user.username}!
             </div>
           )}
           
