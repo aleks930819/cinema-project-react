@@ -29,9 +29,7 @@ const Register = () => {
     setChangedValue(e, setValues);
   };
 
-  let passwordLength = Object.values(values)[1].length;
-
-  console.log(passwordLength);
+  
   const checkEmail = () => {
     let pattern = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
 
@@ -53,12 +51,10 @@ const Register = () => {
     }
   };
 
+  
   const checkPassword = () => {
-    if (values.password === '') {
-      setMessage('Please enter a password!');
-    }
-
-    if (passwordLength < 6) {
+   
+    if (values.password.length < 6) {
       setMessage('Password must be at least 6 characters');
     } else {
       setMessage('');
@@ -66,9 +62,7 @@ const Register = () => {
   };
 
   const checkRepassword = () => {
-    if (values.password === '') {
-      setMessage('Please enter a password!');
-    }
+ 
     if (values.password !== values.repassword) {
       setMessage('Password dont match!');
     } else {
@@ -104,6 +98,7 @@ const Register = () => {
         value={values.name}
         handler={changeHandler}
         onBlur={checkUsername}
+        label="Username"
       />
 
       <AddFormInput
@@ -115,6 +110,7 @@ const Register = () => {
         value={values.name}
         handler={changeHandler}
         onBlur={checkEmail}
+        label="Email"
       />
       <AddFormInput
         element="input"
@@ -125,6 +121,7 @@ const Register = () => {
         value={values.name}
         handler={changeHandler}
         onBLur={checkPassword}
+        label="Password"
       />
       <AddFormInput
         element="input"
@@ -135,6 +132,7 @@ const Register = () => {
         value={values.name}
         handler={changeHandler}
         onBlur={checkRepassword}
+        label="Repeat Password"
       />
       {message && <ValidationMessage>{message}</ValidationMessage>}
 

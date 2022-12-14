@@ -69,8 +69,12 @@ const Login = () => {
         name="email"
         value={values.name}
         handler={changeHandler}
+        emauil={values.email}
         onBlur={checkEmail}
+        label="Email"
       />
+
+
       <AddFormInput
         element="input"
         type="password"
@@ -79,8 +83,10 @@ const Login = () => {
         name="password"
         value={values.name}
         handler={changeHandler}
+        label="Password"
       />
       {message && <ValidationMessage>{message}</ValidationMessage>}
+
       <Button>Login</Button>
       <Link to="/register">Don't have an account? Register</Link>
     </AddForm>

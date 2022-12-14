@@ -17,6 +17,7 @@
     display: flex;
     flex-direction: column;
     gap: 5rem;
+    width: 40vw;
 
 }
 
@@ -60,6 +61,12 @@
 
 
 
+@media only screen and (max-width: 900px) {
+    .tickets-container {
+          width: 70vw;
+    }
+
+}
 @media only screen and (max-width: 600px) {
 
 .tickets-box {
@@ -75,5 +82,10 @@
       text-align: center;
      
     }
+
+    .tickets-container {
+        width: 90vw;
+  }
+
 
 }

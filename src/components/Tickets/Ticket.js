@@ -9,23 +9,27 @@ import { MovieContext } from '../../contexts/MovieContext';
 
 const Ticket = () => {
   const { id } = useParams();
-  
-  const [movie, setMovie] = useState('');
 
+  const [movie, setMovie] = useState('');
+  
   // const context = useContext(MovieContext);
   // // const currentMovie = context.movies?.find(movie => movie._id === id);
   // // context.movies.forEach(x => console.log(x));
   // console.log(context.movies);
-
+  
   useEffect(() => {
     movieService.getByID(id).then((movie) => setMovie(movie));
   }, [id]);
-
   
-
   return (
     <>
-      <TicketView key={id} price={movie.price} title={movie.title} />
+      <TicketView
+        key={id}
+        price={movie.price}
+        title={movie.title}
+        tickets={movie.tickets}
+        projections={movie.projections}
+      />
     </>
   );
 };
