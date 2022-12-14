@@ -17,6 +17,10 @@ const AddMovie = () => {
 
   const { user } = useContext(AuthCotnext);
 
+  if(user.email !== 'admin@abv.bg'){
+    navigate('/');
+  }
+
   const [values, setValues] = useState({
     title: '',
     director: '',

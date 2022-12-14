@@ -20,6 +20,11 @@ const AddCinema = () => {
 
   const { user } = useContext(AuthCotnext);
 
+  if(user.email !== 'admin@abv.bg'){
+    navigate('/');
+  }
+
+
   const [values, setValues] = useState({
     city: '',
     location: '',

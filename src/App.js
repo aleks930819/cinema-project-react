@@ -24,6 +24,7 @@ import ScrollToTop from './components/Utils/ScrollToTop';
 import Ticket from './components/Tickets/Ticket';
 import UserProfile from './components/UserProfile/UserProfile';
 import EditUser from './components/UserProfile/EditUser';
+import ReserveTickets from './components/ReserveTickets/ReserveTickets';
 
 function App() {
   const [auth, setAuth] = useState({});
@@ -67,6 +68,7 @@ function App() {
           <Route path="/ticket/:id" element={<Ticket />} />
           <Route path="/profile" element={<UserProfile />} />
           <Route path="/profile/edit" element={<EditUser />} />
+          <Route path="/reserve-tickets" element={<ReserveTickets />} />
 
           <Route path="*" element={<ErrorPage />} />
         </Routes>

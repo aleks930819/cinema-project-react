@@ -81,6 +81,19 @@ const Header = () => {
                 >
                   add cinema
                 </NavLink>
+                
+              ) : (
+                ''
+              )}
+              {user.email === 'admin@abv.bg' ? (
+                <NavLink
+                  style={({ isActive }) => (isActive ? activeStyle : undefined)}
+                  to="/reserve-tickets"
+                  onClick={() => setOpen(false)}
+                >
+                  reserve tickets
+                </NavLink>
+                
               ) : (
                 ''
               )}

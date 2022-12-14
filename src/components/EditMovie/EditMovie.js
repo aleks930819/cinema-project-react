@@ -17,6 +17,8 @@ import setChangedValue from '../Utils/changeHandler';
 const EditMovie = () => {
   const { user } = useContext(AuthCotnext);
 
+
+
   const [dialog, setDialog] = useState({
     isLoading: false,
   });
@@ -36,6 +38,12 @@ const EditMovie = () => {
   const { id } = useParams();
 
   const navigate = useNavigate();
+
+  
+  if(user.email !== 'admin@abv.bg'){
+    navigate('/');
+  }
+
 
   useEffect(() => {
     movieService.getByID(id).then((movie) => setValues(movie));

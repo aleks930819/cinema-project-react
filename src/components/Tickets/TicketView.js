@@ -47,12 +47,7 @@ const TicketView = (props) => {
             <h2>{props.title}</h2>
             <div className={styles.projections}>
               <ul>
-                 {props.projections?.map(x => <li key={x}>{x}</li>)}
-                {/* <li>12:30</li>
-                <li>17:30</li>
-                <li>10:30</li>
-                <li>18:00</li>
-                <li>21:00</li> */}{' '}
+                 {props.projections?.map(projection => <li key={props.id}>{projection}</li>)}
                 
               </ul>
             </div>
