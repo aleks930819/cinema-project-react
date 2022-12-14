@@ -9,35 +9,81 @@ import Button from '../Button/Button';
 import setChangedValue from '../Utils/changeHandler';
 import AddForm from '../AddForm/AddForm';
 import AddFormInput from '../AddForm/AddFormInput';
+import ValidationMessage from '../Validation/ValidationMessage';
 
 const Register = () => {
   const { user, userLogin } = useContext(AuthCotnext);
-
-  
-
-  const errors = {};
+  const [message, setMessage] = useState('');
 
   const [values, setValues] = useState({
+    username: '',
     email: '',
     password: '',
     repassword: '',
   });
 
+  
   const navigate = useNavigate();
-
+  
   const changeHandler = (e) => {
     setChangedValue(e, setValues);
+  };
+
+  let passwordLength = Object.values(values)[1].length;
+
+  console.log(passwordLength);
+  const checkEmail = () => {
+    let pattern = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
+
+    if (values.email === '') {
+      setMessage('Invalid email!');
+    }
+    if (!pattern.test(values.email)) {
+      setMessage('Invalid email!');
+    } else {
+      setMessage('');
+    }
+  };
+
+  const checkUsername = () => {
+    if (values.username === '') {
+      setMessage('Please enter a username!');
+    } else {
+      setMessage('');
+    }
+  };
+
+  const checkPassword = () => {
+    if (values.password === '') {
+      setMessage('Please enter a password!');
+    }
+
+    if (passwordLength < 6) {
+      setMessage('Password must be at least 6 characters');
+    } else {
+      setMessage('');
+    }
+  };
+
+  const checkRepassword = () => {
+    if (values.password === '') {
+      setMessage('Please enter a password!');
+    }
+    if (values.password !== values.repassword) {
+      setMessage('Password dont match!');
+    } else {
+      setMessage('');
+    }
   };
 
   const submitHandler = (e) => {
     e.preventDefault();
     authServices
-      .register(values.email, values.password)
+      .register(values.email, values.password,values.username)
       .then((authData) => userLogin(authData));
   };
-  
-  localStorage.setItem('user', JSON.stringify(user));
 
+  localStorage.setItem('user', JSON.stringify(user));
 
   useEffect(() => {
     if (user.email) {
@@ -48,6 +94,18 @@ const Register = () => {
   return (
     <AddForm handler={submitHandler}>
       <h2>REGISTER</h2>
+
+      <AddFormInput
+        element="input"
+        type="text"
+        htmlFor="username"
+        placeholder="Username"
+        name="username"
+        value={values.name}
+        handler={changeHandler}
+        onBlur={checkUsername}
+      />
+
       <AddFormInput
         element="input"
         type="text"
@@ -56,6 +114,7 @@ const Register = () => {
         name="email"
         value={values.name}
         handler={changeHandler}
+        onBlur={checkEmail}
       />
       <AddFormInput
         element="input"
@@ -65,6 +124,7 @@ const Register = () => {
         name="password"
         value={values.name}
         handler={changeHandler}
+        onBLur={checkPassword}
       />
       <AddFormInput
         element="input"
@@ -74,7 +134,10 @@ const Register = () => {
         name="repassword"
         value={values.name}
         handler={changeHandler}
+        onBlur={checkRepassword}
       />
+      {message && <ValidationMessage>{message}</ValidationMessage>}
+
       <Button>Register</Button>
       <Link to="/login">You already have an account? Login</Link>
     </AddForm>

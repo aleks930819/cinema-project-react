@@ -23,7 +23,7 @@ export async function login(email, password) {
   }
 }
 
-export async function register(email, password) {
+export async function register(email, password,username) {
 
   try {
     let response = await fetch(`${URL}/register`, {
@@ -34,6 +34,7 @@ export async function register(email, password) {
       body: JSON.stringify({
         email,
         password,
+        username
       }),
     });
     let jsonResult = await response.json();
