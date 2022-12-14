@@ -36,6 +36,7 @@ const ContactUs = () => {
             name="email"
             value={values.email}
             onChange={changeHandler}
+            required
           />
           <p className={styles['contact-us-phone']}>Phone: +1 234 235</p>
         </div>
@@ -49,6 +50,7 @@ const ContactUs = () => {
             name="message"
             value={values.message}
             onChange={changeHandler}
+            required
           />
         </div>
 

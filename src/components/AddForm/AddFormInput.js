@@ -12,6 +12,7 @@ const AddFormInput = (props) => {
       placeholder={props.placeholder}
       value={props.values}
       onChange={props.handler}
+      onBlur={props.onBlur}
       required
       />
     ) : (

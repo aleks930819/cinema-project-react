@@ -10,9 +10,11 @@ import Button from '../Button/Button';
 import setChangedValue from '../Utils/changeHandler';
 import AddForm from '../AddForm/AddForm';
 import AddFormInput from '../AddForm/AddFormInput';
+import ValidationMessage from '../Validation/ValidationMessage';
 
 const Login = () => {
   const { user, userLogin } = useContext(AuthCotnext);
+  const [message, setMessage] = useState('');
 
   const [currentUser, setCurrentUser] = useState();
 
@@ -20,6 +22,19 @@ const Login = () => {
     email: '',
     password: '',
   });
+
+  const checkEmail = () => {
+    let pattern = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
+
+    if (values.email === '') {
+      setMessage('Invalid email!');
+    }
+    if (!pattern.test(values.email)) {
+      setMessage('Invalid email!');
+    } else {
+      setMessage('');
+    }
+  };
 
   const navigate = useNavigate();
 
@@ -54,6 +69,7 @@ const Login = () => {
         name="email"
         value={values.name}
         handler={changeHandler}
+        onBlur={checkEmail}
       />
       <AddFormInput
         element="input"
@@ -64,6 +80,7 @@ const Login = () => {
         value={values.name}
         handler={changeHandler}
       />
+      {message && <ValidationMessage>{message}</ValidationMessage>}
       <Button>Login</Button>
       <Link to="/register">Don't have an account? Register</Link>
     </AddForm>

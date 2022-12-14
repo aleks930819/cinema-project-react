@@ -19,7 +19,6 @@ const Register = () => {
 
   const [values, setValues] = useState({
     email: '',
-    username:'',
     password: '',
     repassword: '',
   });
@@ -33,7 +32,7 @@ const Register = () => {
   const submitHandler = (e) => {
     e.preventDefault();
     authServices
-      .register(values.email, values.password,values.username)
+      .register(values.email, values.password)
       .then((authData) => userLogin(authData));
   };
   
@@ -49,17 +48,6 @@ const Register = () => {
   return (
     <AddForm handler={submitHandler}>
       <h2>REGISTER</h2>
-
-      <AddFormInput
-        element="input"
-        type="text"
-        htmlFor="username"
-        placeholder="Username"
-        name="username"
-        value={values.name}
-        handler={changeHandler}
-      />
-
       <AddFormInput
         element="input"
         type="text"
