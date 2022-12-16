@@ -16,7 +16,7 @@ const Register = () => {
   const [message, setMessage] = useState('');
 
   const [values, setValues] = useState({
-    username: '',
+    name: '',
     email: '',
     password: '',
     repassword: '',
@@ -73,7 +73,7 @@ const Register = () => {
   const submitHandler = (e) => {
     e.preventDefault();
     authServices
-      .register(values.email, values.password,values.username)
+      .register(values.email, values.password,values.name)
       .then((authData) => userLogin(authData));
   };
 
@@ -92,13 +92,13 @@ const Register = () => {
       <AddFormInput
         element="input"
         type="text"
-        htmlFor="username"
-        placeholder="Username"
-        name="username"
+        htmlFor="name"
+        placeholder="Name"
+        name="name"
         value={values.name}
         handler={changeHandler}
         onBlur={checkUsername}
-        label="Username"
+        label="Name"
       />
 
       <AddFormInput

@@ -1,10 +1,9 @@
 .header {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 10rem;
-    background-color: var(--color-border);
-    border-bottom: 2px solid var(--color-border);
-  
+   
+    background-color:var(--color-border);
+    flex-shrink: 1;
+    border-right: 2px solid var(--color-border);
+    gap:5rem
   }
 
   .hamburger {
@@ -17,18 +16,134 @@
   
   .links {
     display: flex;
+    flex-direction: column;
     gap:2rem;
     padding: 5rem;
+    margin-top: 10rem;
   }
   
   .links a {
     text-decoration: none;
     color:var(--color-white);
-    font-size: 2.6rem;
+    font-size: 2rem;
     transition: all .5s ease-in-out;
     text-transform: uppercase;
-  
+    position: relative;
+    text-align: center;
+    padding: 1rem;
+    overflow: hidden;
+      
   }
+  .links a:before {
+    content: '';
+    position: absolute;
+    top:0;
+    left:0;
+    width: 100%;
+    height: 100%;
+    border-top: 2px solid var(--color-white);
+    border-left: 2px solid var(--color-white);
+    transition: .5s;
+    box-sizing: border-box;
+    transform-origin: left;
+
+  }
+  .links a:hover:before {
+    width: 15px;
+    height: 15px;
+    transform: rotate(360deg);
+  }
+
+
+  .links a:after {
+    content: '';
+    position: absolute;
+    bottom:0;
+    right:0;
+    width: 100%;
+    height: 100%;
+    border-bottom: 2px solid var(--color-white);
+    border-right: 2px solid var(--color-white);
+    transition: .5s;
+    box-sizing: border-box;
+    transform-origin: right;
+
+  }
+  .links a:hover:after {
+    width: 15px;
+    height: 15px;
+    transform: rotate(360deg);
+  }
+    
+  .footer-icons ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* color:var(--color-white); */
+    gap:1rem;
+    font-size: 2rem;
+    cursor: pointer;
+    padding-right: 4rem;
+
+}
+
+.footer-icons ul li{
+  overflow: hidden;
+
+ border-radius: 30%;
+ margin: 2px;
+ padding: 1rem;
+ box-shadow: 0 5px 15px -5px #060616;
+ color:var(--color-primary);
+ list-style: none;
+ position: relative;
+ background-color: var(--color-white);
+ transition: all .3s ease-in-out;
+}
+
+
+.footer-icons ul li:hover{
+  transform: scale(1.3);
+  color:var(--color-white);
+  z-index: 1;
+
+}
+
+.footer-icons ul li:before{
+ content: '';
+ position: absolute;
+ width: 120%;
+ height: 120%;
+ background-color:var(--color-primary);
+ left:-110%;
+ top:90%;
+ transform: rotate(45deg);
+}
+
+.footer-icons ul li:hover:before{
+   animation: animation .6s 1 forwards;
+   z-index: -1;
+ 
+}
+
+
+@keyframes animation {
+  0% {
+    left:-110%;
+    top:90%;
+  }
+  50% {
+    left:15%;
+    top:-30%;
+  }
+
+  100% {
+    left:-10%;
+    top:-10%;
+  }
+}
+    
+
 
   .welcome{
     font-size: 2rem;
@@ -93,12 +208,12 @@
   @media only screen and (min-width: 1200px) {
    
   
-    .links a:hover  {
+    /* .links a:hover  {
      border: none;
      border-radius: 1rem;
      background-color: var(--color-white);
      color:var(--color-primary);
      padding: 1rem;
-    }
+    } */
   }
   

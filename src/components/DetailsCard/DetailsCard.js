@@ -9,6 +9,7 @@ import { AuthCotnext } from '../../contexts/AuthContext';
 import * as movieService from '../../services/movieServices';
 
 import FancyButton from '../Button/FancyButton';
+import Reviews from '../Reviews/Reviews';
 
 
 
@@ -17,12 +18,15 @@ const DetailsCard = () => {
   const { user } = useContext(AuthCotnext);
 
 
-  const { id } = useParams();
 
+  
+  const { id } = useParams();
+  
   useEffect(() => {
     movieService.getByID(id).then((movie) => setMovie(movie));
   }, [id]);
-
+  
+  console.log(movie.reviews);
 
 
   
@@ -45,16 +49,14 @@ const DetailsCard = () => {
             <p>{movie.overview}</p>
             <div className={styles['details-likes']}>
               <p>
-                <span className={styles['details-icon']}>
-                  <BsFillHeartFill />
-                </span>
-                Likes: {0}
+             
+                Rating: {movie.rating}
               </p>
             </div>
 
             <div className={styles['details-buttons']}>
               <FancyButton to={`/ticket/${movie._id}`} >Tickets</FancyButton>
-              {user.email === 'admin@abv.bg' && (
+              {user.isAdmin && (
                 <FancyButton to={`/edit/${movie._id}`}>Edit</FancyButton>
               )}
 
@@ -62,6 +64,12 @@ const DetailsCard = () => {
           </div>
         </div>
       </div>
+      <div className={styles['comments']}>
+      {movie.reviews?.map((x) => <Reviews key={x._id} name={x.name} rating={x.rating} comment={x.comment}/>)}
+      </div>
+
+
+     
     </>
   );
 };

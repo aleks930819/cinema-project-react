@@ -1,11 +1,13 @@
 import { NavLink } from 'react-router-dom';
 import { FiAlignJustify } from 'react-icons/fi';
+import { BsFacebook, BsTwitter, BsInstagram, BsYoutube } from 'react-icons/bs';
 
 import { useContext, useState } from 'react';
 
 import styles from './Header.module.css';
 
 import { AuthCotnext } from '../../contexts/AuthContext';
+import Dropdown from '../AdminDropdown/AdminDropdown';
 
 let activeStyle = {
   borderBottom: '2px solid white',
@@ -30,14 +32,11 @@ const Header = () => {
           }}
           className={styles.links}
         >
-         {user.username && (
-            <div className={styles.welcome}>
-              Welcome back {user.username}!
-            </div>
+          {user.email && (
+            <div className={styles.welcome}>Welcome {user.name}!</div>
           )}
-          
+
           <NavLink
-            style={({ isActive }) => (isActive ? activeStyle : undefined)}
             to="/weekly-program"
             onClick={() => setOpen(false)}
           >
@@ -45,7 +44,6 @@ const Header = () => {
           </NavLink>
 
           <NavLink
-            style={({ isActive }) => (isActive ? activeStyle : undefined)}
             to="/contact-us"
             onClick={() => setOpen(false)}
           >
@@ -53,7 +51,6 @@ const Header = () => {
           </NavLink>
 
           <NavLink
-            style={({ isActive }) => (isActive ? activeStyle : undefined)}
             to="/cinemas"
             onClick={() => setOpen(false)}
           >
@@ -61,45 +58,7 @@ const Header = () => {
           </NavLink>
           {user.email ? (
             <>
-              {user.email === 'admin@abv.bg' ? (
-                <NavLink
-                  style={({ isActive }) => (isActive ? activeStyle : undefined)}
-                  to="/add-movie"
-                  onClick={() => setOpen(false)}
-                >
-                  add movie
-                </NavLink>
-              ) : (
-                ''
-              )}
-
-              {user.email === 'admin@abv.bg' ? (
-                <NavLink
-                  style={({ isActive }) => (isActive ? activeStyle : undefined)}
-                  to="/add-cinema"
-                  onClick={() => setOpen(false)}
-                >
-                  add cinema
-                </NavLink>
-                
-              ) : (
-                ''
-              )}
-              {user.email === 'admin@abv.bg' ? (
-                <NavLink
-                  style={({ isActive }) => (isActive ? activeStyle : undefined)}
-                  to="/reserve-tickets"
-                  onClick={() => setOpen(false)}
-                >
-                  reserve tickets
-                </NavLink>
-                
-              ) : (
-                ''
-              )}
-
               <NavLink
-                style={({ isActive }) => (isActive ? activeStyle : undefined)}
                 to="/logout"
                 onClick={() => setOpen(false)}
               >
@@ -107,24 +66,23 @@ const Header = () => {
               </NavLink>
 
               <NavLink
-                style={({ isActive }) => (isActive ? activeStyle : undefined)}
                 to="/profile"
                 onClick={() => setOpen(false)}
               >
                 profile
               </NavLink>
+
+              {user.isAdmin ? <Dropdown /> : ''}
             </>
           ) : (
             <>
               <NavLink
-                style={({ isActive }) => (isActive ? activeStyle : undefined)}
                 to="/login"
                 onClick={() => setOpen(false)}
               >
                 login
               </NavLink>
               <NavLink
-                style={({ isActive }) => (isActive ? activeStyle : undefined)}
                 to="/register"
                 onClick={() => setOpen(false)}
               >
@@ -132,10 +90,18 @@ const Header = () => {
               </NavLink>
             </>
           )}
-        
-
-         
         </div>
+
+        <div className={styles['footer-icons']}>
+          <ul>
+            <li>  <BsFacebook /></li>
+            <li>  <BsTwitter /></li>
+            <li>  <BsInstagram /></li>
+            <li>  <BsYoutube /></li>
+          </ul>
+          
+        </div>
+        
       </header>
     </>
   );

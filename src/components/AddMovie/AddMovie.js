@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 
 import styles from './AddMovie.module.css';
 
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 
 import { AuthCotnext } from '../../contexts/AuthContext';
 import { addMovie } from '../../services/movieServices';
@@ -17,9 +17,16 @@ const AddMovie = () => {
 
   const { user } = useContext(AuthCotnext);
 
-  if(user.email !== 'admin@abv.bg'){
-    navigate('/');
-  }
+
+  console.log(user);
+
+  useEffect(() => {
+
+    if(!user.isAdmin){
+      navigate('/');
+    }
+  
+  },[user,navigate]);
 
   const [values, setValues] = useState({
     title: '',
@@ -28,6 +35,7 @@ const AddMovie = () => {
     poster: '',
     overview: '',
     runtime: '',
+    price:''
   });
 
   const changeHandler = (e) => {
@@ -38,9 +46,9 @@ const AddMovie = () => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    addMovie(values, user.accessToken)
-      .then((response) => response.json())
-      .then((data) => navigate(`/details/${data._id}`))
+    addMovie(values, user.token)
+      .then((response) => (response.json()))
+      .then((data) =>  navigate(`/details/${data._id}`))
       .catch((err) => err.message);
   };
 
@@ -101,6 +109,18 @@ const AddMovie = () => {
         value={values.name}
         handler={changeHandler}
       />
+
+        <AddFormInput
+        element="input"
+        name="price"
+        type="text"
+        label="Price"
+        htmlFor="price"
+        placeholder="Price"
+        value={values.name}
+        handler={changeHandler}
+      />
+
 
       <AddFormInput
         element="textearea"

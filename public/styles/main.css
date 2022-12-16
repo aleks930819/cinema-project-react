@@ -4,7 +4,12 @@ html {
 
 body {
     font-family: var(--f-family);
-    background-color: var(--color-primary);
+    background-color:var(--color-primary);
+}
+
+main {
+    width: 70vw;
+    padding: 10rem 0rem;
 }
 
 .container {
@@ -39,11 +44,12 @@ body {
 
 }
 
- /* #root {
-    padding: 10rem 7rem ;
+   #root {
+   display: flex;
+   min-height: 100%;
+    
+}
 
-} 
-  */
 
 @media only screen and (max-width: 1200px) {
    

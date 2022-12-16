@@ -1,44 +1,70 @@
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 
 import styles from './ReserveTickets.module.css';
 
-import { checkTickets } from '../../services/ticketsServices';
+import { useNavigate } from 'react-router-dom';
+
 import { AuthCotnext } from '../../contexts/AuthContext';
 
+import { checkTickets } from '../../services/ticketsServices';
+
 import setChangedValue from '../Utils/changeHandler';
+import ReserveTicketsResult from './ReserveTicketsResult';
+import LoadingSpinner from '../Spinner/Spinner';
 
 const ReserveTickets = () => {
-    const { user } = useContext(AuthCotnext);
-    const [values, setValues] = useState({
-        email: '',
-      });
+  const { user } = useContext(AuthCotnext);
 
-      const changeHandler = (e) => {
-        setChangedValue(e, setValues);
-      };;
+  const [loading, setLoading] = useState(false);
+  const [tickets, setTickets] = useState([]);
+  const [values, setValues] = useState({
+    email: '',
+  });
 
-    const submitHandler = (e) => {
-        e.preventDefault();
+  const navigate = useNavigate();
 
-    };
+  useEffect(() => {
+    setLoading(true);
+    checkTickets(user.token).then((response) => setTickets(response));
+    setLoading(false);
+  }, [user.token]);
 
-    console.log(values.email);
+  if (!user.isAdmin) {
+    navigate('/');
+  }
+
+  const changeHandler = (e) => {
+    setChangedValue(e, setValues);
+  };
+
+  const submitHandler = (e) => {
+    e.preventDefault();
+  };
 
   return (
-    <div className={styles['reserve-tickets-box']}>
-      <div className={styles['reserve-tickets-search']}>
-        <form>
-          <input onChange={changeHandler} name='email' placeholder="Search for user" />
-        </form>
-      </div>
+    <>
+      <div className={styles['reserve-tickets-box']}>
+        <div className={styles['reserve-tickets-search']}>
+          <form>
+            <input
+              onChange={changeHandler}
+              name="email"
+              placeholder="Search for user"
+            />
+          </form>
+        </div>
 
-      <div className={styles['reserve-tickets-user']}>
-        <h2>The Batman</h2>
-        <p>Name: Alex</p>
-        <p>Tickets: 3</p>
-        <p>Total: $56</p>
+        {tickets.map((x) => (
+          <ReserveTicketsResult
+            key={x._id}
+            movieName={x.movieName}
+            username={x.userName}
+            ticketsCount={x.count}
+            total={x.total.toFixed(2)}
+          />
+        ))}
       </div>
-    </div>
+    </>
   );
 };
 

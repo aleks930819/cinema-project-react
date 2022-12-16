@@ -8,9 +8,12 @@ import { AuthCotnext } from '../../contexts/AuthContext';
 
 import LoginRedirect from '../LoginRedirect/LoginRedirect';
 import Button from '../Button/Button';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 const TicketView = (props) => {
   const { user } = useContext(AuthCotnext);
+
+  const navigate = useNavigate();
 
   props.projections?.forEach((element) => {
     console.log(element);
@@ -18,13 +21,13 @@ const TicketView = (props) => {
 
   let [count, setCount] = useState(0);
   let [total, setTotal] = useState(0);
-  let [leftTickets, setLeftTickets] = useState('');
 
   const reserveTicketHandler = (e) => {
     e.preventDefault();
-    reserveTicket(props.title, count, user._id,user.username, total).then((data) =>
-      console.log(data)
-    );
+    reserveTicket(props.title, count, user._id,user.name, total,user.token,).then((res) => res);
+    navigate('/');
+
+    
   };
 
   const increaseCount = () => {
@@ -55,9 +58,7 @@ const TicketView = (props) => {
               <p>
                 Price per ticket: $<span>{props.price}</span>
               </p>
-              <p>
-                Left Tickets: <span>{props.tickets}</span>
-              </p>
+            
             </div>
 
             <div className={styles['tickets-count']}>

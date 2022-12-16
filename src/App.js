@@ -5,7 +5,6 @@ import { useEffect, useState } from 'react';
 import { AuthCotnext, AuthProvider } from './contexts/AuthContext';
 import { MovieProvider } from './contexts/MovieContext';
 
-
 import AddMovie from './components/AddMovie/AddMovie';
 import ContactUs from './components/ContactUs/ContactUs';
 import DetailsCard from './components/DetailsCard/DetailsCard';
@@ -29,7 +28,6 @@ import ReserveTickets from './components/ReserveTickets/ReserveTickets';
 function App() {
   const [auth, setAuth] = useState({});
 
-
   useEffect(() => {
     const loggedInUser = localStorage.getItem('user');
     if (loggedInUser) {
@@ -37,7 +35,6 @@ function App() {
       setAuth(foundUser);
     }
   }, []);
-
 
   const userLogin = (authData) => {
     setAuth(authData);
@@ -50,32 +47,34 @@ function App() {
     <>
       <AuthCotnext.Provider value={{ user: auth, userLogin, userLogout }}>
         <Header />
-        <MovieProvider>
-    <ScrollToTop/>
-        <Routes>
-          <Route path="/" element={<MoviesData />} />
-          <Route path="/weekly-program" element={<MoviesData />} />
-          <Route path="/details/:id" element={<DetailsCard />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/logout" element={<Logout />} />
-          <Route path="/add-movie" element={<AddMovie />} />
-          <Route path="/contact-us" element={<ContactUs />} />
-          <Route path="/edit/:id" element={<EditMovie />} />
-          <Route path="/message-send" element={<MessageSend />} />
-          <Route path="/cinemas" element={<Cinemas />} />
-          <Route path="/add-cinema" element={<AddCinema />} />
-          <Route path="/ticket/:id" element={<Ticket />} />
-          <Route path="/profile" element={<UserProfile />} />
-          <Route path="/profile/edit" element={<EditUser />} />
-          <Route path="/reserve-tickets" element={<ReserveTickets />} />
 
-          <Route path="*" element={<ErrorPage />} />
-        </Routes>
-        </MovieProvider>
-          
+        <main>
+          <MovieProvider>
+            <ScrollToTop />
+            <Routes>
+              <Route path="/" element={<MoviesData />} />
+              <Route path="/weekly-program" element={<MoviesData />} />
+              <Route path="/details/:id" element={<DetailsCard />} />
+              <Route path="/register" element={<Register />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/logout" element={<Logout />} />
+              <Route path="/add-movie" element={<AddMovie />} />
+              <Route path="/contact-us" element={<ContactUs />} />
+              <Route path="/edit/:id" element={<EditMovie />} />
+              <Route path="/message-send" element={<MessageSend />} />
+              <Route path="/cinemas" element={<Cinemas />} />
+              <Route path="/add-cinema" element={<AddCinema />} />
+              <Route path="/ticket/:id" element={<Ticket />} />
+              <Route path="/profile" element={<UserProfile />} />
+              <Route path="/profile/edit" element={<EditUser />} />
+              <Route path="/reserve-tickets" element={<ReserveTickets />} />
+
+              <Route path="*" element={<ErrorPage />} />
+            </Routes>
+          </MovieProvider>
+        </main>
       </AuthCotnext.Provider>
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 }

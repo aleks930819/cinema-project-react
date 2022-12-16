@@ -22,6 +22,7 @@ const Login = () => {
     email: '',
     password: '',
   });
+  
 
   const checkEmail = () => {
     let pattern = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
@@ -59,6 +60,8 @@ const Login = () => {
   }, [user.email, navigate]);
 
   return (
+    <div className={styles.login}>
+
     <AddForm handler={submitHandler}>
       <h2>LOGIN</h2>
       <AddFormInput
@@ -90,6 +93,8 @@ const Login = () => {
       <Button>Login</Button>
       <Link to="/register">Don't have an account? Register</Link>
     </AddForm>
+    </div>
+
   );
 };
 

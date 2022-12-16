@@ -1,4 +1,4 @@
-const URL = 'http://localhost:3030/users';
+const URL = 'http://localhost:8000/api/users';
 
 export async function login(email, password) {
   try {
@@ -23,7 +23,7 @@ export async function login(email, password) {
   }
 }
 
-export async function register(email, password,username) {
+export async function register(email, password,name) {
 
   try {
     let response = await fetch(`${URL}/register`, {
@@ -34,7 +34,7 @@ export async function register(email, password,username) {
       body: JSON.stringify({
         email,
         password,
-        username
+        name
       }),
     });
     let jsonResult = await response.json();

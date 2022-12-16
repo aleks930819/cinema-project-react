@@ -14,6 +14,7 @@
     border-radius: 1rem;
     border: 3px solid var(--color-white);
 
+
 }
 
 .form-btn{
@@ -78,6 +79,10 @@ input:focus {
     color:var(--color-white);
     font-size: 1.9rem;
     text-align: center;
+}
+
+.login {
+    grid-column: 5 / 8;
 }
 
 

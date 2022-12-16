@@ -1,5 +1,4 @@
-const URL = 'http://localhost:3030/data/movies';
-const URL_LIKES = 'http://localhost:3030/data';
+const URL = 'http://localhost:8000/api/movies';
 
 
 export function getAll() {
@@ -15,8 +14,8 @@ export function addMovie(data, accessToken) {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-
-      'X-Authorization': accessToken,
+      'Authorization': `Bearer ${accessToken}`,
+      // 'X-Authorization': accessToken,
     },
     body: JSON.stringify(data),
   });
@@ -24,11 +23,12 @@ export function addMovie(data, accessToken) {
 
 export function editMovie(id, data, accessToken) {
   return fetch(`${URL}/${id}`, {
-    method: 'PUT',
+    method: 'PATCH',
     headers: {
       'Content-Type': 'application/json',
+      'Authorization': `Bearer ${accessToken}`,
 
-      'X-Authorization': accessToken,
+      // 'X-Authorization': accessToken,
     },
     body: JSON.stringify(data),
   });
@@ -39,41 +39,12 @@ export function deleteMovie(id, accessToken) {
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json',
+      'Authorization': `Bearer ${accessToken}`,
 
-      'X-Authorization': accessToken,
+      // 'X-Authorization': accessToken,
     },
   }).catch((err) => err);
 }
 
 
-// export function like(movieId,data,accessToken){
-//   return fetch(`${URL}/${movieId}`, {
-//      method: 'POST',
-//      headers: {
-//          'content-type': 'application/json',
-//          'X-Authorization': accessToken,
-//      },
-//      body: JSON.stringify({
-//       data
-//      })
-//   }).then(res => res.json());
-// }
 
-
-export function like(user,accessToken,movieID){
-  return fetch(`${URL_LIKES}/likes`, {
-     method: 'POST',
-     headers: {
-         'content-type': 'application/json',
-         'X-Authorization': accessToken,
-     },
-     body: JSON.stringify({
-      user,
-      movieID
-     })
-  }).then(res => res.json());
-}
-
-export function getLikes() {
-  return fetch(`${URL_LIKES}/likes`).then((res) => res.json());
-}

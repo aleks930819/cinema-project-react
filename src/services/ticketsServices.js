@@ -1,23 +1,27 @@
-const URL = 'http://localhost:3030/jsonstore/tickets';
+const URL = 'http://localhost:8000/api/tickets';
 
 export async function reserveTicket(
-  movie,
-  numberOfTickets,
+  movieName,
+  count,
   userId,
-  username,
-  total
+  userName,
+  total,
+  accessToken
 ) {
   try {
     let response = await fetch(`${URL}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+         'Authorization': `Bearer ${accessToken}`,
+
+
       },
       body: JSON.stringify({
-        movie,
-        numberOfTickets,
+        movieName,
+        count,
         userId,
-        username,
+        userName,
         total,
       }),
     });
@@ -32,9 +36,14 @@ export async function reserveTicket(
   }
 }
 
-export async function checkTickets(id) {
+export async function checkTickets(accessToken) {
   try {
-    let response = await fetch(`${URL}/${id}`);
+    let response = await fetch(`${URL}`,{
+      'Method':'GET',
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${accessToken}`,
+    });
+    
     let jsonResult = await response.json();
 
     if (response.ok) {

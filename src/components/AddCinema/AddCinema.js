@@ -20,10 +20,14 @@ const AddCinema = () => {
 
   const { user } = useContext(AuthCotnext);
 
-  if(user.email !== 'admin@abv.bg'){
-    navigate('/');
-  }
+  useEffect(() => {
 
+    if(!user.isAdmin){
+      navigate('/');
+    }
+  
+  },[user,navigate]);
+  
 
   const [values, setValues] = useState({
     city: '',
@@ -41,7 +45,7 @@ const AddCinema = () => {
   const submitHandler = (e) => {
     e.preventDefault();
     cinemaServices
-      .addCinema(values, user.accessToken)
+      .addCinema(values, user.token)
       .then((response) => response.json())
       .then((data) => navigate('/cinemas'))
       .catch((err) => err.message);

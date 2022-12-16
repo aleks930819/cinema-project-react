@@ -40,7 +40,7 @@ const EditMovie = () => {
   const navigate = useNavigate();
 
   
-  if(user.email !== 'admin@abv.bg'){
+  if(!user.isAdmin){
     navigate('/');
   }
 
@@ -56,7 +56,7 @@ const EditMovie = () => {
   const submitHandler = (e) => {
     e.preventDefault();
     movieService
-      .editMovie(id, values, user.accessToken)
+      .editMovie(id, values, user.token)
       .then((response) => response.json())
       .then((data) => navigate(`/details/${data._id}`))
       .catch((err) => err.message);
@@ -69,7 +69,7 @@ const EditMovie = () => {
   };
 
   const deleteMovie = () => {
-    movieService.deleteMovie(id, user.accessToken);
+    movieService.deleteMovie(id, user.token);
     navigate('/');
   };
 

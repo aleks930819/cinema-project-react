@@ -4,12 +4,16 @@ import { useEffect, useState } from 'react';
 
 import styles from './ImageSlider.module.css';
 
+import video from './video.mp4';
+
+
 const images = [
   'https://i.pinimg.com/564x/92/28/40/92284053943e39309aed00ada47306ed.jpg',
   'https://i.pinimg.com/236x/57/64/3a/57643a75fc83aa37be9035cf57c2f15c.jpg',
   'https://i.pinimg.com/236x/1f/9a/fa/1f9afa50899bbc289844b20d992f5f4f.jpg',
   'https://i.pinimg.com/236x/9a/2d/1b/9a2d1bcc06620b5997e4ae08f20ca8b6.jpg'
 ];
+const logo ='https://i.pinimg.com/564x/92/28/40/92284053943e39309aed00ada47306ed.jpg';
 
 const ImageSlider = () => {
   let [current, setCurrent] = useState(0);
@@ -44,10 +48,17 @@ const ImageSlider = () => {
 
        {/* <img className={styles.image} src={images[current]} alt='hero' />  */}
 
-      <div
+          <div className={styles.video}>
+           <video   src={video} autoPlay loop muted />
+          </div>
+
+
+
+      {/* <img
         className={styles.image}
-        style={{ backgroundImage: `url(${images[current]})` }}
-      ></div>
+        src={images[0]}
+        alt='hero' /> */}
+    
     </div>
   );
 };

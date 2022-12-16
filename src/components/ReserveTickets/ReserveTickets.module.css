@@ -14,7 +14,7 @@
    width: 30vw;
    outline: none;
    border: none;
-   padding: 1rem;
+   padding: 1.5rem;
    border-radius: 1rem;
    margin-top: -5rem;
 
@@ -27,6 +27,10 @@ padding: 5rem;
 display: flex;
 gap:5rem;
 background-color: var(--color-white);
+width: 60vw;
+justify-content: center;
+align-items: center;
+
 
 }
 
@@ -35,4 +39,34 @@ background-color: var(--color-white);
 }
 .reserve-tickets-user p{
   color:black;
+}
+
+@media only screen and (max-width: 900px) {
+  .reserve-tickets-user{
+    flex-direction: column;
+    width: 35vw;
+    gap:2rem;
+  }
+
+.reserve-tickets-box{
+  gap:4rem;
+}
+.reserve-tickets-search input {
+     width: 50vw;
+}
+}
+
+
+@media only screen and (max-width: 600px) {
+  .reserve-tickets-user{
+    flex-direction: column;
+    width: 55vw;
+    gap:2rem;
+
+    padding: 3rem;
+  }
+
+  .reserve-tickets-search input {
+    width: 70vw;
+}
 }
