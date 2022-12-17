@@ -60,8 +60,9 @@ const Login = () => {
   }, [user.email, navigate]);
 
   return (
+    <div className='moveInRight'>
     <div className={styles.login}>
-
+     
     <AddForm handler={submitHandler}>
       <h2>LOGIN</h2>
       <AddFormInput
@@ -77,7 +78,6 @@ const Login = () => {
         label="Email"
       />
 
-
       <AddFormInput
         element="input"
         type="password"
@@ -90,9 +90,10 @@ const Login = () => {
       />
       {message && <ValidationMessage>{message}</ValidationMessage>}
 
-      <Button>Login</Button>
       <Link to="/register">Don't have an account? Register</Link>
+      <Button>Login</Button>
     </AddForm>
+    </div>
     </div>
 
   );

@@ -27,6 +27,7 @@ const ContactUs = () => {
   };
 
   return (
+    <div className='moveInRight'>
     <div className={styles['contact-us']}>
       <form className={styles['contact-us-form']} onSubmit={submitHandler}>
         <div className={styles['contact-us-email']}>
@@ -58,6 +59,7 @@ const ContactUs = () => {
           Send
         </Button>
       </form>
+    </div>
     </div>
   );
 };

@@ -2,6 +2,7 @@ import styles from './Cinemas.module.css';
 
 const CinemaCard = ({ cinema }) => {
   return (
+    <div className='moveInRight'>
     <div className={styles['cinema-card']}>
       <div className={styles['cinema-img']}>
         <img src={cinema.imgUrl} alt="cinema" />
@@ -12,9 +13,10 @@ const CinemaCard = ({ cinema }) => {
         <p>City: {cinema.city}</p>
         <p>Location: {cinema.location}</p>
         <p>Phone: +{cinema.phone}</p>
-
       </div>
     </div>
+    </div>
+
   );
 };
 

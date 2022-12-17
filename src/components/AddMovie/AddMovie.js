@@ -18,7 +18,6 @@ const AddMovie = () => {
   const { user } = useContext(AuthCotnext);
 
 
-  console.log(user);
 
   useEffect(() => {
 

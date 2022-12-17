@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 
 const Card = ({movie}) => {
   return (
-    <div>
+    <div className='moveInRight'>
     
       <div className={styles.card}>
         <div className={styles.content}>

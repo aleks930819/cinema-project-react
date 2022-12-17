@@ -10,9 +10,9 @@
 }
 
 .tickets-container {
-    border: 2px solid var(--color-white);
     padding: 5rem;
-    background-color: var(--color-border);
+    box-shadow:var(--box-shadow);
+
     border-radius: 1rem;
     display: flex;
     flex-direction: column;

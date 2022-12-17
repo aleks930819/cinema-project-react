@@ -86,6 +86,8 @@ const Register = () => {
   }, [user.email, navigate]);
 
   return (
+    <div className='moveInRight'>
+
     <AddForm handler={submitHandler}>
       <h2>REGISTER</h2>
 
@@ -136,9 +138,10 @@ const Register = () => {
       />
       {message && <ValidationMessage>{message}</ValidationMessage>}
 
-      <Button>Register</Button>
       <Link to="/login">You already have an account? Login</Link>
+      <Button>Register</Button>
     </AddForm>
+    </div>
   );
 };
 
