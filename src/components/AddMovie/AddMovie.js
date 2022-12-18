@@ -52,6 +52,7 @@ const AddMovie = () => {
 
   return (
     <AddForm handler={submitHandler}>
+    <h2>Add Movie</h2>
 
       <AddFormInput
         element="input"

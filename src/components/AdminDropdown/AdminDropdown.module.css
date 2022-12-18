@@ -17,9 +17,13 @@
     gap:1.5rem;
     margin-top: 2rem;
     align-self: flex-start;
+
+   
+
 }
+
 .admin {
-    display: inline;
+    display: flex;
 }
 
  

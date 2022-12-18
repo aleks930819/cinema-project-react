@@ -8,6 +8,7 @@ import styles from './Header.module.css';
 
 import { AuthCotnext } from '../../contexts/AuthContext';
 import Dropdown from '../AdminDropdown/AdminDropdown';
+import Admin from '../AdminDropdown/Admin';
 
 let activeStyle = {
   borderBottom: '2px solid white',
@@ -72,7 +73,7 @@ const Header = () => {
                 profile
               </NavLink>
 
-              {user.isAdmin ? <Dropdown /> : ''}
+              {user.isAdmin ? <Admin /> : ''}
             </>
           ) : (
             <>

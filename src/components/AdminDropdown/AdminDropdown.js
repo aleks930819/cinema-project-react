@@ -1,40 +1,41 @@
 import { Link } from 'react-router-dom';
-import { GoChevronDown,GoChevronUp } from "react-icons/go";
+
+import { GoChevronDown, GoChevronUp } from 'react-icons/go';
 
 import { useState } from 'react';
 
 import styles from './AdminDropdown.module.css';
 
-const Dropdown = () => {
-  const [open, setOpen] = useState(false);
+const AdminDropDown = ({ options,onChange,buttonName }) => {
+  const [isOpen, setIsOpen] = useState(false);
 
-  const handleDropdown = () => {
-    setOpen(!open);
+  const handleClick = () => {
+    setIsOpen(!isOpen);
   };
 
-  const icon = <span>{open ? <GoChevronUp /> : <GoChevronDown  />} </span>;
+  const handleOptionClick = (option) => {
+    setIsOpen(false);
+    onChange(option);
+  };
+
+  const renderedOptions = options.map((option) => {
+    return (
+      <ul className={styles['menu-items']} onClick={() => handleOptionClick(option)} key={option.value}>
+       <Link to={option.value}> {option.label}</Link>
+      </ul>
+    );
+  });
+
+  const icon = <span>{isOpen ? <GoChevronUp /> : <GoChevronDown />} </span>;
 
   return (
     <div className={styles.dropdown}>
-      <button onClick={handleDropdown}>Admin {icon}</button>
-      {open ? (
-        <ul className={styles['menu-items']}>
-          <Link onClick={handleDropdown} to="/add-movie">
-            Add Movie
-          </Link>
-          <Link onClick={handleDropdown} to="/add-cinema">
-            Add Cinema
-          </Link>
-          <Link onClick={handleDropdown} to="/reserve-tickets">
-            Tickets
-          </Link>
-          <Link onClick={handleDropdown} to="/users-list">
-            Users
-          </Link>
-        </ul>
-      ) : null}
+  <button onClick={handleClick}>{buttonName} <span>{icon}</span></button>
+
+      {isOpen && <div>{renderedOptions}</div>}
     </div>
   );
+
 };
 
-export default Dropdown;
+export default AdminDropDown;

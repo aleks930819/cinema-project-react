@@ -53,6 +53,7 @@ const AddCinema = () => {
 
   return (
     <AddForm handler={submitHandler}>
+    <h2>Add Cinema</h2>
       <AddFormInput
         element="input"
         name="city"

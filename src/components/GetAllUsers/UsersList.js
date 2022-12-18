@@ -15,7 +15,7 @@ const deleteUserHandler = (currentUserId,adminToken) => {
 
 const UsersList = ({ id,name, email, createdAt }) => {
 
-  
+
 const { user } = useContext(AuthCotnext);
 
   return (
