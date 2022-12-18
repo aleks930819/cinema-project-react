@@ -2,22 +2,22 @@ import styles from './Button.module.css';
 
 const { Link } = require('react-router-dom');
 
-const Button = (props) => {
-  if (props.to) {
+const Button = ({ to, type, disabled, children, ...rest }) => {
+  if (to) {
     return (
-      <Link to={props.to} className={styles['form-btn']}>
-        {props.children}
+      <Link to={to} className={styles['form-btn']}>
+        {children}
       </Link>
     );
   }
   return (
     <button
+      {...rest}
       className={styles['form-btn']}
-      type={props.type}
-      onClick={props.onClick}
-      disabled={props.disabled}
+      type={type}
+      disabled={disabled}
     >
-      {props.children}
+      {children}
     </button>
   );
 };

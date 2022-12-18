@@ -1,0 +1,32 @@
+.users-list-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 10rem;
+    box-shadow: var(--box-shadow);
+    margin-left:5rem;
+
+}
+
+.users-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 5rem;
+    padding: 2rem;
+    font-size: 1.7rem;
+    color: var(--color-white);
+
+
+}
+.users-container:not(:last-child) {
+    border-bottom: 2px solid black;
+    
+}
+
+.users-icons {
+    display: flex;
+    cursor: pointer;
+    justify-content: end;
+    gap: 2rem;
+}

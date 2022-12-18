@@ -13,9 +13,8 @@
     align-items: center;
     justify-content: center;
     gap:4rem;
-    background-color: var(--color-border);
+    box-shadow: var(--box-shadow);
 
-    border: 2px solid var(--color-white);
 
     overflow: hidden;
     border-radius: 1rem;

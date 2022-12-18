@@ -30,6 +30,7 @@ const MoviesData = () => {
             <LoadingSpinner />
           ) : (
       <div className={styles['movies-box']}>
+   
      {movies.map((x) => <Card key={x._id} movie={x} />)}
       </div>
       )};

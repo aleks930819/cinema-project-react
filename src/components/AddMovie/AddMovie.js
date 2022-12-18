@@ -41,7 +41,6 @@ const AddMovie = () => {
     setChangedValue(e, setValues);
   };
 
- 
 
   const submitHandler = (e) => {
     e.preventDefault();

@@ -24,6 +24,8 @@ import Ticket from './components/Tickets/Ticket';
 import UserProfile from './components/UserProfile/UserProfile';
 import EditUser from './components/UserProfile/EditUser';
 import ReserveTickets from './components/ReserveTickets/ReserveTickets';
+import UsersList from './components/GetAllUsers/UsersList';
+import GetAllUsers from './components/GetAllUsers/GetAllUsers';
 
 function App() {
   const [auth, setAuth] = useState({});
@@ -68,6 +70,8 @@ function App() {
               <Route path="/profile" element={<UserProfile />} />
               <Route path="/profile/edit" element={<EditUser />} />
               <Route path="/reserve-tickets" element={<ReserveTickets />} />
+              <Route path="/users-list" element={<GetAllUsers />} />
+
 
               <Route path="*" element={<ErrorPage />} />
             </Routes>

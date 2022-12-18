@@ -1,3 +1,4 @@
+import { FaTrash } from 'react-icons/fa';
 
 import styles from './ReserveTickets.module.css';
 
@@ -15,6 +16,7 @@ const ReserveTicketsResult = ({
         <p>Name: {username}</p>
         <p>Tickets: {ticketsCount}</p>
         <p>Total: ${total}</p>
+        <FaTrash/>
       </div>
   );
 };
