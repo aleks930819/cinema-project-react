@@ -1,25 +1,21 @@
-import { useContext } from 'react';
+import ReactDOM from 'react-dom';
+
+import React, { useContext, useEffect } from 'react';
 
 import styles from './Dialog.module.css';
 
 import { MovieContext } from '../../contexts/MovieContext';
 
+const Dialog = ({ children, action }) => {
 
-
-const Dialog = () => {
-  const {deleteMovie,setDialog} = useContext(MovieContext);
-
-
-  return (
+  return ReactDOM.createPortal(
     <div className={styles['dialog-box']}>
-      <h3>Are you sure?</h3>
-      <div className={styles['dialogs-btns']}>
-        <button onClick={() => deleteMovie()} className={styles['dialog-btn-y']}>
-          YES
-        </button>
-        <button onClick= {() => setDialog({isLoading:false})} className={styles['dialog-btn-n']}>NO</button>
+      <div className={styles['dialog-box-content']}>
+        <div>{children}</div>
+        <div className={styles['dialogs-btns']}>{action}</div>
       </div>
-    </div>
+    </div>,
+    document.querySelector('.dialog')
   );
 };
 

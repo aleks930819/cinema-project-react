@@ -74,6 +74,33 @@ main {
     }
 }
 
+.dialogs-btns {
+    display: flex;
+    gap: 2rem;
+    font-size: 1.5rem;
+    margin-top: 2rem;
+}
+
+
+.dialog-btn-y {
+    background-color: rgb(29, 132, 29);
+    color: var(--color-white);
+    cursor: pointer;
+    border: none;
+    padding: .6rem 2rem;
+    border-radius: 1rem;
+}
+
+.dialog-btn-n {
+    background-color: rgb(176, 30, 30);
+    color: var(--color-white);
+    cursor: pointer;
+    border: none;
+    padding: .6rem 2rem;
+    border-radius: 1rem;
+
+}
+
 
 @media only screen and (max-width: 1200px) {
    

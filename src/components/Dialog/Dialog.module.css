@@ -1,45 +1,28 @@
 
 
 .dialog-box {
-    position: flex;
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-    top: 120%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top:0;
+    left:0;
+    right: 0;
+    left:0;
     background-color: rgba(0, 0, 0, 0.845);
     padding: 6rem;
-
-}
-
-.dialog-box h3 {
     font-size: 2rem;
+    overflow: hidden;
+
+
 }
 
-.dialogs-btns {
+.dialog-box-content {
     display: flex;
-    gap: 2rem;
-    font-size: 1.5rem;
-    margin-top: 2rem;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 15rem;
 }
 
 
-.dialog-btn-y {
-    background-color: rgb(29, 132, 29);
-    color: var(--color-white);
-    cursor: pointer;
-    border: none;
-    padding: .5rem 2rem;
-    border-radius: 1rem;
-}
 
-.dialog-btn-n {
-    background-color: rgb(176, 30, 30);
-    color: var(--color-white);
-    cursor: pointer;
-    border: none;
-    padding: .5rem 2rem;
-    border-radius: 1rem;
-
-}

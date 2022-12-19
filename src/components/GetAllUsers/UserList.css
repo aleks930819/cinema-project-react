@@ -14,7 +14,7 @@
     grid-template-columns: repeat(4, 1fr);
     gap: 5rem;
     padding: 2rem;
-    font-size: 2rem;
+    font-size: 1.8rem;
     color: var(--color-white);
 
 

@@ -2,12 +2,13 @@ import { Link } from 'react-router-dom';
 
 import { GoChevronDown, GoChevronUp } from 'react-icons/go';
 
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import styles from './AdminDropdown.module.css';
 
-const AdminDropDown = ({ options,onChange,buttonName }) => {
+const AdminDropDown = ({ options, onChange, buttonName }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const divEl = useRef();
 
   const handleClick = () => {
     setIsOpen(!isOpen);
@@ -18,10 +19,30 @@ const AdminDropDown = ({ options,onChange,buttonName }) => {
     onChange(option);
   };
 
+  useEffect(() => {
+    const handler = (event) => {
+      if (!divEl.current) {
+        return;
+      }
+      if (!divEl.current.contains(event.target)) {
+        setIsOpen(false);
+      }
+    };
+    document.addEventListener('click', handler, true);
+
+    return () => {
+      document.removeEventListener('click', handler);
+    };
+  });
+
   const renderedOptions = options.map((option) => {
     return (
-      <ul className={styles['menu-items']} onClick={() => handleOptionClick(option)} key={option.value}>
-       <Link to={option.value}> {option.label}</Link>
+      <ul
+        className={styles['menu-items']}
+        onClick={() => handleOptionClick(option)}
+        key={option.value}
+      >
+        <Link to={option.value}> {option.label}</Link>
       </ul>
     );
   });
@@ -29,13 +50,13 @@ const AdminDropDown = ({ options,onChange,buttonName }) => {
   const icon = <span>{isOpen ? <GoChevronUp /> : <GoChevronDown />} </span>;
 
   return (
-    <div className={styles.dropdown}>
-  <button onClick={handleClick}>{buttonName} <span>{icon}</span></button>
-
+    <div ref={divEl} className={styles.dropdown}>
+      <button onClick={handleClick}>
+        {buttonName} <span>{icon}</span>
+      </button>
       {isOpen && <div>{renderedOptions}</div>}
     </div>
   );
-
 };
 
 export default AdminDropDown;

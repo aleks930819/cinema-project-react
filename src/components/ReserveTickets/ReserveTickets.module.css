@@ -7,6 +7,7 @@
     gap:10rem;
     padding: 5rem;
     margin-top: -10rem;
+    color:white;
 
 }
 
@@ -26,20 +27,15 @@ font-size: 2rem;
 padding: 5rem;
 display: flex;
 gap:5rem;
-background-color: var(--color-white);
 width: 60vw;
 justify-content: center;
 align-items: center;
+box-shadow: var(--box-shadow);
 
 
 }
 
-.reserve-tickets-user h2{
- color:black;
-}
-.reserve-tickets-user p{
-  color:black;
-}
+
 
 @media only screen and (max-width: 900px) {
   .reserve-tickets-user{
