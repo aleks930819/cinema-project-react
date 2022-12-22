@@ -8,6 +8,7 @@ import LoadingSpinner from '../Spinner/Spinner';
 import ImageSlider from '../ImageSlider/ImageSlider';
 import { MovieProvider } from '../../contexts/MovieContext';
 import Card from '../Card/Card';
+import Trailer from '../Trailer/Video';
 
 const MoviesData = () => {
   const [movies, setMovies] = useState([]);
@@ -30,7 +31,6 @@ const MoviesData = () => {
             <LoadingSpinner />
           ) : (
       <div className={styles['movies-box']}>
-   
      {movies.map((x) => <Card key={x._id} movie={x} />)}
       </div>
       )};

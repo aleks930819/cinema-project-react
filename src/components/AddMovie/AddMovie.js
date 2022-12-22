@@ -17,15 +17,11 @@ const AddMovie = () => {
 
   const { user } = useContext(AuthCotnext);
 
-
-
   useEffect(() => {
-
-    if(!user.isAdmin){
+    if (!user.isAdmin) {
       navigate('/');
     }
-  
-  },[user,navigate]);
+  }, [user, navigate]);
 
   const [values, setValues] = useState({
     title: '',
@@ -34,25 +30,26 @@ const AddMovie = () => {
     poster: '',
     overview: '',
     runtime: '',
-    price:'' * 1
+    price: '' * 1,
+    trailer: '',
   });
 
   const changeHandler = (e) => {
     setChangedValue(e, setValues);
   };
 
-
   const submitHandler = (e) => {
     e.preventDefault();
     addMovie(values, user.token)
-      .then((response) => (response.json()))
-      .then((data) =>  navigate(`/details/${data._id}`))
+      .then((response) => response.json())
+      .then((data) => navigate(`/details/${data._id}`))
       .catch((err) => err.message);
   };
 
+
   return (
     <AddForm handler={submitHandler}>
-    <h2>Add Movie</h2>
+      <h2>Add Movie</h2>
 
       <AddFormInput
         element="input"
@@ -109,7 +106,7 @@ const AddMovie = () => {
         handler={changeHandler}
       />
 
-        <AddFormInput
+      <AddFormInput
         element="input"
         name="price"
         type="number"
@@ -120,6 +117,16 @@ const AddMovie = () => {
         handler={changeHandler}
       />
 
+      <AddFormInput
+        element="input"
+        name="trailer"
+        type="text"
+        label="Trailer"
+        htmlFor="trailer"
+        placeholder="Trailer"
+        value={values.name}
+        handler={changeHandler}
+      />
 
       <AddFormInput
         element="textearea"
@@ -132,9 +139,8 @@ const AddMovie = () => {
         value={values.name}
         handler={changeHandler}
       />
-    
+
       <Button>Add Movie</Button>
-      
     </AddForm>
   );
 };

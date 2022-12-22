@@ -20,6 +20,8 @@ import Cinemas from './components/CInemas/Cinemas';
 import AddCinema from './components/AddCinema/AddCinema';
 import ScrollToTop from './components/Utils/ScrollToTop';
 import Ticket from './components/Tickets/Ticket';
+import Trailer from './components/Trailer/Trailer';
+
 import UserProfile from './components/UserProfile/UserProfile';
 import EditUser from './components/UserProfile/EditUser';
 import ReserveTickets from './components/ReserveTickets/ReserveTickets';
@@ -72,7 +74,9 @@ function App() {
               <Route path="/profile/edit" element={<EditUser />} />
               <Route path="/reserve-tickets" element={<ReserveTickets />} />
               <Route path="/users-list" element={<GetAllUsers />} />
+              <Route path='/trailer/:id' element={<Trailer />} />
               <Route path="*" element={<ErrorPage />} />
+              
             </Routes>
           </MovieProvider>
         </main>

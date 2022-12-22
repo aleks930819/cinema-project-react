@@ -1,0 +1,29 @@
+.trailer-box {
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top:0;
+    left:0;
+    right: 0;
+    left:0;
+    background-color: rgba(0, 0, 0, 0.845);
+    padding: 6rem;
+    font-size: 2rem;
+    overflow: hidden;
+
+}
+
+.trailer-btn {
+    position: absolute;
+    top:30px;
+    left:35px;
+}
+.trailer-icon {
+    font-size: 3rem;
+    color:white;
+}

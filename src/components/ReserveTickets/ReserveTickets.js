@@ -11,6 +11,8 @@ import { checkTickets } from '../../services/ticketsServices';
 import setChangedValue from '../Utils/changeHandler';
 import ReserveTicketsResult from './ReserveTicketsResult';
 import LoadingSpinner from '../Spinner/Spinner';
+import AddFormInput from '../AddForm/AddFormInput';
+import AddForm from '../AddForm/AddForm';
 
 const ReserveTickets = () => {
   const { user } = useContext(AuthCotnext);
@@ -18,7 +20,7 @@ const ReserveTickets = () => {
   const [loading, setLoading] = useState(false);
   const [tickets, setTickets] = useState([]);
   const [values, setValues] = useState({
-    email: '',
+    name: '',
   });
 
   const navigate = useNavigate();
@@ -41,22 +43,38 @@ const ReserveTickets = () => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-  };
+  
 
+   
+
+  };
+  const findTicketByName = (name) => {
+   const ticket = tickets.filter(t => t.userName === name);
+     return ticket;
+
+  };
+  console.log(findTicketByName('Alex'));
+
+  console.log(values.name);
   return (
     <>
       <div className={styles['reserve-tickets-box']}>
         <div className={styles['reserve-tickets-search']}>
-          <form>
-            <input
-              onChange={changeHandler}
-              name="email"
-              placeholder="Search for user"
-            />
-          </form>
+           <AddForm onSubmit={submitHandler}>
+          <AddFormInput
+            element="input"
+            type="text"
+            htmlFor="name"
+            placeholder="Search for user"
+            name="name"
+            value={values.name}
+            handler={changeHandler}
+            email={values.email}
+          />
+          </AddForm>
         </div>
 
-        {tickets.map((x) => (
+        {tickets?.map((x) => (
           <ReserveTicketsResult
             key={x._id}
             movieName={x.movieName}
