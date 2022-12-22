@@ -1,22 +1,33 @@
-import styles from './Button.module.css';
+import { Link } from 'react-router-dom';
 
-const { Link } = require('react-router-dom');
+import className from 'classnames';
 
-const Button = ({ to, type, disabled, children, ...rest }) => {
+
+import './Button.css';
+
+
+
+
+const Button = ({ to, type, disabled, children,green,danger,opacity,...rest }) => {
+
+  const classes = className (
+    'btn',
+    {
+     'green':green,
+     'danger':danger,
+     'opacity-sml':opacity
+    }
+    );
+
   if (to) {
     return (
-      <Link to={to} className={styles['form-btn']}>
+      <Link {...rest} to={to} className={classes}>
         {children}
       </Link>
     );
   }
   return (
-    <button
-      {...rest}
-      className={styles['form-btn']}
-      type={type}
-      disabled={disabled}
-    >
+    <button {...rest} className={classes} type={type} disabled={disabled}>
       {children}
     </button>
   );

@@ -1,10 +1,8 @@
 import ReactDOM from 'react-dom';
 
-import React, { useContext, useEffect } from 'react';
 
 import styles from './Dialog.module.css';
 
-import { MovieContext } from '../../contexts/MovieContext';
 
 const Dialog = ({ children, action }) => {
 

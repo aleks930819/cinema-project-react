@@ -1,33 +1,19 @@
-import { useEffect, useState } from "react";
-import ValidationMessage from "../Validation/ValidationMessage";
-
-
-
-
 const AddFormInput = (props) => {
-
-   
-    
- 
-
   const element =
-
     props.element === 'input' ? (
-
-      <input 
-      htmlFor={props.htmlFor}
-      name={props.name}
-      id={props.id}
-      type={props.type} 
-      placeholder={props.placeholder}
-      value={props.values}
-      onChange={props.handler}
-      onBlur={props.onBlur}
-      required
+      <input
+        htmlFor={props.htmlFor}
+        name={props.name}
+        id={props.id}
+        type={props.type}
+        placeholder={props.placeholder}
+        value={props.values}
+        onChange={props.handler}
+        onBlur={props.onBlur}
+        required
       />
-
     ) : (
-      <textarea 
+      <textarea
         id={props.id}
         htmlFor={props.htmlFor}
         name={props.name}
@@ -38,19 +24,17 @@ const AddFormInput = (props) => {
         required
       />
     );
-    
-    
-    
+
   return (
     <div>
       <div>
-        <label htmlFor={props.id} id={props.id}>{props.label}</label>  
+        <label htmlFor={props.id} id={props.id}>
+          {props.label}
+        </label>
         {element}
       </div>
     </div>
   );
-
-
 };
 
 export default AddFormInput;

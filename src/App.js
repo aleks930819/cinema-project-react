@@ -15,7 +15,6 @@ import MoviesData from './components/MoviesCatalog/Movies';
 import Register from './components/Auth/Register';
 import EditMovie from './components/EditMovie/EditMovie';
 import Logout from './components/Logout/Logout';
-import Footer from './components/Footer/Footer';
 import MessageSend from './components/MessageSend/MessageSend';
 import Cinemas from './components/CInemas/Cinemas';
 import AddCinema from './components/AddCinema/AddCinema';
@@ -26,9 +25,18 @@ import EditUser from './components/UserProfile/EditUser';
 import ReserveTickets from './components/ReserveTickets/ReserveTickets';
 import UsersList from './components/GetAllUsers/UsersList';
 import GetAllUsers from './components/GetAllUsers/GetAllUsers';
+import useLocalStorage from './hooks/useLocalStorage';
 
 function App() {
   const [auth, setAuth] = useState({});
+
+  const userLogin = (authData) => {
+    setAuth(authData);
+  };
+
+  const userLogout = () => {
+    setAuth({});
+  };
 
   useEffect(() => {
     const loggedInUser = localStorage.getItem('user');
@@ -38,13 +46,6 @@ function App() {
     }
   }, []);
 
-  const userLogin = (authData) => {
-    setAuth(authData);
-  };
-
-  const userLogout = () => {
-    setAuth({});
-  };
   return (
     <>
       <AuthCotnext.Provider value={{ user: auth, userLogin, userLogout }}>
@@ -71,14 +72,11 @@ function App() {
               <Route path="/profile/edit" element={<EditUser />} />
               <Route path="/reserve-tickets" element={<ReserveTickets />} />
               <Route path="/users-list" element={<GetAllUsers />} />
-
-
               <Route path="*" element={<ErrorPage />} />
             </Routes>
           </MovieProvider>
         </main>
       </AuthCotnext.Provider>
-      {/* <Footer /> */}
     </>
   );
 }

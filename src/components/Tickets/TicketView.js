@@ -1,4 +1,6 @@
-import { useContext, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
+import { useContext } from 'react';
 
 import styles from './TicketView.module.css';
 
@@ -8,39 +10,34 @@ import { AuthCotnext } from '../../contexts/AuthContext';
 
 import LoginRedirect from '../LoginRedirect/LoginRedirect';
 import Button from '../Button/Button';
-import { Navigate, useNavigate } from 'react-router-dom';
+import useTicketsCount from '../../hooks/useTicketsCount';
+
+
+
+
 
 const TicketView = (props) => {
   const { user } = useContext(AuthCotnext);
 
+  const {count,total,increaseCount,decreaseCount} = useTicketsCount(props);
+
+
   const navigate = useNavigate();
-
-  props.projections?.forEach((element) => {
-    console.log(element);
-  });
-
-  let [count, setCount] = useState(0);
-  let [total, setTotal] = useState(0);
-
+  
   const reserveTicketHandler = (e) => {
     e.preventDefault();
-    reserveTicket(props.title, count, user._id,user.name, total,user.token,).then((res) => res);
+    reserveTicket(
+      props.title,
+      count,
+      user._id,
+      user.name,
+      total,
+      user.token
+    ).then((res) => res);
     navigate('/');
-
-    
   };
 
-  const increaseCount = () => {
-    setCount(count + 1);
-    setTotal(total + props.price);
-  };
 
-  const decreaseCount = () => {
-    if (count > 1) {
-      setCount(count - 1);
-      setTotal(total - props.price);
-    }
-  };
 
   return (
     <>
@@ -50,15 +47,15 @@ const TicketView = (props) => {
             <h2>{props.title}</h2>
             <div className={styles.projections}>
               <ul>
-                 {props.projections?.map(projection => <li key={props.id}>{projection}</li>)}
-                
+                {props.projections?.map((projection) => (
+                  <li key={props.id}>{projection}</li>
+                ))}
               </ul>
             </div>
             <div className={styles['price-per-ticket']}>
               <p>
                 Price per ticket: $<span>{props.price}</span>
               </p>
-            
             </div>
 
             <div className={styles['tickets-count']}>

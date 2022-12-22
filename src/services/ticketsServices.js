@@ -13,9 +13,7 @@ export async function reserveTicket(
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-         'Authorization': `Bearer ${accessToken}`,
-
-
+        Authorization: `Bearer ${accessToken}`,
       },
       body: JSON.stringify({
         movieName,
@@ -37,20 +35,27 @@ export async function reserveTicket(
 }
 
 export async function checkTickets(accessToken) {
-  try {
-    let response = await fetch(`${URL}`,{
-      'Method':'GET',
+  return fetch(URL, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${accessToken}`,
+    },
+  });
+}
+
+
+
+export function deleteTicket(id, accessToken) {
+  return fetch(`${URL}/${id}`, {
+    method: 'DELETE',
+    headers: {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${accessToken}`,
-    });
-    
-    let jsonResult = await response.json();
 
-    if (response.ok) {
-      return jsonResult;
-    }
-    return jsonResult.message;
-  } catch (err) {
-    throw err;
-  }
+      // 'X-Authorization': accessToken,
+    },
+  }).catch((err) => err);
 }
+
+

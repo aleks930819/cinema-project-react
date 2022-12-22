@@ -25,7 +25,9 @@ const ReserveTickets = () => {
 
   useEffect(() => {
     setLoading(true);
-    checkTickets(user.token).then((response) => setTickets(response));
+    checkTickets(user.token)
+      .then((response) => response.json())
+      .then((data) => setTickets(data));
     setLoading(false);
   }, [user.token]);
 
@@ -61,6 +63,8 @@ const ReserveTickets = () => {
             username={x.userName}
             ticketsCount={x.count}
             total={x.total.toFixed(2)}
+            id={x._id}
+            token={user.token}
           />
         ))}
       </div>

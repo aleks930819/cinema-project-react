@@ -1,6 +1,7 @@
 const URL = 'http://localhost:8000/api/users';
 
 export async function login(email, password) {
+  
   try {
     let response = await fetch(`${URL}/login`, {
       method: 'POST',

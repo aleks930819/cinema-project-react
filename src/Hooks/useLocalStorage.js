@@ -1,19 +1,16 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
-export const useLocalStorage = (key,defaultValue) => {
+const useLocalStorage = () => {
+  const [currentUser, setCurrentUser] = useState();
 
-  const [value, setValue] = useState(defaultValue);
-
-  const setLocalStorageValue = (newValue) => {
-
-      localStorage.setItem(key,JSON.stringify(newValue));
-
-      setValue(newValue);
-  };
-
-
-  return {
-    value,
-    setLocalStorageValue
-  };
+  useEffect(() => {
+    const loggedInUser = localStorage.getItem('user');
+    if (loggedInUser) {
+      const foundUser = JSON.parse(loggedInUser);
+      setCurrentUser(foundUser);
+    }
+  }, []);
+  return currentUser;
 };
+
+export default useLocalStorage;

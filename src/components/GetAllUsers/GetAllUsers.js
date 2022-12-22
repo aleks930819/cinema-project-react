@@ -12,9 +12,9 @@ const GetAllUsers = () => {
 
   useEffect(() => {
     getAllUsers(user.token)
-      .then((response) => response.json())
+      .then((result) => result.json())
       .then((data) => setUsersList(data));
-  }, [user,usersList]);
+  }, [user]);
 
   return (
     <div className="users-list-box">

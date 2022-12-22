@@ -5,6 +5,7 @@ export const AuthCotnext = createContext();
 
 
 export const AuthProvider = ({ children }) => {
+  
   const [auth, setAuth] = useState({});
 
   const userLogin = (authData) => {

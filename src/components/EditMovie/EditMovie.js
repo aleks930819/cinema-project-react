@@ -32,12 +32,12 @@ const EditMovie = () => {
 
   const action = (
     <div className='dialogs-btns' >
-      <button onClick={deleteMovie} className='dialog-btn-y'>
+      <Button green onClick={deleteMovie} >
         YES
-      </button>
-      <button onClick={handleClose} className='dialog-btn-n'>
+      </Button>
+      <Button  danger onClick={handleClose}>
         NO
-      </button>
+      </Button>
     </div>
   );
 

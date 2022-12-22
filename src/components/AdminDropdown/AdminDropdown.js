@@ -5,6 +5,7 @@ import { GoChevronDown, GoChevronUp } from 'react-icons/go';
 import { useEffect, useRef, useState } from 'react';
 
 import styles from './AdminDropdown.module.css';
+import Render from './Render';
 
 const AdminDropDown = ({ options, onChange, buttonName }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -34,6 +35,10 @@ const AdminDropDown = ({ options, onChange, buttonName }) => {
       document.removeEventListener('click', handler);
     };
   });
+
+  // const renderedOptions = (
+  //   <Render options={options} handleOptionCLick={handleOptionClick} />
+  // );
 
   const renderedOptions = options.map((option) => {
     return (

@@ -10,7 +10,8 @@ export function getUser(accessToken) {
   });
 }
 
-export function getAllUsers(accessToken) {
+export async function getAllUsers(accessToken) {
+ 
   return fetch(URL, {
     method: 'GET',
     headers: {

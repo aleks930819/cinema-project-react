@@ -34,7 +34,7 @@ const AddMovie = () => {
     poster: '',
     overview: '',
     runtime: '',
-    price:''
+    price:'' * 1
   });
 
   const changeHandler = (e) => {
@@ -112,7 +112,7 @@ const AddMovie = () => {
         <AddFormInput
         element="input"
         name="price"
-        type="text"
+        type="number"
         label="Price"
         htmlFor="price"
         placeholder="Price"

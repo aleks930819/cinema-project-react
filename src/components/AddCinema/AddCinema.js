@@ -12,9 +12,6 @@ import setChangedValue from '../Utils/changeHandler';
 
 const AddCinema = () => {
   
-  useEffect(() => {
-    window.scrollTo({top: 15, left: 0, behavior: 'smooth'});
-  }, []);
 
   const navigate = useNavigate();
 

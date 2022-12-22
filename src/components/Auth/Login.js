@@ -22,7 +22,6 @@ const Login = () => {
     email: '',
     password: '',
   });
-  
 
   const checkEmail = () => {
     let pattern = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
@@ -60,42 +59,40 @@ const Login = () => {
   }, [user.email, navigate]);
 
   return (
-    <div className='moveInRight'>
-    <div className={styles.login}>
-     
-    <AddForm handler={submitHandler}>
-      <h2>LOGIN</h2>
-      <AddFormInput
-        element="input"
-        type="text"
-        htmlFor="email"
-        placeholder="Your Email"
-        name="email"
-        value={values.name}
-        handler={changeHandler}
-        emauil={values.email}
-        onBlur={checkEmail}
-        label="Email"
-      />
+    <div className="moveInRight">
+      <div className={styles.login}>
+        <AddForm handler={submitHandler}>
+          <h2>LOGIN</h2>
+          <AddFormInput
+            element="input"
+            type="text"
+            htmlFor="email"
+            placeholder="Your Email"
+            name="email"
+            value={values.name}
+            handler={changeHandler}
+            email={values.email}
+            onBlur={checkEmail}
+            label="Email"
+          />
 
-      <AddFormInput
-        element="input"
-        type="password"
-        htmlFor="password"
-        placeholder="Password"
-        name="password"
-        value={values.name}
-        handler={changeHandler}
-        label="Password"
-      />
-      {message && <ValidationMessage>{message}</ValidationMessage>}
+          <AddFormInput
+            element="input"
+            type="password"
+            htmlFor="password"
+            placeholder="Password"
+            name="password"
+            value={values.name}
+            handler={changeHandler}
+            label="Password"
+          />
+          {message && <ValidationMessage>{message}</ValidationMessage>}
 
-      <Link to="/register">Don't have an account? Register</Link>
-      <Button>Login</Button>
-    </AddForm>
+          <Link to="/register">Don't have an account? Register</Link>
+          <Button>Login</Button>
+        </AddForm>
+      </div>
     </div>
-    </div>
-
   );
 };
 
