@@ -10,6 +10,7 @@ const Logout = () => {
   const navigate = useNavigate();
   const {user,userLogout} = useContext(AuthCotnext);
 
+  
   useEffect(() => {
     authService
       .logout(user.accessToken)

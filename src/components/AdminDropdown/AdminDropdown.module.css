@@ -9,6 +9,11 @@
     border: none;
     font-size: 2rem;
     cursor: pointer;
+    display: flex;
+    gap:1rem;
+}
+.dropdown .icon {
+    margin-top: .5rem;
 }
 
 .menu-items {

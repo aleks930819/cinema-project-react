@@ -15,7 +15,7 @@ export const MovieProvider = ({ children }) => {
     });
   }, []);
 
-  const value = { movies };
+  const value =  movies ;
 
   return (
     <MovieContext.Provider value={value}>{children}</MovieContext.Provider>

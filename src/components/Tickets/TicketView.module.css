@@ -53,6 +53,7 @@
 .right-arrow {
     cursor: pointer;
     font-size: 3rem;
+    user-select:  none;
 }
 .price-per-ticket {
     text-align: center;

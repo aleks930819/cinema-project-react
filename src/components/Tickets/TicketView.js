@@ -26,6 +26,9 @@ const TicketView = (props) => {
   
   const reserveTicketHandler = (e) => {
     e.preventDefault();
+    if(count === 0) {
+      return;
+    }
     reserveTicket(
       props.title,
       count,
@@ -73,7 +76,7 @@ const TicketView = (props) => {
                 Total: $<span>{total.toFixed(2)}</span>
               </p>
             </div>
-            <Button onClick={reserveTicketHandler}>Book Tickets</Button>
+            <Button rounded onClick={reserveTicketHandler}>Book Tickets</Button>
           </div>
         </div>
       ) : (

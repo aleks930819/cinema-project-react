@@ -73,6 +73,14 @@ const Header = () => {
                 profile
               </NavLink>
 
+              <NavLink
+                to="/my-tickets"
+                onClick={() => setOpen(false)}
+              >
+                My Tickets
+              </NavLink>
+
+
               {user.isAdmin ? <Admin /> : ''}
             </>
           ) : (

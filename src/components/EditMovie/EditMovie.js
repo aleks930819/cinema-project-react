@@ -25,6 +25,7 @@ const EditMovie = () => {
     setShowDialog(false);
   };
 
+  
   const deleteMovie = () => {
     movieService.deleteMovie(id, user.token);
     navigate('/');
@@ -32,10 +33,10 @@ const EditMovie = () => {
 
   const action = (
     <div className='dialogs-btns' >
-      <Button green onClick={deleteMovie} >
+      <Button rounded  green onClick={deleteMovie} >
         YES
       </Button>
-      <Button  danger onClick={handleClose}>
+      <Button  rounded danger onClick={handleClose}>
         NO
       </Button>
     </div>
@@ -48,6 +49,8 @@ const EditMovie = () => {
     poster: '',
     overview: '',
     runtime: '',
+    trailer:'',
+    price:'',
   });
 
   const { id } = useParams();
@@ -146,6 +149,30 @@ const EditMovie = () => {
         </div>
 
         <div>
+          <label id="trailer">Trailer</label>
+          <input
+            type="text"
+            htmlFor="trailer"
+            name="trailer"
+            onChange={changeHandler}
+            value={values.trailer}
+            required
+          ></input>
+        </div>
+        
+        <div>
+          <label id="price">Price</label>
+          <input
+            type="number"
+            htmlFor="price"
+            name="price"
+            onChange={changeHandler}
+            value={values.price}
+            required
+          ></input>
+        </div>
+
+        <div>
           <label id="overview">Overview</label>
           <textarea
             type="textarea"
@@ -158,8 +185,8 @@ const EditMovie = () => {
           ></textarea>
         </div>
         <div>
-          <Button>Edit</Button>
-          <Button type='button' onClick={handleClick}>
+          <Button rounded >Edit</Button>
+          <Button  rounded type='button' onClick={handleClick}>
             Delete Movie
           </Button>
         </div>

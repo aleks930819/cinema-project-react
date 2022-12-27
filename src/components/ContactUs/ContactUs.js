@@ -55,7 +55,7 @@ const ContactUs = () => {
           />
         </div>
 
-        <Button to="/message-send">
+        <Button rounded to="/message-sent">
           Send
         </Button>
       </form>

@@ -4,6 +4,7 @@ import { useContext, useEffect, useState } from 'react';
 
 import styles from './Form.module.css';
 
+import useHttp from '../../hooks/useHttp';
 import * as authServices from '../../services/authServices';
 import { AuthCotnext } from '../../contexts/AuthContext';
 import Button from '../Button/Button';
@@ -15,6 +16,7 @@ import ValidationMessage from '../Validation/ValidationMessage';
 const Login = () => {
   const { user, userLogin } = useContext(AuthCotnext);
   const [message, setMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
 
   const [currentUser, setCurrentUser] = useState();
 
@@ -42,13 +44,27 @@ const Login = () => {
     setChangedValue(e, setValues);
   };
 
-  const submitHandler = (e) => {
+  const { isLoading, error, sendRequest } = useHttp(userLogin);
+
+  const submitHandler = async (e) => {
     e.preventDefault();
 
-    authServices
-      .login(values.email, values.password)
-      .then((result) => userLogin(result));
+    sendRequest({
+      endpoint: '/users/login',
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: { email: values.email, password: values.password },
+    });
+
+    // authServices
+    //   .login(values.email, values.password)
+    //   .then((result) => userLogin(result))
+    //   .catch((err) => setErrorMessage(err.message));
   };
+
+  if (error) {
+    console.log(error);
+  }
 
   localStorage.setItem('user', JSON.stringify(user));
 
@@ -87,9 +103,10 @@ const Login = () => {
             label="Password"
           />
           {message && <ValidationMessage>{message}</ValidationMessage>}
-
           <Link to="/register">Don't have an account? Register</Link>
-          <Button>Login</Button>
+          <Button  rounded>
+            Login
+          </Button>
         </AddForm>
       </div>
     </div>

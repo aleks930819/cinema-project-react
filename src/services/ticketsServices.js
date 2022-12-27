@@ -59,3 +59,17 @@ export function deleteTicket(id, accessToken) {
 }
 
 
+export function getUserTickets(id, accessToken) {
+  return fetch(`${URL}/${id}`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${accessToken}`,
+
+    },
+  }).catch((err) => err);
+}
+
+
+
+

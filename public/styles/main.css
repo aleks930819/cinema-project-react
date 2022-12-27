@@ -50,13 +50,13 @@ main {
     
 }
 
-.moveInRight {
+/* .moveInRight {
     animation-name: moveInRight;
     animation-duration: 1s;
     animation-timing-function: ease-in-out;
     backface-visibility: hidden;
 
-}
+} */
 
 @keyframes moveInRight {
     0% {

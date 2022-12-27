@@ -20,10 +20,10 @@
 
 .trailer-btn {
     position: absolute;
-    top:30px;
-    left:35px;
+    top:0px;
+    right:35px;
 }
 .trailer-icon {
-    font-size: 3rem;
+    font-size: 5rem;
     color:white;
 }

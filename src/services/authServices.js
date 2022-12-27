@@ -1,7 +1,6 @@
 const URL = 'http://localhost:8000/api/users';
 
 export async function login(email, password) {
-  
   try {
     let response = await fetch(`${URL}/login`, {
       method: 'POST',
@@ -13,19 +12,19 @@ export async function login(email, password) {
         password,
       }),
     });
+
     let jsonResult = await response.json();
 
     if (response.ok) {
       return jsonResult;
     }
-    return jsonResult.message;
+    
   } catch (err) {
-    throw err;
+    throw new Error(err.message);
   }
 }
 
-export async function register(email, password,name) {
-
+export async function register(email, password, name) {
   try {
     let response = await fetch(`${URL}/register`, {
       method: 'POST',
@@ -35,7 +34,7 @@ export async function register(email, password,name) {
       body: JSON.stringify({
         email,
         password,
-        name
+        name,
       }),
     });
     let jsonResult = await response.json();
@@ -53,7 +52,6 @@ export async function logout(accessToken) {
   try {
     let response = await fetch(`${URL}/logout`, {
       headers: {
-        
         'X-Authorization': accessToken,
       },
     });

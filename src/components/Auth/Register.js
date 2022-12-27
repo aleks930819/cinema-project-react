@@ -10,10 +10,13 @@ import setChangedValue from '../Utils/changeHandler';
 import AddForm from '../AddForm/AddForm';
 import AddFormInput from '../AddForm/AddFormInput';
 import ValidationMessage from '../Validation/ValidationMessage';
+import useHttp from '../../hooks/useHttp';
 
 const Register = () => {
   const { user, userLogin } = useContext(AuthCotnext);
   const [message, setMessage] = useState('');
+
+
 
   const [values, setValues] = useState({
     name: '',
@@ -70,11 +73,22 @@ const Register = () => {
     }
   };
 
+  const { isLoading, error, sendRequest } = useHttp(userLogin);
+
+
   const submitHandler = (e) => {
     e.preventDefault();
-    authServices
-      .register(values.email, values.password,values.name)
-      .then((authData) => userLogin(authData));
+
+    sendRequest({
+      endpoint: '/users/register',
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: { email: values.email, password: values.password, name:values.name },
+    });
+
+    // authServices
+    //   .register(values.email, values.password,values.name)
+    //   .then((authData) => userLogin(authData));
   };
 
   localStorage.setItem('user', JSON.stringify(user));
@@ -139,7 +153,7 @@ const Register = () => {
       {message && <ValidationMessage>{message}</ValidationMessage>}
 
       <Link to="/login">You already have an account? Login</Link>
-      <Button>Register</Button>
+      <Button  rounded >Register</Button>
     </AddForm>
     </div>
   );

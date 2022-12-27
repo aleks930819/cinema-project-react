@@ -1,26 +1,41 @@
-import { Link, useParams } from 'react-router-dom';
+import { Link, Navigate, useParams } from 'react-router-dom';
 import { FaAngleLeft } from 'react-icons/fa';
-
+import { IoIosClose } from 'react-icons/io';
 import './Trailer.css';
 import Video from './Video';
-import { useContext } from 'react';
+import { useContext, useRef } from 'react';
 import { MovieContext } from '../../contexts/MovieContext';
+import Dialog from '../Dialog/Dialog';
 
-const Trailer = () => {
-  const { id } = useParams();
+const Trailer = ({movieId,closeTrailerHandler}) => {
+
   const movies = useContext(MovieContext);
-  const filterMovie = Object.values(movies)[0].filter((m) => m._id === id);
+  const filterMovie = movies.filter((m) => m._id === movieId);
   const trailer = filterMovie[0].trailer.split('=');
+  const trailerRef = useRef();
+
+
+  const handler = () => {
+    closeTrailerHandler();
+  };
 
   return (
-    <div className="trailer-box">
-      <div className="trailer-btn">
-        <Link to="/weekly-program">
-          <FaAngleLeft className="trailer-icon" />
-        </Link>
-      </div>
-      <Video embed={trailer[1]} />
+    // <div className="trailer-box" ref={trailerRef} onClick={handler}>
+    //   <div className="trailer-btn">
+    //     <Link to="/weekly-program">
+    //       <IoIosClose className="trailer-icon" />
+    //     </Link>
+    //   </div>
+    //   <div >
+    <div ref={trailerRef} onClick={handler}  >
+
+      <Dialog>
+        <Video embed={trailer[1]} />
+      </Dialog>
     </div>
+
+    //   {/* </div>
+    // </div> */}
   );
 };
 

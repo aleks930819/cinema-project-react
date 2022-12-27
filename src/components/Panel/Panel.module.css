@@ -1,0 +1,14 @@
+.panel{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 10rem;
+    box-shadow: var(--box-shadow);
+    margin-left:5rem;
+  
+}
+  
+
+  
+

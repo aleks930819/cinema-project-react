@@ -1,0 +1,75 @@
+.reserve-tickets-box{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 10rem;
+    box-shadow: var(--box-shadow);
+    margin-left:5rem;
+  
+  
+  }
+  
+  .reserve-tickets-search input{
+     width: 30vw;
+     outline: none;
+     border: none;
+     padding: 1.5rem;
+     border-radius: 1rem;
+     margin-top: -5rem;
+  
+  }
+  .reserve-tickets-user{
+  border: none;
+  display: grid;
+  grid-template-columns: repeat(5,1fr);
+  font-size: 1.8rem;
+  padding: 2rem;
+  gap:5rem;
+  width: 65vw;
+  align-items: center;
+  
+  }
+  .reserve-tickets-user:not(:last-child) {
+  
+  border-bottom: 2px solid black;
+  }
+  
+  .tickets-icon {
+   color:white;
+   display: flex;
+   justify-content: end;
+   cursor: pointer;
+  }
+  
+  
+  
+  @media only screen and (max-width: 900px) {
+    .reserve-tickets-user{
+      flex-direction: column;
+      width: 35vw;
+      gap:2rem;
+    }
+  
+  .reserve-tickets-box{
+    gap:4rem;
+  }
+  .reserve-tickets-search input {
+       width: 50vw;
+  }
+  }
+  
+  
+  @media only screen and (max-width: 600px) {
+    .reserve-tickets-user{
+      flex-direction: column;
+      width: 55vw;
+      gap:2rem;
+  
+      padding: 3rem;
+    }
+  
+    .reserve-tickets-search input {
+      width: 70vw;
+  }
+  }

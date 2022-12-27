@@ -5,19 +5,35 @@ import './UserList.css';
 
 import { getAllUsers } from '../../services/userServices';
 import UsersList from './UsersList';
+import Panel from '../Panel/Panel';
+import useHttp from '../../hooks/useHttp';
 
 const GetAllUsers = () => {
   const { user } = useContext(AuthCotnext);
   const [usersList, setUsersList] = useState();
 
+  
+  const { isLoading, error, sendRequest } = useHttp(setUsersList);
+
   useEffect(() => {
-    getAllUsers(user.token)
-      .then((result) => result.json())
-      .then((data) => setUsersList(data));
-  }, [user]);
+    sendRequest({
+      endpoint: '/users',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${user.token}`,
+      },
+    });
+  }, [sendRequest, user]);
+  
+
+  // useEffect(() => {
+  //   getAllUsers(user.token)
+  //     .then((result) => result.json())
+  //     .then((data) => setUsersList(data));
+  // }, [user]);
 
   return (
-    <div className="users-list-box">
+    <Panel>
       {usersList?.map((x) =>
         x._id !== user._id ? (
           <UsersList
@@ -29,7 +45,7 @@ const GetAllUsers = () => {
           />
         ) : null
       )}
-    </div>
+    </Panel>
   );
 };
 

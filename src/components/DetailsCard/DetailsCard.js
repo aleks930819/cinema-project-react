@@ -8,8 +8,9 @@ import styles from './DetailsCard.module.css';
 import { AuthCotnext } from '../../contexts/AuthContext';
 import * as movieService from '../../services/movieServices';
 
-import FancyButton from '../Button/FancyButton';
+import Button from '../Button/Button';
 import Reviews from '../Reviews/Reviews';
+
 
 
 
@@ -55,9 +56,9 @@ const DetailsCard = () => {
             </div>
 
             <div className={styles['details-buttons']}>
-              <FancyButton to={`/ticket/${movie._id}`} >Tickets</FancyButton>
+              <Button fancy  to={`/ticket/${movie._id}`} >Tickets</Button>
               {user.isAdmin && (
-                <FancyButton to={`/edit/${movie._id}`}>Edit</FancyButton>
+                <Button fancy to={`/edit/${movie._id}`}>Edit</Button>
               )}
 
             </div>

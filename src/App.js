@@ -25,32 +25,33 @@ import Trailer from './components/Trailer/Trailer';
 import UserProfile from './components/UserProfile/UserProfile';
 import EditUser from './components/UserProfile/EditUser';
 import ReserveTickets from './components/ReserveTickets/ReserveTickets';
-import UsersList from './components/GetAllUsers/UsersList';
 import GetAllUsers from './components/GetAllUsers/GetAllUsers';
-import useLocalStorage from './hooks/useLocalStorage';
+import UserTickets from './components/UserTickets/UserTickets';
 
 function App() {
-  const [auth, setAuth] = useState({});
 
-  const userLogin = (authData) => {
-    setAuth(authData);
-  };
+  // const [auth, setAuth] = useState({});
 
-  const userLogout = () => {
-    setAuth({});
-  };
+  // const userLogin = (authData) => {
+  //   setAuth(authData);
+  // };
 
-  useEffect(() => {
-    const loggedInUser = localStorage.getItem('user');
-    if (loggedInUser) {
-      const foundUser = JSON.parse(loggedInUser);
-      setAuth(foundUser);
-    }
-  }, []);
+  // const userLogout = () => {
+  //   setAuth({});
+  // };
+
+  // useEffect(() => {
+  //   const loggedInUser = localStorage.getItem('user');
+  //   if (loggedInUser) {
+  //     const foundUser = JSON.parse(loggedInUser);
+  //     setAuth(foundUser);
+  //   }
+  // }, []);
 
   return (
     <>
-      <AuthCotnext.Provider value={{ user: auth, userLogin, userLogout }}>
+    <AuthProvider>
+      {/* <AuthCotnext.Provider value={{ user: auth, userLogin, userLogout }}> */}
         <Header />
 
         <main>
@@ -66,7 +67,7 @@ function App() {
               <Route path="/add-movie" element={<AddMovie />} />
               <Route path="/contact-us" element={<ContactUs />} />
               <Route path="/edit/:id" element={<EditMovie />} />
-              <Route path="/message-send" element={<MessageSend />} />
+              <Route path="/message-sent" element={<MessageSend />} />
               <Route path="/cinemas" element={<Cinemas />} />
               <Route path="/add-cinema" element={<AddCinema />} />
               <Route path="/ticket/:id" element={<Ticket />} />
@@ -74,13 +75,16 @@ function App() {
               <Route path="/profile/edit" element={<EditUser />} />
               <Route path="/reserve-tickets" element={<ReserveTickets />} />
               <Route path="/users-list" element={<GetAllUsers />} />
-              <Route path='/trailer/:id' element={<Trailer />} />
+              <Route path='/trailer/:id' element={<Trailer  />} />
+              <Route path='/my-tickets' element={<UserTickets  />} />
+
               <Route path="*" element={<ErrorPage />} />
               
             </Routes>
           </MovieProvider>
         </main>
-      </AuthCotnext.Provider>
+      {/* </AuthCotnext.Provider> */}
+      </AuthProvider>
     </>
   );
 }

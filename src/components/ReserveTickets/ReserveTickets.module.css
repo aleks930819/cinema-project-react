@@ -1,13 +1,12 @@
 .reserve-tickets-box{
-    margin:0 auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    gap:10rem;
-    padding: 5rem;
-    margin-top: -10rem;
-    color:white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin-top: 10rem;
+  box-shadow: var(--box-shadow);
+  margin-left:5rem;
+
 
 }
 
@@ -22,17 +21,25 @@
 }
 .reserve-tickets-user{
 border: none;
-border-radius: .8rem;
-font-size: 2rem;
-padding: 5rem;
-display: flex;
+display: grid;
+grid-template-columns: repeat(5,1fr);
+font-size: 1.8rem;
+padding: 2rem;
 gap:5rem;
-width: 60vw;
-justify-content: center;
+width: 65vw;
 align-items: center;
-box-shadow: var(--box-shadow);
 
+}
+.reserve-tickets-user:not(:last-child) {
 
+border-bottom: 2px solid black;
+}
+
+.tickets-icon {
+ color:white;
+ display: flex;
+ justify-content: end;
+ cursor: pointer;
 }
 
 

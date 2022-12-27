@@ -13,6 +13,9 @@ import ReserveTicketsResult from './ReserveTicketsResult';
 import LoadingSpinner from '../Spinner/Spinner';
 import AddFormInput from '../AddForm/AddFormInput';
 import AddForm from '../AddForm/AddForm';
+import Table from '../Table/Table';
+import Panel from '../Panel/Panel';
+import useHttp from '../../hooks/useHttp';
 
 const ReserveTickets = () => {
   const { user } = useContext(AuthCotnext);
@@ -25,14 +28,27 @@ const ReserveTickets = () => {
 
   const navigate = useNavigate();
 
-  useEffect(() => {
-    setLoading(true);
-    checkTickets(user.token)
-      .then((response) => response.json())
-      .then((data) => setTickets(data));
-    setLoading(false);
-  }, [user.token]);
+  const { isLoading, error, sendRequest } = useHttp(setTickets);
 
+  useEffect(() => {
+    sendRequest({
+      endpoint: '/tickets',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${user.token}`,
+      },
+    });
+  }, [sendRequest, user.token]);
+
+  // useEffect(() => {
+  //   setLoading(true);
+  //   checkTickets(user.token)
+  //     .then((response) => response.json())
+  //     .then((data) => setTickets(data));
+  //   setLoading(false);
+  // }, [user.token]);
+
+  console.log(tickets);
   if (!user.isAdmin) {
     navigate('/');
   }
@@ -43,50 +59,26 @@ const ReserveTickets = () => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-  
-
-   
-
   };
   const findTicketByName = (name) => {
-   const ticket = tickets.filter(t => t.userName === name);
-     return ticket;
-
+    const ticket = tickets.filter((t) => t.userName === name);
+    return ticket;
   };
-  console.log(findTicketByName('Alex'));
 
-  console.log(values.name);
   return (
-    <>
-      <div className={styles['reserve-tickets-box']}>
-        <div className={styles['reserve-tickets-search']}>
-           <AddForm onSubmit={submitHandler}>
-          <AddFormInput
-            element="input"
-            type="text"
-            htmlFor="name"
-            placeholder="Search for user"
-            name="name"
-            value={values.name}
-            handler={changeHandler}
-            email={values.email}
-          />
-          </AddForm>
-        </div>
-
-        {tickets?.map((x) => (
-          <ReserveTicketsResult
-            key={x._id}
-            movieName={x.movieName}
-            username={x.userName}
-            ticketsCount={x.count}
-            total={x.total.toFixed(2)}
-            id={x._id}
-            token={user.token}
-          />
-        ))}
-      </div>
-    </>
+    <Panel>
+      {tickets?.map((x) => (
+        <ReserveTicketsResult
+          key={x._id}
+          movieName={x.movieName}
+          username={x.userName}
+          ticketsCount={x.count}
+          total={x.total.toFixed(2)}
+          id={x._id}
+          token={user.token}
+        />
+      ))}
+    </Panel>
   );
 };
 

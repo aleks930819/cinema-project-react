@@ -11,11 +11,13 @@ import Button from '../Button/Button';
 import AddFormInput from '../AddForm/AddFormInput';
 import AddForm from '../AddForm/AddForm';
 import setChangedValue from '../Utils/changeHandler';
+import useHttp from '../../hooks/useHttp';
 
 const AddMovie = () => {
   const navigate = useNavigate();
 
   const { user } = useContext(AuthCotnext);
+  const [message, setMessage] = useState('');
 
   useEffect(() => {
     if (!user.isAdmin) {
@@ -38,14 +40,37 @@ const AddMovie = () => {
     setChangedValue(e, setValues);
   };
 
+  const { isLoading, error, sendRequest } = useHttp(setMessage);
+
   const submitHandler = (e) => {
     e.preventDefault();
-    addMovie(values, user.token)
-      .then((response) => response.json())
-      .then((data) => navigate(`/details/${data._id}`))
-      .catch((err) => err.message);
-  };
 
+    sendRequest({
+      endpoint: '/movies',
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${user.token}`,
+      },
+      body: {
+        title: values.title,
+        director: values.director,
+        actors: values.actors,
+        poster: values.poster,
+        overview: values.overview,
+        runtime: values.runtime,
+        price: values.price,
+        trailer: values.trailer,
+      },
+    });
+
+    navigate('/');
+
+    // addMovie(values, user.token)
+    //   .then((response) => response.json())
+    //   .then((data) => navigate(`/details/${data._id}`))
+    //   .catch((err) => err.message);
+  };
 
   return (
     <AddForm handler={submitHandler}>
@@ -140,7 +165,7 @@ const AddMovie = () => {
         handler={changeHandler}
       />
 
-      <Button>Add Movie</Button>
+      <Button rounded>Add Movie</Button>
     </AddForm>
   );
 };

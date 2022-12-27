@@ -1,33 +1,48 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useContext, useEffect, useState } from 'react';
 
 import styles from './Movie.module.css';
 
-import MoviesCard from './MoviesCard';
 import * as movieService from '../../services/movieServices';
+
 import LoadingSpinner from '../Spinner/Spinner';
-import ImageSlider from '../ImageSlider/ImageSlider';
-import { MovieProvider } from '../../contexts/MovieContext';
+import { MovieContext, MovieProvider } from '../../contexts/MovieContext';
 import Card from '../Card/Card';
-import Trailer from '../Trailer/Video';
+import useHttp from '../../hooks/useHttp';
 
 const MoviesData = () => {
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
-    setLoading(true);
-    movieService.getAll().then((movies) => {
-      setMovies(Object.values(movies));
-      setLoading(false);
-    });
-  }, []);
+  // const moviesContext = useContext(MovieContext);
+  
+//  useEffect(() => {
+//      setMovies(moviesContext);
+//  },[moviesContext]);
+
+//  console.log(moviesContext);
+
+const {isLoading,error,sendRequest}  = useHttp(setMovies);
+
+useEffect(() => {
+  sendRequest({endpoint:'/movies'});
+},[sendRequest]);
+
+
+  // useEffect(() => {
+  //   setLoading(true);
+  //   movieService.getAll().then((movies) => {
+  //     setMovies(Object.values(movies));
+  //     setLoading(false);
+  //   });
+  // }, []);
+
   
 
   return (
     <>
-      {/* <ImageSlider /> */}
+  
 
-      {loading ? (
+      {isLoading ? (
             <LoadingSpinner />
           ) : (
       <div className={styles['movies-box']}>
@@ -35,14 +50,7 @@ const MoviesData = () => {
       </div>
       )};
 
-        {/* <div className={styles['movie-container']}>
-
-          {loading ? (
-            <LoadingSpinner />
-          ) : (
-            movies.map((x) => <MoviesCard key={x._id} movie={x} />)
-          )}
-        </div> */}
+       
     </>
   );
 };

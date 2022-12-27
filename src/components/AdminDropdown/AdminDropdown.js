@@ -6,6 +6,7 @@ import { useEffect, useRef, useState } from 'react';
 
 import styles from './AdminDropdown.module.css';
 import Render from './Render';
+import Button from '../Button/Button';
 
 const AdminDropDown = ({ options, onChange, buttonName }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -36,9 +37,7 @@ const AdminDropDown = ({ options, onChange, buttonName }) => {
     };
   });
 
-  // const renderedOptions = (
-  //   <Render options={options} handleOptionCLick={handleOptionClick} />
-  // );
+
 
   const renderedOptions = options.map((option) => {
     return (
@@ -52,12 +51,12 @@ const AdminDropDown = ({ options, onChange, buttonName }) => {
     );
   });
 
-  const icon = <span>{isOpen ? <GoChevronUp /> : <GoChevronDown />} </span>;
+  const icon = <span>{isOpen ? <GoChevronUp className={styles.icon}/> : <GoChevronDown className={styles.icon}/>} </span>;
 
   return (
     <div ref={divEl} className={styles.dropdown}>
-      <button onClick={handleClick}>
-        {buttonName} <span>{icon}</span>
+      <button  onClick={handleClick}>
+        {buttonName} {icon}
       </button>
       {isOpen && <div>{renderedOptions}</div>}
     </div>

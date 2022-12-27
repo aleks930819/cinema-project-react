@@ -2,22 +2,27 @@ import { Link } from 'react-router-dom';
 
 import className from 'classnames';
 
-
 import './Button.css';
 
-
-
-
-const Button = ({ to, type, disabled, children,green,danger,opacity,...rest }) => {
-
-  const classes = className (
-    'btn',
-    {
-     'green':green,
-     'danger':danger,
-     'opacity-sml':opacity
-    }
-    );
+const Button = ({
+  to,
+  type,
+  disabled,
+  children,
+  green,
+  danger,
+  opacity,
+  rounded,
+  fancy,
+  ...rest
+}) => {
+  const classes = className('btn', {
+    green: green,
+    danger: danger,
+    opacity: opacity,
+    rounded: rounded,
+    fancy:fancy,
+  });
 
   if (to) {
     return (

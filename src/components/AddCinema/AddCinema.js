@@ -9,22 +9,19 @@ import Button from '../Button/Button';
 import AddForm from '../AddForm/AddForm';
 import AddFormInput from '../AddForm/AddFormInput';
 import setChangedValue from '../Utils/changeHandler';
+import useHttp from '../../hooks/useHttp';
 
 const AddCinema = () => {
-  
-
   const navigate = useNavigate();
 
   const { user } = useContext(AuthCotnext);
+  const [message, setMessage] = useState('');
 
   useEffect(() => {
-
-    if(!user.isAdmin){
+    if (!user.isAdmin) {
       navigate('/');
     }
-  
-  },[user,navigate]);
-  
+  }, [user, navigate]);
 
   const [values, setValues] = useState({
     city: '',
@@ -34,23 +31,42 @@ const AddCinema = () => {
     phone: '',
     imgUrl: '',
   });
-  
+
   const changeHandler = (e) => {
     setChangedValue(e, setValues);
   };
 
+  const { isLoading, error, sendRequest } = useHttp(setMessage);
+
   const submitHandler = (e) => {
     e.preventDefault();
-    cinemaServices
-      .addCinema(values, user.token)
-      .then((response) => response.json())
-      .then((data) => navigate('/cinemas'))
-      .catch((err) => err.message);
+
+    sendRequest({
+      endpoint: '/cinemas',
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${user.token}`,
+      },
+      body: {
+        city: values.city,
+        location: values.location,
+        name: values.name,
+        features: values.features,
+        phone: values.phone,
+        imgUrl: values.imgUrl,
+      },
+    });
+    // cinemaServices
+    //   .addCinema(values, user.token)
+    //   .then((response) => response.json())
+    //   .then((data) => navigate('/cinemas'))
+    //   .catch((err) => err.message);
   };
 
   return (
     <AddForm handler={submitHandler}>
-    <h2>Add Cinema</h2>
+      <h2>Add Cinema</h2>
       <AddFormInput
         element="input"
         name="city"
@@ -114,7 +130,7 @@ const AddCinema = () => {
         handler={changeHandler}
       />
 
-      <Button>Add Cinema</Button>
+      <Button rounded> Add Cinema</Button>
     </AddForm>
   );
 };
