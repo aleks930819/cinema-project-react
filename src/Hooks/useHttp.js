@@ -21,8 +21,8 @@ const useHttp = (applayData) => {
         applayData(jsonResult);
 
         if (!response.ok) {
-          console.log(response);
-          throw new Error('Request failed!');
+          setError(jsonResult.message);
+          // throw new Error('Request failed!');
         }
       } catch (err) {
         setError(err.message || 'Something went wrong!');

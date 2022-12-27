@@ -16,9 +16,6 @@ import ValidationMessage from '../Validation/ValidationMessage';
 const Login = () => {
   const { user, userLogin } = useContext(AuthCotnext);
   const [message, setMessage] = useState('');
-  const [errorMessage, setErrorMessage] = useState('');
-
-  const [currentUser, setCurrentUser] = useState();
 
   const [values, setValues] = useState({
     email: '',
@@ -62,9 +59,9 @@ const Login = () => {
     //   .catch((err) => setErrorMessage(err.message));
   };
 
-  if (error) {
-    console.log(error);
-  }
+  useEffect(() => {
+    setMessage(error);
+  }, [error]);
 
   localStorage.setItem('user', JSON.stringify(user));
 
@@ -104,9 +101,7 @@ const Login = () => {
           />
           {message && <ValidationMessage>{message}</ValidationMessage>}
           <Link to="/register">Don't have an account? Register</Link>
-          <Button  rounded>
-            Login
-          </Button>
+          <Button rounded>Login</Button>
         </AddForm>
       </div>
     </div>

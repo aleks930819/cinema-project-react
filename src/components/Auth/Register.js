@@ -16,8 +16,6 @@ const Register = () => {
   const { user, userLogin } = useContext(AuthCotnext);
   const [message, setMessage] = useState('');
 
-
-
   const [values, setValues] = useState({
     name: '',
     email: '',
@@ -25,14 +23,12 @@ const Register = () => {
     repassword: '',
   });
 
-  
   const navigate = useNavigate();
-  
+
   const changeHandler = (e) => {
     setChangedValue(e, setValues);
   };
 
-  
   const checkEmail = () => {
     let pattern = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
 
@@ -47,17 +43,15 @@ const Register = () => {
   };
 
   const checkUsername = () => {
-    if (values.username === '') {
-      setMessage('Please enter a username!');
+    if (values.name === '') {
+      setMessage('Please enter a name!');
     } else {
       setMessage('');
     }
   };
 
-  
   const checkPassword = () => {
-   
-    if (values.password.length < 6) {
+    if (6 > values.password.length) {
       setMessage('Password must be at least 6 characters');
     } else {
       setMessage('');
@@ -65,8 +59,9 @@ const Register = () => {
   };
 
   const checkRepassword = () => {
- 
-    if (values.password !== values.repassword) {
+    if (6 > values.password.length) {
+      setMessage('Password must be at least 6 characters');
+    } else if (values.password !== values.repassword) {
       setMessage('Password dont match!');
     } else {
       setMessage('');
@@ -75,6 +70,9 @@ const Register = () => {
 
   const { isLoading, error, sendRequest } = useHttp(userLogin);
 
+  useEffect(() => {
+    setMessage(error);
+  }, [error]);
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -83,7 +81,11 @@ const Register = () => {
       endpoint: '/users/register',
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: { email: values.email, password: values.password, name:values.name },
+      body: {
+        email: values.email,
+        password: values.password,
+        name: values.name,
+      },
     });
 
     // authServices
@@ -100,61 +102,60 @@ const Register = () => {
   }, [user.email, navigate]);
 
   return (
-    <div className='moveInRight'>
+    <div className="moveInRight">
+      <AddForm handler={submitHandler}>
+        <h2>REGISTER</h2>
 
-    <AddForm handler={submitHandler}>
-      <h2>REGISTER</h2>
+        <AddFormInput
+          element="input"
+          type="text"
+          htmlFor="name"
+          placeholder="Name"
+          name="name"
+          value={values.name}
+          handler={changeHandler}
+          onBlur={checkUsername}
+          label="Name"
+        />
 
-      <AddFormInput
-        element="input"
-        type="text"
-        htmlFor="name"
-        placeholder="Name"
-        name="name"
-        value={values.name}
-        handler={changeHandler}
-        onBlur={checkUsername}
-        label="Name"
-      />
+        <AddFormInput
+          element="input"
+          type="text"
+          htmlFor="email"
+          placeholder="Your Email"
+          name="email"
+          value={values.name}
+          handler={changeHandler}
+          onBlur={checkEmail}
+          label="Email"
+        />
+        <AddFormInput
+          element="input"
+          type="password"
+          htmlFor="password"
+          placeholder="Password"
+          name="password"
+          value={values.name}
+          handler={changeHandler}
+          onBlur={checkPassword}
+          label="Password"
+        />
+        <AddFormInput
+          element="input"
+          type="password"
+          htmlFor="password"
+          placeholder="Confirm Password"
+          name="repassword"
+          value={values.name}
+          handler={changeHandler}
+          onBlur={checkRepassword}
+          label="Repeat Password"
+        />
+        {message && <ValidationMessage>{message}</ValidationMessage>}
 
-      <AddFormInput
-        element="input"
-        type="text"
-        htmlFor="email"
-        placeholder="Your Email"
-        name="email"
-        value={values.name}
-        handler={changeHandler}
-        onBlur={checkEmail}
-        label="Email"
-      />
-      <AddFormInput
-        element="input"
-        type="password"
-        htmlFor="password"
-        placeholder="Password"
-        name="password"
-        value={values.name}
-        handler={changeHandler}
-        onBLur={checkPassword}
-        label="Password"
-      />
-      <AddFormInput
-        element="input"
-        type="password"
-        htmlFor="password"
-        placeholder="Confirm Password"
-        name="repassword"
-        value={values.name}
-        handler={changeHandler}
-        onBlur={checkRepassword}
-        label="Repeat Password"
-      />
-      {message && <ValidationMessage>{message}</ValidationMessage>}
-
-      <Link to="/login">You already have an account? Login</Link>
-      <Button  rounded >Register</Button>
-    </AddForm>
+        <Link to="/login">You already have an account? Login</Link>
+        <Button rounded>Register</Button>
+      </AddForm>
     </div>
   );
 };
