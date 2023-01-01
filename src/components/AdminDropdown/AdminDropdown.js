@@ -5,8 +5,6 @@ import { GoChevronDown, GoChevronUp } from 'react-icons/go';
 import { useEffect, useRef, useState } from 'react';
 
 import styles from './AdminDropdown.module.css';
-import Render from './Render';
-import Button from '../Button/Button';
 
 const AdminDropDown = ({ options, onChange, buttonName }) => {
   const [isOpen, setIsOpen] = useState(false);

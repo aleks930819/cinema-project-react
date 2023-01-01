@@ -65,11 +65,6 @@ const AddMovie = () => {
     });
 
     navigate('/');
-
-    // addMovie(values, user.token)
-    //   .then((response) => response.json())
-    //   .then((data) => navigate(`/details/${data._id}`))
-    //   .catch((err) => err.message);
   };
 
   return (
@@ -165,7 +160,7 @@ const AddMovie = () => {
         handler={changeHandler}
       />
 
-      <Button rounded>Add Movie</Button>
+      <Button green rounded>Add Movie</Button>
     </AddForm>
   );
 };

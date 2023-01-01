@@ -1,17 +1,24 @@
 import { useContext, useEffect, useState } from 'react';
 import { AuthCotnext } from '../../contexts/AuthContext';
 import useHttp from '../../hooks/useHttp';
-import { getUserTickets } from '../../services/ticketsServices';
 import Panel from '../Panel/Panel';
 import ReserveTicketsResult from '../ReserveTickets/ReserveTicketsResult';
 import styles from './UserTickets.module.css';
-
 const UserTickets = () => {
   const { user } = useContext(AuthCotnext);
   const [tickets, setTickets] = useState([]);
-
+  const [totalCost, setTotalCost] = useState(0);
 
   const { isLoading, error, sendRequest } = useHttp(setTickets);
+  console.log(tickets);
+
+  useEffect(() => {
+    const getTotalCost = (tickets) => {
+      const sum = tickets.reduce((prev, curr) => prev + curr.total, 0);
+      return sum;
+    };
+    setTotalCost(getTotalCost(tickets));
+  }, [tickets]);
 
   useEffect(() => {
     sendRequest({
@@ -22,14 +29,6 @@ const UserTickets = () => {
       },
     });
   }, [sendRequest, user]);
-
-
-  // useEffect(() => {
-  //   getUserTickets(user._id, user.token)
-  //     .then((response) => response.json())
-  //     .then((data) => setTickets(data));
-  // }, [user._id]);
-
   return (
     <Panel>
       {tickets?.map((x) => (
@@ -43,6 +42,7 @@ const UserTickets = () => {
           token={user.token}
         />
       ))}
+      <div className={styles.total}>Total: ${totalCost.toFixed(2)}</div>
     </Panel>
   );
 };

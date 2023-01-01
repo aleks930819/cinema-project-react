@@ -15,6 +15,9 @@ export const AuthProvider = ({ children }) => {
     setAuth({});
   };
 
+
+
+
   useEffect(() => {
     const loggedInUser = localStorage.getItem('user');
     if (loggedInUser) {

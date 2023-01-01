@@ -22,7 +22,6 @@ const useHttp = (applayData) => {
 
         if (!response.ok) {
           setError(jsonResult.message);
-          // throw new Error('Request failed!');
         }
       } catch (err) {
         setError(err.message || 'Something went wrong!');

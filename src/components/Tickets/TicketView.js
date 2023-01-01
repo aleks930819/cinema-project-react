@@ -1,46 +1,54 @@
 import { useNavigate } from 'react-router-dom';
 
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 
 import styles from './TicketView.module.css';
 
-import { reserveTicket } from '../../services/ticketsServices';
 
 import { AuthCotnext } from '../../contexts/AuthContext';
 
 import LoginRedirect from '../LoginRedirect/LoginRedirect';
 import Button from '../Button/Button';
 import useTicketsCount from '../../hooks/useTicketsCount';
-
-
-
-
+import useHttp from '../../hooks/useHttp';
 
 const TicketView = (props) => {
   const { user } = useContext(AuthCotnext);
+  const [message, setMessage] = useState('');
 
-  const {count,total,increaseCount,decreaseCount} = useTicketsCount(props);
-
+  const { count, total, increaseCount, decreaseCount } = useTicketsCount(props);
+  const {sendRequest } = useHttp(setMessage);
 
   const navigate = useNavigate();
-  
+
   const reserveTicketHandler = (e) => {
     e.preventDefault();
-    if(count === 0) {
+    if (count === 0) {
       return;
     }
-    reserveTicket(
-      props.title,
-      count,
-      user._id,
-      user.name,
-      total,
-      user.token
-    ).then((res) => res);
-    navigate('/');
+
+
+
+    sendRequest({
+      endpoint: '/tickets',
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${user.token}`,
+      },
+      body: {
+        movieName: props.title,
+        count: count,
+        user: user._id,
+        userName: user.name,
+        total: total,
+      },
+    });
+
+    navigate('/my-tickets');
   };
 
-
+  const disabled = count === 0 ? true : false;
 
   return (
     <>
@@ -76,7 +84,9 @@ const TicketView = (props) => {
                 Total: $<span>{total.toFixed(2)}</span>
               </p>
             </div>
-            <Button rounded onClick={reserveTicketHandler}>Book Tickets</Button>
+            <Button  disabled={disabled} rounded onClick={reserveTicketHandler}>
+              Book Tickets
+            </Button>
           </div>
         </div>
       ) : (

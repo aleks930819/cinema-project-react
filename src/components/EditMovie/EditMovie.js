@@ -1,21 +1,24 @@
 import { useNavigate, useParams } from 'react-router-dom';
 
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useState } from 'react';
 
 import styles from './EditMovie.module.css';
 
 import * as movieService from '../../services/movieServices';
-import { MovieContext } from '../../contexts/MovieContext';
 import { AuthCotnext } from '../../contexts/AuthContext';
 
 import Button from '../Button/Button';
 import Dialog from '../Dialog/Dialog';
 import setChangedValue from '../Utils/changeHandler';
+import useHttp from '../../hooks/useHttp';
+import AddForm from '../AddForm/AddForm';
+import AddFormInput from '../AddForm/AddFormInput';
 
 const EditMovie = () => {
   const { user } = useContext(AuthCotnext);
 
   const [showDialog, setShowDialog] = useState(false);
+  const [message, setMessage] = useState('');
 
   const handleClick = () => {
     setShowDialog(true);
@@ -25,18 +28,17 @@ const EditMovie = () => {
     setShowDialog(false);
   };
 
-  
   const deleteMovie = () => {
     movieService.deleteMovie(id, user.token);
     navigate('/');
   };
 
   const action = (
-    <div className='dialogs-btns' >
-      <Button rounded  green onClick={deleteMovie} >
+    <div className="dialogs-btns">
+      <Button rounded green onClick={deleteMovie}>
         YES
       </Button>
-      <Button  rounded danger onClick={handleClose}>
+      <Button rounded danger onClick={handleClose}>
         NO
       </Button>
     </div>
@@ -49,8 +51,8 @@ const EditMovie = () => {
     poster: '',
     overview: '',
     runtime: '',
-    trailer:'',
-    price:'',
+    trailer: '',
+    price: '',
   });
 
   const { id } = useParams();
@@ -61,21 +63,37 @@ const EditMovie = () => {
     navigate('/');
   }
 
-  useEffect(() => {
-    movieService.getByID(id).then((movie) => setValues(movie));
-  }, [id]);
+  const { isLoading, error, sendRequest } = useHttp(setMessage);
 
   const changeHandler = (e) => {
     setChangedValue(e, setValues);
   };
-
   const submitHandler = (e) => {
     e.preventDefault();
-    movieService
-      .editMovie(id, values, user.token)
-      .then((response) => response.json())
-      .then((data) => navigate(`/details/${data._id}`))
-      .catch((err) => err.message);
+
+    sendRequest({
+      endpoint: `/movies/${id}`,
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${user.token}`,
+      },
+
+      body: {
+        title: values.title,
+        director: values.director,
+        actors: values.actors,
+        poster: values.poster,
+        overview: values.overview,
+        runtime: values.runtime,
+        price: values.price,
+        trailer: values.trailer,
+      },
+    });
+
+    if (!message) {
+      navigate('/');
+    }
   };
 
   const dialog = (
@@ -83,115 +101,107 @@ const EditMovie = () => {
       <h2>Are you sure you want to delete this movie?</h2>
     </Dialog>
   );
-
-
   return (
     <div className={styles['add-movie']}>
-      <form className={styles['add-movie-form']} onSubmit={submitHandler}>
-        <div>
-          <label id="movie-title">Movie Title</label>
-          <input
-            type="text"
-            htmlFor="movie-title"
-            name="title"
-            value={values.title}
-            onChange={changeHandler}
-            required
-          ></input>
-        </div>
+      <AddForm handler={submitHandler}>
+        <AddFormInput
+          element="input"
+          name="title"
+          type="text"
+          label="Movie Title"
+          placeholder="Movie Title"
+          htmlFor="title"
+          value={values.name}
+          handler={changeHandler}
+        />
+
+        <AddFormInput
+          element="input"
+          name="director"
+          type="text"
+          label="Director"
+          htmlFor="director"
+          placeholder="Director"
+          value={values.name}
+          handler={changeHandler}
+        />
+
+        <AddFormInput
+          element="input"
+          name="actors"
+          type="text"
+          label="Actors"
+          placeholder="Actors"
+          htmlFor="actors"
+          value={values.name}
+          handler={changeHandler}
+        />
+
+        <AddFormInput
+          element="input"
+          name="poster"
+          type="text"
+          label="Poster URL"
+          htmlFor="poster"
+          placeholder="Poster URL"
+          value={values.name}
+          handler={changeHandler}
+        />
+
+        <AddFormInput
+          element="input"
+          name="runtime"
+          type="text"
+          label="Runtime"
+          htmlFor="runtime"
+          placeholder="Runtime"
+          value={values.name}
+          handler={changeHandler}
+        />
+
+        <AddFormInput
+          element="input"
+          name="price"
+          type="number"
+          label="Price"
+          htmlFor="price"
+          placeholder="Price"
+          value={values.name}
+          handler={changeHandler}
+        />
+
+        <AddFormInput
+          element="input"
+          name="trailer"
+          type="text"
+          label="Trailer"
+          htmlFor="trailer"
+          placeholder="Trailer"
+          value={values.name}
+          handler={changeHandler}
+        />
+
+        <AddFormInput
+          element="textearea"
+          name="overview"
+          type="text"
+          rows="6"
+          label="Overview"
+          htmlFor="overview"
+          placeholder="Overview"
+          value={values.name}
+          handler={changeHandler}
+        />
 
         <div>
-          <label id="dircetor">Director</label>
-          <input
-            type="text"
-            htmlFor="director"
-            name="director"
-            value={values.director}
-            onChange={changeHandler}
-            required
-          ></input>
-        </div>
-
-        <div>
-          <label id="actors">Actors</label>
-          <input
-            type="text"
-            htmlFor="actors"
-            name="actors"
-            value={values.actors}
-            onChange={changeHandler}
-            required
-          ></input>
-        </div>
-
-        <div>
-          <label id="poster-url">Poster URL</label>
-          <input
-            type="text"
-            htmlFor="poster"
-            name="poster"
-            onChange={changeHandler}
-            value={values.poster}
-            required
-          ></input>
-        </div>
-
-        <div>
-          <label id="poster-url">Runtime</label>
-          <input
-            type="text"
-            htmlFor="runtime"
-            name="runtime"
-            onChange={changeHandler}
-            value={values.runtime}
-            required
-          ></input>
-        </div>
-
-        <div>
-          <label id="trailer">Trailer</label>
-          <input
-            type="text"
-            htmlFor="trailer"
-            name="trailer"
-            onChange={changeHandler}
-            value={values.trailer}
-            required
-          ></input>
-        </div>
-        
-        <div>
-          <label id="price">Price</label>
-          <input
-            type="number"
-            htmlFor="price"
-            name="price"
-            onChange={changeHandler}
-            value={values.price}
-            required
-          ></input>
-        </div>
-
-        <div>
-          <label id="overview">Overview</label>
-          <textarea
-            type="textarea"
-            htmlFor="overview"
-            name="overview"
-            rows="6"
-            onChange={changeHandler}
-            value={values.overview}
-            required
-          ></textarea>
-        </div>
-        <div>
-          <Button rounded >Edit</Button>
-          <Button  rounded type='button' onClick={handleClick}>
+          <Button green rounded>Edit</Button>
+          <Button danger rounded type="button" onClick={handleClick}>
             Delete Movie
           </Button>
         </div>
+
         {showDialog && dialog}
-      </form>
+      </AddForm>
     </div>
   );
 };

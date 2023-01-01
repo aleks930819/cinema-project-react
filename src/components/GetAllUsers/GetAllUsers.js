@@ -3,16 +3,15 @@ import { AuthCotnext } from '../../contexts/AuthContext';
 
 import './UserList.css';
 
-import { getAllUsers } from '../../services/userServices';
 import UsersList from './UsersList';
 import Panel from '../Panel/Panel';
 import useHttp from '../../hooks/useHttp';
+import LoadingSpinner from '../Spinner/Spinner';
 
 const GetAllUsers = () => {
   const { user } = useContext(AuthCotnext);
   const [usersList, setUsersList] = useState();
-
-  
+ 
   const { isLoading, error, sendRequest } = useHttp(setUsersList);
 
   useEffect(() => {
@@ -24,14 +23,6 @@ const GetAllUsers = () => {
       },
     });
   }, [sendRequest, user]);
-  
-
-  // useEffect(() => {
-  //   getAllUsers(user.token)
-  //     .then((result) => result.json())
-  //     .then((data) => setUsersList(data));
-  // }, [user]);
-
   return (
     <Panel>
       {usersList?.map((x) =>

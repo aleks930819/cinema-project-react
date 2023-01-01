@@ -2,8 +2,8 @@ import styles from './Cinemas.module.css';
 
 const CinemaCard = ({ cinema }) => {
   return (
-    <div className='moveInRight'>
     <div className={styles['cinema-card']}>
+    
       <div className={styles['cinema-img']}>
         <img src={cinema.imgUrl} alt="cinema" />
       </div>
@@ -15,8 +15,6 @@ const CinemaCard = ({ cinema }) => {
         <p>Phone: +{cinema.phone}</p>
       </div>
     </div>
-    </div>
-
   );
 };
 

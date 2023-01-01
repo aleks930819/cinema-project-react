@@ -13,6 +13,8 @@ const Admin = () => {
     { label: 'Add Cinema', value: '/add-cinema' },
     { label: 'Reserve Tickets', value: '/reserve-tickets' },
     { label: 'Users', value: '/users-list' },
+    { label: 'Movies', value: '/movies-list' },
+
 
   ];
 

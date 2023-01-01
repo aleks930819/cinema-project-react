@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import { useContext, useEffect, useState } from 'react';
 
 import { AuthCotnext } from '../../contexts/AuthContext';
-import * as cinemaServices from '../../services/cinemaServices';
 
 import Button from '../Button/Button';
 import AddForm from '../AddForm/AddForm';
@@ -36,7 +35,7 @@ const AddCinema = () => {
     setChangedValue(e, setValues);
   };
 
-  const { isLoading, error, sendRequest } = useHttp(setMessage);
+  const {sendRequest } = useHttp(setMessage);
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -57,11 +56,7 @@ const AddCinema = () => {
         imgUrl: values.imgUrl,
       },
     });
-    // cinemaServices
-    //   .addCinema(values, user.token)
-    //   .then((response) => response.json())
-    //   .then((data) => navigate('/cinemas'))
-    //   .catch((err) => err.message);
+   
   };
 
   return (

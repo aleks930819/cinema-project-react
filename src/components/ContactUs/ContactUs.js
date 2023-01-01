@@ -1,9 +1,11 @@
-
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import useValidators from '../../hooks/useValidators';
 
 import Button from '../Button/Button';
+import setChangedValue from '../Utils/changeHandler';
+import ValidationMessage from '../Validation/ValidationMessage';
 import styles from './ContactUs.module.css';
-
 
 const ContactUs = () => {
   const [values, setValues] = useState({
@@ -11,23 +13,26 @@ const ContactUs = () => {
     message: '',
   });
 
+  const navigate = useNavigate();
+
   const changeHandler = (e) => {
-    setValues((state) => ({ ...state, [e.target.name]: e.target.value }));
-    e.value = e.target.value;
+    setChangedValue(e, setValues);
   };
+
+  const { message, checkEmail, checkMessage } = useValidators({
+    email: values.email,
+    text: values.message,
+  });
+
+  const disabled = values.email && values.message && !message;
 
   const submitHandler = (e) => {
     e.preventDefault();
 
-    setValues((oldState) => ({
-      ...oldState,
-      email: '',
-      message: '',
-    }));
+    navigate('/message-sent');
   };
 
   return (
-    <div className='moveInRight'>
     <div className={styles['contact-us']}>
       <form className={styles['contact-us-form']} onSubmit={submitHandler}>
         <div className={styles['contact-us-email']}>
@@ -37,6 +42,7 @@ const ContactUs = () => {
             name="email"
             value={values.email}
             onChange={changeHandler}
+            onBlur={checkEmail}
             required
           />
           <p className={styles['contact-us-phone']}>Phone: +1 234 235</p>
@@ -51,15 +57,16 @@ const ContactUs = () => {
             name="message"
             value={values.message}
             onChange={changeHandler}
+            onBlur={checkMessage}
             required
           />
         </div>
+        {message && <ValidationMessage>{message}</ValidationMessage>}
 
-        <Button rounded to="/message-sent">
+        <Button disabled={!disabled} rounded>
           Send
         </Button>
       </form>
-    </div>
     </div>
   );
 };

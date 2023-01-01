@@ -5,7 +5,6 @@ import { useContext, useEffect, useState } from 'react';
 import styles from './Form.module.css';
 
 import useHttp from '../../hooks/useHttp';
-import * as authServices from '../../services/authServices';
 import { AuthCotnext } from '../../contexts/AuthContext';
 import Button from '../Button/Button';
 import setChangedValue from '../Utils/changeHandler';
@@ -21,27 +20,18 @@ const Login = () => {
     email: '',
     password: '',
   });
-
-  const checkEmail = () => {
-    let pattern = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
-
-    if (values.email === '') {
-      setMessage('Invalid email!');
-    }
-    if (!pattern.test(values.email)) {
-      setMessage('Invalid email!');
-    } else {
-      setMessage('');
-    }
-  };
-
+  
   const navigate = useNavigate();
+
+  const { error, sendRequest } = useHttp(userLogin);
+
+
 
   const changeHandler = (e) => {
     setChangedValue(e, setValues);
   };
 
-  const { isLoading, error, sendRequest } = useHttp(userLogin);
+
 
   const submitHandler = async (e) => {
     e.preventDefault();
@@ -53,10 +43,7 @@ const Login = () => {
       body: { email: values.email, password: values.password },
     });
 
-    // authServices
-    //   .login(values.email, values.password)
-    //   .then((result) => userLogin(result))
-    //   .catch((err) => setErrorMessage(err.message));
+    
   };
 
   useEffect(() => {
@@ -70,6 +57,8 @@ const Login = () => {
       navigate('/');
     }
   }, [user.email, navigate]);
+
+ 
 
   return (
     <div className="moveInRight">
@@ -85,10 +74,8 @@ const Login = () => {
             value={values.name}
             handler={changeHandler}
             email={values.email}
-            onBlur={checkEmail}
             label="Email"
           />
-
           <AddFormInput
             element="input"
             type="password"
@@ -101,7 +88,9 @@ const Login = () => {
           />
           {message && <ValidationMessage>{message}</ValidationMessage>}
           <Link to="/register">Don't have an account? Register</Link>
-          <Button rounded>Login</Button>
+          <Button  green rounded>
+            Login
+          </Button>
         </AddForm>
       </div>
     </div>

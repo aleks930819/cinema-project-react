@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom';
+import { Link} from 'react-router-dom';
 import { FiAlignJustify } from 'react-icons/fi';
 import { BsFacebook, BsTwitter, BsInstagram, BsYoutube } from 'react-icons/bs';
 
@@ -7,13 +7,7 @@ import { useContext, useState } from 'react';
 import styles from './Header.module.css';
 
 import { AuthCotnext } from '../../contexts/AuthContext';
-import Dropdown from '../AdminDropdown/AdminDropdown';
 import Admin from '../AdminDropdown/Admin';
-
-let activeStyle = {
-  borderBottom: '2px solid white',
-  paddingBottom: '2px',
-};
 
 const Header = () => {
   const { user } = useContext(AuthCotnext);
@@ -37,80 +31,61 @@ const Header = () => {
             <div className={styles.welcome}>Welcome {user.name}!</div>
           )}
 
-          <NavLink
-            to="/weekly-program"
-            onClick={() => setOpen(false)}
-          >
+          <Link to="/weekly-program" onClick={() => setOpen(false)}>
             weekly program
-          </NavLink>
+          </Link>
 
-          <NavLink
-            to="/contact-us"
-            onClick={() => setOpen(false)}
-          >
+          <Link to="/contact-us" onClick={() => setOpen(false)}>
             contact us
-          </NavLink>
+          </Link>
 
-          <NavLink
-            to="/cinemas"
-            onClick={() => setOpen(false)}
-          >
+          <Link to="/cinemas" onClick={() => setOpen(false)}>
             cinemas
-          </NavLink>
+          </Link>
           {user.email ? (
             <>
-              <NavLink
-                to="/logout"
-                onClick={() => setOpen(false)}
-              >
-                logout
-              </NavLink>
+              <Link to="/profile/edit" onClick={() => setOpen(false)}>
+                edit profile
+              </Link>
 
-              <NavLink
-                to="/profile"
-                onClick={() => setOpen(false)}
-              >
-                profile
-              </NavLink>
-
-              <NavLink
-                to="/my-tickets"
-                onClick={() => setOpen(false)}
-              >
+              <Link to="/my-tickets" onClick={() => setOpen(false)}>
                 My Tickets
-              </NavLink>
+              </Link>
 
+              <Link to="/logout" onClick={() => setOpen(false)}>
+                logout
+              </Link>
 
               {user.isAdmin ? <Admin /> : ''}
             </>
           ) : (
             <>
-              <NavLink
-                to="/login"
-                onClick={() => setOpen(false)}
-              >
+              <Link to="/login" onClick={() => setOpen(false)}>
                 login
-              </NavLink>
-              <NavLink
-                to="/register"
-                onClick={() => setOpen(false)}
-              >
+              </Link>
+              <Link to="/register" onClick={() => setOpen(false)}>
                 register
-              </NavLink>
+              </Link>
             </>
           )}
         </div>
 
         <div className={styles['footer-icons']}>
           <ul>
-            <li>  <BsFacebook /></li>
-            <li>  <BsTwitter /></li>
-            <li>  <BsInstagram /></li>
-            <li>  <BsYoutube /></li>
+            <li>
+              <BsFacebook />
+            </li>
+            <li>
+              <BsTwitter />
+            </li>
+            <li>
+              <BsInstagram />
+            </li>
+            <li>
+              <BsYoutube />
+            </li>
           </ul>
-          
         </div>
-        
       </header>
     </>
   );

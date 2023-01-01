@@ -1,4 +1,7 @@
-import { useContext, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
+import { useContext,
+   useState } from 'react';
 
 import setChangedValue from '../Utils/changeHandler';
 
@@ -7,59 +10,53 @@ import AddFormInput from '../AddForm/AddFormInput';
 
 import Button from '../Button/Button';
 
-import * as userServices from '../../services/userServices';
 import { AuthCotnext } from '../../contexts/AuthContext';
-import { Form, Navigate, useNavigate } from 'react-router-dom';
+import useHttp from '../../hooks/useHttp';
 
 const EditUser = () => {
   const { user } = useContext(AuthCotnext);
-  const navigate = useNavigate();
+  const [response, setResponse] = useState();
 
-   const [image,setImage] = useState('');
+  const navigate = useNavigate();
 
   const [values, setValues] = useState({
     name: '',
     email: '',
+    password: '',
   });
 
   const changeHandler = (e) => {
     setChangedValue(e, setValues);
   };
 
-  const uploadFileHandler = async (e) => {
-    const file = e.target.files[0];
-    const formData = new FormData();
 
-    formData.append('image', file);
+  const { error, sendRequest } = useHttp(setResponse);
 
-       fetch(`http://localhost:8000/api/users/${user._id}`, {
-        method: 'PATCH',
-        body:  formData
-      })
-      .then(res => res)
-      .then(data => console.log(data)) ;
-
-    //  const data = await response;
-
-    //   console.log(data);
-    //   setImage(response);
-
-
-    
-  };
-  
   const submitHandler = (e) => {
     e.preventDefault();
 
-    userServices
-    .editUser(values, user._id, user.token,)
-    .then((response) => response.json())
-    .then((data) => navigate('/profile'))
-    .catch((err) => err.message);
+    sendRequest({
+      endpoint: `/users/${user._id}`,
+      method: 'PATCH',
+
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${user.token}`,
+      },
+      body: {
+        name: values.name,
+        email: values.email,
+        password: values.password,
+      },
+    });
+    if (!error) {
+      navigate('/');
+    }
   };
 
   return (
     <AddForm handler={submitHandler}>
+      <h2>Edit Profile</h2>
       <AddFormInput
         element="input"
         name="name"
@@ -69,6 +66,7 @@ const EditUser = () => {
         htmlFor="name"
         value={values.name}
         handler={changeHandler}
+        requred={false}
       />
 
       <AddFormInput
@@ -82,14 +80,31 @@ const EditUser = () => {
         handler={changeHandler}
       />
 
-      <input
-        type="file"
-        multiple
-        accept="image/*"
-        onChange={uploadFileHandler}
+      <AddFormInput
+        element="input"
+        name="password"
+        type="password"
+        label="Old Password"
+        placeholder="Old Password"
+        htmlFor="password"
+        value={values.name}
+        handler={changeHandler}
       />
 
-      <Button type="submit">Save Changes</Button>
+      <AddFormInput
+        element="input"
+        name="password"
+        type="password"
+        label="New Password"
+        placeholder="New Password"
+        htmlFor="password"
+        value={values.name}
+        handler={changeHandler}
+      />
+
+      <Button hover green rounded type="submit">
+        Save Changes
+      </Button>
     </AddForm>
   );
 };

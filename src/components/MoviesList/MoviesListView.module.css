@@ -1,0 +1,22 @@
+.movies-list-view {
+    display: flex;
+    box-shadow: var(box-shadow);
+    justify-content: space-between;
+    width: 90%;
+    padding: 2rem;
+    font-size: 2rem;
+
+
+}
+
+.movies-list-view:not(:last-child) {
+    border-bottom: 2px solid white;
+
+
+}
+
+
+.movies-list-icons a {
+    color: white;
+    cursor: pointer;
+}

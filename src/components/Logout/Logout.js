@@ -2,27 +2,28 @@ import { useNavigate } from 'react-router-dom';
 
 import { useContext, useEffect } from 'react';
 
-
 import { AuthCotnext } from '../../contexts/AuthContext';
-import * as authService from '../../services/authServices';
+import useHttp from '../../hooks/useHttp';
 
 const Logout = () => {
   const navigate = useNavigate();
-  const {user,userLogout} = useContext(AuthCotnext);
+  const { user, userLogout } = useContext(AuthCotnext);
 
-  
+  const {sendRequest } = useHttp(userLogout);
+
   useEffect(() => {
-    authService
-      .logout(user.accessToken)
-      .then(() => {
-        userLogout();
-        localStorage.clear();
-        navigate('/');
-      })
-      .catch(() => {
-        navigate('/');
-      });
+    sendRequest({
+      endpoint: '/users/logout',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${user.token}`,
+      },
+    });
+
+    localStorage.clear();
+    navigate('/');
   });
+
 
   return null;
 };

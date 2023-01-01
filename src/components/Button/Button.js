@@ -14,6 +14,7 @@ const Button = ({
   opacity,
   rounded,
   fancy,
+  hover,
   ...rest
 }) => {
   const classes = className('btn', {
@@ -22,6 +23,7 @@ const Button = ({
     opacity: opacity,
     rounded: rounded,
     fancy:fancy,
+    hover:hover,
   });
 
   if (to) {
