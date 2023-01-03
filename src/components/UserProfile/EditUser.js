@@ -15,7 +15,6 @@ import useHttp from '../../hooks/useHttp';
 
 const EditUser = () => {
   const { user } = useContext(AuthCotnext);
-  const [response, setResponse] = useState();
 
   const navigate = useNavigate();
 
@@ -30,7 +29,7 @@ const EditUser = () => {
   };
 
 
-  const { error, sendRequest } = useHttp(setResponse);
+  const { error, sendRequest } = useHttp();
 
   const submitHandler = (e) => {
     e.preventDefault();

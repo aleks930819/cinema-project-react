@@ -14,7 +14,6 @@ const AddCinema = () => {
   const navigate = useNavigate();
 
   const { user } = useContext(AuthCotnext);
-  const [message, setMessage] = useState('');
 
   useEffect(() => {
     if (!user.isAdmin) {
@@ -35,7 +34,7 @@ const AddCinema = () => {
     setChangedValue(e, setValues);
   };
 
-  const {sendRequest } = useHttp(setMessage);
+  const {sendRequest } = useHttp();
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -56,6 +55,8 @@ const AddCinema = () => {
         imgUrl: values.imgUrl,
       },
     });
+
+    navigate('/cinemas');
    
   };
 

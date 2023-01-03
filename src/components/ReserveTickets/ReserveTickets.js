@@ -7,12 +7,12 @@ import { useNavigate } from 'react-router-dom';
 import { AuthCotnext } from '../../contexts/AuthContext';
 
 import setChangedValue from '../Utils/changeHandler';
-import ReserveTicketsResult from './ReserveTicketsResult';
 import AddFormInput from '../AddForm/AddFormInput';
 import AddForm from '../AddForm/AddForm';
 import Panel from '../Panel/Panel';
 import useHttp from '../../hooks/useHttp';
 import Button from '../Button/Button';
+import Table from '../Table/Table';
 
 const ReserveTickets = () => {
   const { user } = useContext(AuthCotnext);
@@ -38,12 +38,15 @@ const ReserveTickets = () => {
     e.preventDefault();
     sendRequest({
       endpoint: `/tickets/search?name=${values.name}`,
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${user.token}`,
-      },
     });
   };
+
+  const config = [
+    { label: 'Name', render: (user) => user.movieName },
+    { label: 'Username', render: (user) => user.userName },
+    { label: 'Tickets Count', render: (user) => user.count },
+    { label: 'Total', render: (user) => `$${user.total.toFixed(2)}` },
+  ];
 
   return (
     <>
@@ -61,17 +64,7 @@ const ReserveTickets = () => {
         <Button rounded>Search</Button>
       </AddForm>
       <Panel>
-        {tickets?.map((x) => (
-          <ReserveTicketsResult
-            key={x._id}
-            movieName={x.movieName}
-            username={x.userName}
-            ticketsCount={x.count}
-            total={x.total.toFixed(2)}
-            id={x._id}
-            token={user.token}
-          />
-        ))}
+        <Table data={tickets} config={config} />
       </Panel>
       ;
     </>

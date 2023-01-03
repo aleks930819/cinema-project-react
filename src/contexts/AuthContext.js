@@ -2,9 +2,7 @@ import { createContext, useContext, useEffect, useState } from 'react';
 
 export const AuthCotnext = createContext();
 
-
 export const AuthProvider = ({ children }) => {
-  
   const [auth, setAuth] = useState({});
 
   const userLogin = (authData) => {
@@ -15,9 +13,6 @@ export const AuthProvider = ({ children }) => {
     setAuth({});
   };
 
-
-
-
   useEffect(() => {
     const loggedInUser = localStorage.getItem('user');
     if (loggedInUser) {
@@ -26,16 +21,9 @@ export const AuthProvider = ({ children }) => {
     }
   }, []);
 
-
   return (
-    <AuthCotnext.Provider value={{ user:auth, userLogin, userLogout }}>
+    <AuthCotnext.Provider value={{ user: auth, userLogin, userLogout }}>
       {children}
     </AuthCotnext.Provider>
   );
-};
-
-export const useAuthContext = () => {
-  const authState = useContext(AuthCotnext);
-
-  return authState;
 };

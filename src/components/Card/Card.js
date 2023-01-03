@@ -38,7 +38,6 @@ const Card = ({ movie }) => {
           <Link
             onClick={openTrailerHandler}
             className={styles['card-box-btn']}
-            href="#"
           >
             <span>Trailer</span>
           </Link>

@@ -1,28 +1,39 @@
-import { useContext, useEffect, useState } from 'react';
-import { MovieContext } from '../../contexts/MovieContext';
+import { useEffect, useState } from 'react';
 import useHttp from '../../hooks/useHttp';
 import Panel from '../Panel/Panel';
-import MoviesListView from './MoviesListView';
+import Table from '../Table/Table';
+
+import { FaRegEdit } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
 const MoviesList = () => {
-  const [movies,setMovies] = useState([]);
+  const [movies, setMovies] = useState([]);
 
   const { isLoading, error, sendRequest } = useHttp(setMovies);
 
   useEffect(() => {
     sendRequest({
-      endpoint:'/movies'
+      endpoint: '/movies',
     });
   }, [sendRequest]);
 
+  const config = [
+    { label: 'Name', render: (movie) => movie.title },
+    {
+      label: 'Edit',
+      render: (movie) => (
+        <>
+          <Link className="white" to={`/edit/${movie._id}`}>
+            <FaRegEdit />
+          </Link>
+        </>
+      ),
+    },
+  ];
   return (
-    <>
-      <Panel>
-        {movies?.map((x) => (
-          <MoviesListView key={x._id} movieId={x._id} movieName={x.title} />
-        ))}
-      </Panel>
-    </>
+    <Panel>
+      <Table data={movies} config={config} />
+    </Panel>
   );
 };
 

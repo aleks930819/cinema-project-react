@@ -2,12 +2,14 @@ import { useCallback, useState } from 'react';
 
 const URL = 'http://localhost:8000/api';
 
-const useHttp = (applayData) => {
+const useHttp = (applayData = []) => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
   const sendRequest = useCallback(
+
     async (requestConfig) => {
+
       setIsLoading(true);
       setError(null);
       try {

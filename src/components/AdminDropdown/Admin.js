@@ -1,12 +1,7 @@
 import { useState } from 'react';
-import AdminDropDown from './AdminDropdown';
+import DropDown from './Dropdown';
 
 const Admin = () => {
-  const [selection, setSelection] = useState(null);
-
-  const handleSelection = (option) => {
-    setSelection(option);
-  };
 
   const options = [
     { label: 'Add Movie', value: '/add-movie' },
@@ -18,7 +13,7 @@ const Admin = () => {
 
   ];
 
-  return <AdminDropDown options={options} onChange={handleSelection} buttonName={'Admin'} />;
+  return <DropDown options={options} buttonName={'Admin'} />;
 };
 
 export default Admin;

@@ -9,7 +9,7 @@ import useHttp from '../../hooks/useHttp';
 const MoviesData = () => {
   const [movies, setMovies] = useState([]);
 
-  const { isLoading,sendRequest, } = useHttp(setMovies);
+  const { isLoading,sendRequest} = useHttp(setMovies);
 
   useEffect(() => {
     sendRequest({ endpoint: '/movies' });

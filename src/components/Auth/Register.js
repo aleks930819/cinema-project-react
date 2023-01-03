@@ -146,7 +146,7 @@ const Register = () => {
         {message && <ValidationMessage>{message}</ValidationMessage>}
 
         <Link to="/login">You already have an account? Login</Link>
-        <Button green rounded>
+        <Button  rounded>
           Register
         </Button>
       </AddForm>

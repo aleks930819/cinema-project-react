@@ -4,7 +4,7 @@ html {
 
 body {
     font-family: var(--f-family);
-    background-color:var(--color-primary);
+    background-color: var(--color-primary);
 }
 
 main {
@@ -16,11 +16,11 @@ main {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 5rem;
-    padding: 10rem 7rem ;
+    padding: 10rem 7rem;
 
 }
 
-.container-details{
+.container-details {
     display: flex;
     justify-content: center;
     align-content: center;
@@ -29,13 +29,13 @@ main {
 
 .container-details-box {
     display: grid;
-    grid-template-columns: repeat(2,1fr);
-    border: 5px solid var( --color-border);
+    grid-template-columns: repeat(2, 1fr);
+    border: 5px solid var(--color-border);
     width: 70vw;
     border-radius: .7rem;
 
-    box-shadow: 0px 4px px 0px rgba(0,0,0,0.75);
-    gap:1rem;
+    box-shadow: 0px 4px px 0px rgba(0, 0, 0, 0.75);
+    gap: 1rem;
     overflow: hidden;
     font-family: var(--f-famly-details);
 
@@ -44,10 +44,14 @@ main {
 
 }
 
-   #root {
-   display: flex;
-   min-height: 100%;
-    
+#root {
+    display: flex;
+    min-height: 100%;
+
+}
+
+.white {
+    color: white;
 }
 
 /* .moveInRight {
@@ -103,13 +107,13 @@ main {
 
 
 @media only screen and (max-width: 1200px) {
-   
+
     html {
         font-size: 57%;
     }
-  
+
     .container {
-        display:flex;
+        display: flex;
         flex-direction: column;
 
     }
@@ -117,22 +121,16 @@ main {
 
 }
 
-@media only screen and (max-width: 600px) {
-
-
-
-}
+@media only screen and (max-width: 600px) {}
 
 
 @media only screen and (max-width: 900px) {
     .container-details-box {
-       display: flex;
-       flex-direction: column;
-       width: 90vw;
+        display: flex;
+        flex-direction: column;
+        width: 90vw;
 
     }
 
 
 }
-
-

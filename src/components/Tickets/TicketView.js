@@ -14,10 +14,9 @@ import useHttp from '../../hooks/useHttp';
 
 const TicketView = (props) => {
   const { user } = useContext(AuthCotnext);
-  const [message, setMessage] = useState('');
 
   const { count, total, increaseCount, decreaseCount } = useTicketsCount(props);
-  const {sendRequest } = useHttp(setMessage);
+  const {sendRequest } = useHttp();
 
   const navigate = useNavigate();
 

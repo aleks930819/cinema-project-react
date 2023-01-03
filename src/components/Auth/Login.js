@@ -50,6 +50,7 @@ const Login = () => {
     setMessage(error);
   }, [error]);
 
+
   localStorage.setItem('user', JSON.stringify(user));
 
   useEffect(() => {
@@ -88,7 +89,7 @@ const Login = () => {
           />
           {message && <ValidationMessage>{message}</ValidationMessage>}
           <Link to="/register">Don't have an account? Register</Link>
-          <Button  green rounded>
+          <Button   rounded>
             Login
           </Button>
         </AddForm>

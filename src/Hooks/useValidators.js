@@ -9,7 +9,7 @@ const useValidators = ({ email, password, repassword,text }) => {
     if (email === '') {
       setMessage('Invalid email!');
     }
-    if (!pattern.test(email)) {
+    if (!pattern.test(email.trim())) {
       setMessage('Invalid email!');
     } else {
       setMessage('');
@@ -17,7 +17,7 @@ const useValidators = ({ email, password, repassword,text }) => {
   };
 
   const checkPassword = () => {
-    if (6 > password.length) {
+    if (6 > password.length.trim()) {
       setMessage('Password must be at least 6 characters');
     } else {
       setMessage('');
@@ -25,7 +25,7 @@ const useValidators = ({ email, password, repassword,text }) => {
   };
 
   const checkRepassword = () => {
-    if (6 > password.length) {
+    if (6 > password.length.trim()) {
       setMessage('Password must be at least 6 characters');
     } else if (password !== repassword) {
       setMessage('Password dont match!');
@@ -35,7 +35,7 @@ const useValidators = ({ email, password, repassword,text }) => {
   };
 
   const checkMessage = () => {
-    if (6 > text.length) {
+    if (6 > text.length.trim()) {
       setMessage('Message must be at least 20 characters');
     } else if (0  === text.length) {
       setMessage('Please enter a message');

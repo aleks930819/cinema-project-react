@@ -1,5 +1,13 @@
 .total {
-  font-size: 2.5rem;
   color:white;
   padding: 2rem;
 }
+
+.total h2 {
+ font-size: 2.5rem;
+}
+
+
+.total p {
+  font-size: 2rem;
+ }

@@ -1,13 +1,13 @@
 import { Link } from 'react-router-dom';
 
-import styles from './AdminDropdown.module.css';
+import styles from './Dropdown.module.css';
 
-const Render = ({options,handleOptionCLick}) => {
+const RenderOptions = ({options,handleOptionCLick}) => {
   return options.map((option) => {
     return (
       <ul
         className={styles['menu-items']}
-        onClick={() => handleOptionCLick(option)}
+        onClick={handleOptionCLick}
         key={option.value}
       >
         <Link to={option.value}> {option.label}</Link>
@@ -16,4 +16,4 @@ const Render = ({options,handleOptionCLick}) => {
   });
 };
 
-export default Render;
+export default RenderOptions;
