@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom';
 const MoviesList = () => {
   const [movies, setMovies] = useState([]);
 
-  const { isLoading, error, sendRequest } = useHttp(setMovies);
+  const { isLoading, error, sendRequest } = useHttp(setMovies,movies);
 
   useEffect(() => {
     sendRequest({

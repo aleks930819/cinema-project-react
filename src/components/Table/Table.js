@@ -2,7 +2,7 @@ import styles from './Table.module.css';
 
 const Table = ({ data, config }) => {
   const renderedHeaders = config.map((column) => {
-    return <th key={column?.label}>{column?.label}</th>;
+    return <th key={column.label}>{column.label}</th>;
   });
 
   const redneredRows = data.map((row) => {

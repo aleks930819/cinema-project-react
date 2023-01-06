@@ -7,8 +7,8 @@ import { useNavigate } from 'react-router-dom';
 import { AuthCotnext } from '../../contexts/AuthContext';
 
 import setChangedValue from '../Utils/changeHandler';
-import AddFormInput from '../AddForm/AddFormInput';
-import AddForm from '../AddForm/AddForm';
+import FormInput from '../AddForm/FormInput';
+import Form from '../AddForm/Form';
 import Panel from '../Panel/Panel';
 import useHttp from '../../hooks/useHttp';
 import Button from '../Button/Button';
@@ -38,6 +38,10 @@ const ReserveTickets = () => {
     e.preventDefault();
     sendRequest({
       endpoint: `/tickets/search?name=${values.name}`,
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${user.token}`,
+      },
     });
   };
 
@@ -50,8 +54,8 @@ const ReserveTickets = () => {
 
   return (
     <>
-      <AddForm handler={submitHandler}>
-        <AddFormInput
+      <Form handler={submitHandler}>
+        <FormInput
           element="input"
           type="text"
           htmlFor="name"
@@ -62,7 +66,7 @@ const ReserveTickets = () => {
           label="Name"
         />
         <Button rounded>Search</Button>
-      </AddForm>
+      </Form>
       <Panel>
         <Table data={tickets} config={config} />
       </Panel>

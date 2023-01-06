@@ -4,16 +4,10 @@ import styles from './Movie.module.css';
 
 import LoadingSpinner from '../Spinner/Spinner';
 import Card from '../Card/Card';
-import useHttp from '../../hooks/useHttp';
+import { useGetMoviesQuery } from '../../store/apis/moviesApi';
 
 const MoviesData = () => {
-  const [movies, setMovies] = useState([]);
-
-  const { isLoading,sendRequest} = useHttp(setMovies);
-
-  useEffect(() => {
-    sendRequest({ endpoint: '/movies' });
-  }, [sendRequest]);
+  const { data: movies, error, isLoading } = useGetMoviesQuery();
 
   return (
     <>

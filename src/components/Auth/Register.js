@@ -4,8 +4,8 @@ import { useContext, useEffect, useState } from 'react';
 import { AuthCotnext } from '../../contexts/AuthContext';
 import Button from '../Button/Button';
 import setChangedValue from '../Utils/changeHandler';
-import AddForm from '../AddForm/AddForm';
-import AddFormInput from '../AddForm/AddFormInput';
+import Form from '../AddForm/Form';
+import FormInput from '../AddForm/FormInput';
 import ValidationMessage from '../Validation/ValidationMessage';
 import useHttp from '../../hooks/useHttp';
 import useValidators from '../../hooks/useValidators';
@@ -26,37 +26,6 @@ const Register = () => {
     setChangedValue(e, setValues);
   };
 
-  // const checkEmail = () => {
-  //   let pattern = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
-
-  //   if (values.email === '') {
-  //     setMessage('Invalid email!');
-  //   }
-  //   if (!pattern.test(values.email)) {
-  //     setMessage('Invalid email!');
-  //   } else {
-  //     setMessage('');
-  //   }
-  // };
-
-  // const checkPassword = () => {
-  //   if (6 > values.password.length) {
-  //     setMessage('Password must be at least 6 characters');
-  //   } else {
-  //     setMessage('');
-  //   }
-  // };
-
-  // const checkRepassword = () => {
-  //   if (6 > values.password.length) {
-  //     setMessage('Password must be at least 6 characters');
-  //   } else if (values.password !== values.repassword) {
-  //     setMessage('Password dont match!');
-  //   } else {
-  //     setMessage('');
-  //   }
-  // };
-
   const { message, setMessage, checkEmail, checkPassword, checkRepassword } =
     useValidators({
       email: values.email,
@@ -68,7 +37,7 @@ const Register = () => {
 
   useEffect(() => {
     setMessage(error);
-  }, [error,setMessage]);
+  }, [error, setMessage]);
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -85,7 +54,6 @@ const Register = () => {
     });
   };
 
-
   localStorage.setItem('user', JSON.stringify(user));
 
   useEffect(() => {
@@ -96,10 +64,10 @@ const Register = () => {
 
   return (
     <div className="moveInRight">
-      <AddForm handler={submitHandler}>
+      <Form handler={submitHandler}>
         <h2>REGISTER</h2>
 
-        <AddFormInput
+        <FormInput
           element="input"
           type="text"
           htmlFor="name"
@@ -110,7 +78,7 @@ const Register = () => {
           label="Name"
         />
 
-        <AddFormInput
+        <FormInput
           element="input"
           type="text"
           htmlFor="email"
@@ -121,7 +89,7 @@ const Register = () => {
           onBlur={checkEmail}
           label="Email"
         />
-        <AddFormInput
+        <FormInput
           element="input"
           type="password"
           htmlFor="password"
@@ -132,7 +100,7 @@ const Register = () => {
           onBlur={checkPassword}
           label="Password"
         />
-        <AddFormInput
+        <FormInput
           element="input"
           type="password"
           htmlFor="password"
@@ -146,10 +114,8 @@ const Register = () => {
         {message && <ValidationMessage>{message}</ValidationMessage>}
 
         <Link to="/login">You already have an account? Login</Link>
-        <Button  rounded>
-          Register
-        </Button>
-      </AddForm>
+        <Button rounded>Register</Button>
+      </Form>
     </div>
   );
 };

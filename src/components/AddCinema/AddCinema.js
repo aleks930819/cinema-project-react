@@ -5,8 +5,8 @@ import { useContext, useEffect, useState } from 'react';
 import { AuthCotnext } from '../../contexts/AuthContext';
 
 import Button from '../Button/Button';
-import AddForm from '../AddForm/AddForm';
-import AddFormInput from '../AddForm/AddFormInput';
+import AddForm from '../AddForm/Form';
+import FormInput from '../AddForm/FormInput';
 import setChangedValue from '../Utils/changeHandler';
 import useHttp from '../../hooks/useHttp';
 
@@ -34,7 +34,7 @@ const AddCinema = () => {
     setChangedValue(e, setValues);
   };
 
-  const {sendRequest } = useHttp();
+  const { sendRequest } = useHttp();
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -57,13 +57,12 @@ const AddCinema = () => {
     });
 
     navigate('/cinemas');
-   
   };
 
   return (
     <AddForm handler={submitHandler}>
       <h2>Add Cinema</h2>
-      <AddFormInput
+      <FormInput
         element="input"
         name="city"
         type="text"
@@ -73,7 +72,7 @@ const AddCinema = () => {
         value={values.name}
         handler={changeHandler}
       />
-      <AddFormInput
+      <FormInput
         element="input"
         name="location"
         type="text"
@@ -83,7 +82,7 @@ const AddCinema = () => {
         value={values.name}
         handler={changeHandler}
       />
-      <AddFormInput
+      <FormInput
         element="input"
         name="name"
         type="text"
@@ -93,7 +92,7 @@ const AddCinema = () => {
         value={values.name}
         handler={changeHandler}
       />
-      <AddFormInput
+      <FormInput
         element="input"
         name="features"
         type="text"
@@ -104,7 +103,7 @@ const AddCinema = () => {
         handler={changeHandler}
       />
 
-      <AddFormInput
+      <FormInput
         element="input"
         name="phone"
         type="text"
@@ -115,7 +114,7 @@ const AddCinema = () => {
         handler={changeHandler}
       />
 
-      <AddFormInput
+      <FormInput
         element="input"
         name="imgUrl"
         type="text"

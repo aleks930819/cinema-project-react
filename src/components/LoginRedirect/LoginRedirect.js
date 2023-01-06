@@ -6,7 +6,7 @@ const LoginRedirect = () => {
   return (
     <div className={styles['login-redirect-box']}>
     <div className={styles['login-redirect-container']}>
-      <Link to='/login'>&#8594; Plase loggin in your Account </Link>
+      <Link to='/login'>&#8594; Please loggin in your Account </Link>
       </div>
     </div>
   );

@@ -1,6 +1,6 @@
 import { createContext, useEffect, useState } from 'react';
+import useHttp from '../hooks/useHttp';
 
-import * as movieService from '../services/movieServices';
 
 export const MovieContext = createContext({
   movies: [],
@@ -9,13 +9,13 @@ export const MovieContext = createContext({
 export const MovieProvider = ({ children }) => {
   const [movies, setMovies] = useState('');
 
-  useEffect(() => {
-    movieService.getAll().then((movies) => {
-      setMovies(Object.values(movies));
-    });
-  }, []);
+  const { sendRequest } = useHttp(setMovies);
 
-  const value =  movies ;
+  useEffect(() => {
+    sendRequest({ endpoint: '/movies' });
+  }, [sendRequest]);
+
+  const value = movies;
 
   return (
     <MovieContext.Provider value={value}>{children}</MovieContext.Provider>

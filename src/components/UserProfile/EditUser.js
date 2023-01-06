@@ -1,12 +1,11 @@
 import { useNavigate } from 'react-router-dom';
 
-import { useContext,
-   useState } from 'react';
+import { useContext, useState } from 'react';
 
 import setChangedValue from '../Utils/changeHandler';
 
-import AddForm from '../AddForm/AddForm';
-import AddFormInput from '../AddForm/AddFormInput';
+import Form from '../AddForm/Form';
+import FormInput from '../AddForm/FormInput';
 
 import Button from '../Button/Button';
 
@@ -27,7 +26,6 @@ const EditUser = () => {
   const changeHandler = (e) => {
     setChangedValue(e, setValues);
   };
-
 
   const { error, sendRequest } = useHttp();
 
@@ -54,9 +52,9 @@ const EditUser = () => {
   };
 
   return (
-    <AddForm handler={submitHandler}>
+    <Form handler={submitHandler}>
       <h2>Edit Profile</h2>
-      <AddFormInput
+      <FormInput
         element="input"
         name="name"
         type="text"
@@ -68,7 +66,7 @@ const EditUser = () => {
         requred={false}
       />
 
-      <AddFormInput
+      <FormInput
         element="input"
         name="email"
         type="text"
@@ -79,7 +77,7 @@ const EditUser = () => {
         handler={changeHandler}
       />
 
-      <AddFormInput
+      <FormInput
         element="input"
         name="password"
         type="password"
@@ -90,7 +88,7 @@ const EditUser = () => {
         handler={changeHandler}
       />
 
-      <AddFormInput
+      <FormInput
         element="input"
         name="password"
         type="password"
@@ -104,7 +102,7 @@ const EditUser = () => {
       <Button hover green rounded type="submit">
         Save Changes
       </Button>
-    </AddForm>
+    </Form>
   );
 };
 

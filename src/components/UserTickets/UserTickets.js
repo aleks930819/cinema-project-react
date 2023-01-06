@@ -1,4 +1,6 @@
 import { useContext, useEffect, useState } from 'react';
+import { FaRegEdit } from 'react-icons/fa';
+
 import { AuthCotnext } from '../../contexts/AuthContext';
 import useHttp from '../../hooks/useHttp';
 import Panel from '../Panel/Panel';
@@ -22,14 +24,35 @@ const UserTickets = () => {
   useEffect(() => {
     sendRequest({
       endpoint: `/tickets/${user._id}`,
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${user.token}`,
+      },
     });
   }, [sendRequest, user]);
+
+  const deleteTicketHandler = (id) =>
+    sendRequest({
+      endpoint: `/tickets/${id}`,
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${user.token}`,
+      },
+    });
 
   const config = [
     { label: 'Name', render: (user) => user.movieName },
     { label: 'Tickets Count', render: (user) => user.count },
     { label: 'Total', render: (user) => `$${user.total.toFixed(2)}` },
+    {
+      label: 'Delete',
+      render: (user) => (
+        <FaRegEdit onClick={() => deleteTicketHandler(user._id)} />
+      ),
+    },
   ];
+  console.log(tickets);
 
   return (
     <Panel>

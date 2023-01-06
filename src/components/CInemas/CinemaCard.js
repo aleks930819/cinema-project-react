@@ -3,9 +3,8 @@ import styles from './Cinemas.module.css';
 const CinemaCard = ({ cinema }) => {
   return (
     <div className={styles['cinema-card']}>
-    
       <div className={styles['cinema-img']}>
-        <img src={cinema.imgUrl} alt="cinema" />
+        <img src={cinema.imgUrl} alt={cinema.name} />
       </div>
       <div className={styles['cinema-content']}>
         <h2>{cinema.name}</h2>

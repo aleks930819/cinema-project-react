@@ -16,7 +16,13 @@ const GetAllUsers = () => {
   const { isLoading, error, sendRequest } = useHttp(setUsersList);
 
   useEffect(() => {
-    sendRequest({ endpoint: '/users' });
+    sendRequest({
+      endpoint: '/users',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${user.token}`,
+      },
+    });
   }, [sendRequest]);
 
   const deleteUserHandler = (id) => {

@@ -1,6 +1,6 @@
-import styles from './AddForm.module.css';
+import styles from './Form.module.css';
 
-const AddForm = (props) => {
+const Form = (props) => {
   return (
     <div className={styles['add-form-box']}>
       <form className={styles['add-form']} onSubmit={props.handler}>
@@ -10,4 +10,4 @@ const AddForm = (props) => {
   );
 };
 
-export default AddForm;
+export default Form;

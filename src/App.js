@@ -32,7 +32,6 @@ function App() {
       <AuthProvider>
         <MovieProvider>
           <Header />
-
           <main>
             <ScrollToTop />
             <Routes>
@@ -53,10 +52,8 @@ function App() {
               <Route path="/reserve-tickets" element={<ReserveTickets />} />
               <Route path="/users-list" element={<GetAllUsers />} />
               <Route path="/movies-list" element={<MoviesList />} />
-
               <Route path="/trailer/:id" element={<Trailer />} />
               <Route path="/my-tickets" element={<UserTickets />} />
-
               <Route path="*" element={<ErrorPage />} />
             </Routes>
           </main>

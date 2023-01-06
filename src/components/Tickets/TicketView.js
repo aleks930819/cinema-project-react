@@ -4,7 +4,6 @@ import { useContext, useState } from 'react';
 
 import styles from './TicketView.module.css';
 
-
 import { AuthCotnext } from '../../contexts/AuthContext';
 
 import LoginRedirect from '../LoginRedirect/LoginRedirect';
@@ -16,7 +15,7 @@ const TicketView = (props) => {
   const { user } = useContext(AuthCotnext);
 
   const { count, total, increaseCount, decreaseCount } = useTicketsCount(props);
-  const {sendRequest } = useHttp();
+  const { sendRequest } = useHttp();
 
   const navigate = useNavigate();
 
@@ -25,8 +24,6 @@ const TicketView = (props) => {
     if (count === 0) {
       return;
     }
-
-
 
     sendRequest({
       endpoint: '/tickets',
@@ -83,7 +80,7 @@ const TicketView = (props) => {
                 Total: $<span>{total.toFixed(2)}</span>
               </p>
             </div>
-            <Button  disabled={disabled} rounded onClick={reserveTicketHandler}>
+            <Button disabled={disabled} rounded onClick={reserveTicketHandler}>
               Book Tickets
             </Button>
           </div>

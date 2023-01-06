@@ -8,8 +8,8 @@ import { AuthCotnext } from '../../contexts/AuthContext';
 import { addMovie } from '../../services/movieServices';
 
 import Button from '../Button/Button';
-import AddFormInput from '../AddForm/AddFormInput';
-import AddForm from '../AddForm/AddForm';
+import FormInput from '../AddForm/FormInput';
+import Form from '../AddForm/Form';
 import setChangedValue from '../Utils/changeHandler';
 import useHttp from '../../hooks/useHttp';
 
@@ -17,7 +17,6 @@ const AddMovie = () => {
   const navigate = useNavigate();
 
   const { user } = useContext(AuthCotnext);
-  const [message, setMessage] = useState('');
 
   useEffect(() => {
     if (!user.isAdmin) {
@@ -40,7 +39,7 @@ const AddMovie = () => {
     setChangedValue(e, setValues);
   };
 
-  const { isLoading, error, sendRequest } = useHttp(setMessage);
+  const { isLoading, error, sendRequest } = useHttp();
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -68,10 +67,10 @@ const AddMovie = () => {
   };
 
   return (
-    <AddForm handler={submitHandler}>
+    <Form handler={submitHandler}>
       <h2>Add Movie</h2>
 
-      <AddFormInput
+      <FormInput
         element="input"
         name="title"
         type="text"
@@ -82,7 +81,7 @@ const AddMovie = () => {
         handler={changeHandler}
       />
 
-      <AddFormInput
+      <FormInput
         element="input"
         name="director"
         type="text"
@@ -93,7 +92,7 @@ const AddMovie = () => {
         handler={changeHandler}
       />
 
-      <AddFormInput
+      <FormInput
         element="input"
         name="actors"
         type="text"
@@ -104,7 +103,7 @@ const AddMovie = () => {
         handler={changeHandler}
       />
 
-      <AddFormInput
+      <FormInput
         element="input"
         name="poster"
         type="text"
@@ -115,7 +114,7 @@ const AddMovie = () => {
         handler={changeHandler}
       />
 
-      <AddFormInput
+      <FormInput
         element="input"
         name="runtime"
         type="text"
@@ -126,7 +125,7 @@ const AddMovie = () => {
         handler={changeHandler}
       />
 
-      <AddFormInput
+      <FormInput
         element="input"
         name="price"
         type="number"
@@ -137,7 +136,7 @@ const AddMovie = () => {
         handler={changeHandler}
       />
 
-      <AddFormInput
+      <FormInput
         element="input"
         name="trailer"
         type="text"
@@ -148,7 +147,7 @@ const AddMovie = () => {
         handler={changeHandler}
       />
 
-      <AddFormInput
+      <FormInput
         element="textearea"
         name="overview"
         type="text"
@@ -160,8 +159,10 @@ const AddMovie = () => {
         handler={changeHandler}
       />
 
-      <Button green rounded>Add Movie</Button>
-    </AddForm>
+      <Button green rounded>
+        Add Movie
+      </Button>
+    </Form>
   );
 };
 

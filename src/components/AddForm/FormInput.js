@@ -1,4 +1,4 @@
-const AddFormInput = (props) => {
+const FormInput = (props) => {
   const element =
     props.element === 'input' ? (
       <input
@@ -37,4 +37,4 @@ const AddFormInput = (props) => {
   );
 };
 
-export default AddFormInput;
+export default FormInput;

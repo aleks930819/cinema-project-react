@@ -11,8 +11,8 @@ import Button from '../Button/Button';
 import Dialog from '../Dialog/Dialog';
 import setChangedValue from '../Utils/changeHandler';
 import useHttp from '../../hooks/useHttp';
-import AddForm from '../AddForm/AddForm';
-import AddFormInput from '../AddForm/AddFormInput';
+import AddForm from '../AddForm/Form';
+import FormInput from '../AddForm/FormInput';
 
 const EditMovie = () => {
   const { user } = useContext(AuthCotnext);
@@ -104,7 +104,7 @@ const EditMovie = () => {
   return (
     <div className={styles['add-movie']}>
       <AddForm handler={submitHandler}>
-        <AddFormInput
+        <FormInput
           element="input"
           name="title"
           type="text"
@@ -115,7 +115,7 @@ const EditMovie = () => {
           handler={changeHandler}
         />
 
-        <AddFormInput
+        <FormInput
           element="input"
           name="director"
           type="text"
@@ -126,7 +126,7 @@ const EditMovie = () => {
           handler={changeHandler}
         />
 
-        <AddFormInput
+        <FormInput
           element="input"
           name="actors"
           type="text"
@@ -137,7 +137,7 @@ const EditMovie = () => {
           handler={changeHandler}
         />
 
-        <AddFormInput
+        <FormInput
           element="input"
           name="poster"
           type="text"
@@ -148,7 +148,7 @@ const EditMovie = () => {
           handler={changeHandler}
         />
 
-        <AddFormInput
+        <FormInput
           element="input"
           name="runtime"
           type="text"
@@ -159,7 +159,7 @@ const EditMovie = () => {
           handler={changeHandler}
         />
 
-        <AddFormInput
+        <FormInput
           element="input"
           name="price"
           type="number"
@@ -170,7 +170,7 @@ const EditMovie = () => {
           handler={changeHandler}
         />
 
-        <AddFormInput
+        <FormInput
           element="input"
           name="trailer"
           type="text"
@@ -181,7 +181,7 @@ const EditMovie = () => {
           handler={changeHandler}
         />
 
-        <AddFormInput
+        <FormInput
           element="textearea"
           name="overview"
           type="text"
@@ -194,7 +194,9 @@ const EditMovie = () => {
         />
 
         <div>
-          <Button green rounded>Edit</Button>
+          <Button green rounded>
+            Edit
+          </Button>
           <Button danger rounded type="button" onClick={handleClick}>
             Delete Movie
           </Button>

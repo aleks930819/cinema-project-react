@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 import styles from './Dropdown.module.css';
 
-const RenderOptions = ({options,handleOptionCLick}) => {
+const RenderOptions = ({ options, handleOptionCLick }) => {
   return options.map((option) => {
     return (
       <ul

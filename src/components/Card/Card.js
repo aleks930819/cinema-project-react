@@ -1,6 +1,6 @@
 import styles from './Card.module.css';
 
-import { useEffect, useRef, useState } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Trailer from '../Trailer/Trailer';
 
@@ -20,7 +20,7 @@ const Card = ({ movie }) => {
       {isTrailerOpen && (
         <Trailer
           movieId={movie._id}
-          closeTrailerHandler= {closeTrailerHandler}
+          closeTrailerHandler={closeTrailerHandler}
         />
       )}
       <div className={styles.card}>
@@ -35,14 +35,15 @@ const Card = ({ movie }) => {
           >
             <span>Tickets</span>
           </Link>
-          <Link
-            onClick={openTrailerHandler}
-            className={styles['card-box-btn']}
-          >
+          <Link onClick={openTrailerHandler} className={styles['card-box-btn']}>
             <span>Trailer</span>
           </Link>
         </div>
-        <img className={styles['card-image']} src={movie.poster} alt="hero" />
+        <img
+          className={styles['card-image']}
+          src={movie.poster}
+          alt={movie.title}
+        />
       </div>
     </div>
   );

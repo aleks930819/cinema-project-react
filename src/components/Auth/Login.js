@@ -8,8 +8,8 @@ import useHttp from '../../hooks/useHttp';
 import { AuthCotnext } from '../../contexts/AuthContext';
 import Button from '../Button/Button';
 import setChangedValue from '../Utils/changeHandler';
-import AddForm from '../AddForm/AddForm';
-import AddFormInput from '../AddForm/AddFormInput';
+import Form from '../AddForm/Form';
+import FormInput from '../AddForm/FormInput';
 import ValidationMessage from '../Validation/ValidationMessage';
 
 const Login = () => {
@@ -20,18 +20,14 @@ const Login = () => {
     email: '',
     password: '',
   });
-  
+
   const navigate = useNavigate();
 
   const { error, sendRequest } = useHttp(userLogin);
 
-
-
   const changeHandler = (e) => {
     setChangedValue(e, setValues);
   };
-
-
 
   const submitHandler = async (e) => {
     e.preventDefault();
@@ -42,14 +38,11 @@ const Login = () => {
       headers: { 'Content-Type': 'application/json' },
       body: { email: values.email, password: values.password },
     });
-
-    
   };
 
   useEffect(() => {
     setMessage(error);
   }, [error]);
-
 
   localStorage.setItem('user', JSON.stringify(user));
 
@@ -59,14 +52,12 @@ const Login = () => {
     }
   }, [user.email, navigate]);
 
- 
-
   return (
     <div className="moveInRight">
       <div className={styles.login}>
-        <AddForm handler={submitHandler}>
+        <Form handler={submitHandler}>
           <h2>LOGIN</h2>
-          <AddFormInput
+          <FormInput
             element="input"
             type="text"
             htmlFor="email"
@@ -77,7 +68,7 @@ const Login = () => {
             email={values.email}
             label="Email"
           />
-          <AddFormInput
+          <FormInput
             element="input"
             type="password"
             htmlFor="password"
@@ -89,10 +80,8 @@ const Login = () => {
           />
           {message && <ValidationMessage>{message}</ValidationMessage>}
           <Link to="/register">Don't have an account? Register</Link>
-          <Button   rounded>
-            Login
-          </Button>
-        </AddForm>
+          <Button rounded>Login</Button>
+        </Form>
       </div>
     </div>
   );
