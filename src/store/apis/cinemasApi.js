@@ -1,27 +1,27 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
-const moviesApi = createApi({
-  reducerPath: 'movies',
+const cinemasApi = createApi({
+  reducerPath: 'cinemas',
   baseQuery: fetchBaseQuery({
     baseUrl: 'http://localhost:8000/api',
   }),
-  tagTypes: ['Movies'],
+  tagTypes: ['Cinemas'],
   endpoints(builder) {
     return {
-      getMovies: builder.query({
+      getCinemas: builder.query({
         query: () => {
           return {
-            url: '/movies',
+            url: '/cinemas',
             method: 'GET',
           };
         },
-        providesTags: ['Movies'],
+        providesTags: ['Cinemas'],
       }),
 
-      addMovie: builder.mutation({
+      addCinema: builder.mutation({
         query: ({ payload, userToken }) => {
           return {
-            url: '/movies',
+            url: '/cinemas',
             method: 'POST',
             body: payload,
             headers: {
@@ -30,15 +30,13 @@ const moviesApi = createApi({
             },
           };
         },
-        invalidatesTags: ['Movies'],
+        invalidatesTags: ['Cinemas'],
       }),
 
-      removeMovie: builder.mutation({
+      removeCinema: builder.mutation({
         query: ({ id, userToken }) => {
-          console.log(id);
-          console.log(userToken);
           return {
-            url: `/movies/${id}`,
+            url: `/cinemas/${id}`,
             method: 'DELETE',
             headers: {
               'Content-type': 'application/json; charset=UTF-8',
@@ -46,13 +44,13 @@ const moviesApi = createApi({
             },
           };
         },
-        invalidatesTags: ['Movies'],
+        invalidatesTags: ['Cinemas'],
       }),
 
-      updateMovie: builder.mutation({
+      updateCinema: builder.mutation({
         query: ({ data, id, userToken }) => {
           return {
-            url: `/movies/${id}`,
+            url: `/cinemas/${id}`,
             method: 'PATCH',
             body: data,
             headers: {
@@ -61,16 +59,16 @@ const moviesApi = createApi({
             },
           };
         },
-        invalidatesTags: ['Movies'],
+        invalidatesTags: ['Cinemas'],
       }),
     };
   },
 });
 
 export const {
-  useGetMoviesQuery,
-  useAddMovieMutation,
-  useRemoveMovieMutation,
-  useUpdateMovieMutation,
-} = moviesApi;
-export { moviesApi };
+  useGetCinemasQuery,
+  useAddCinemaMutation,
+  useRemoveCinemaMutation,
+  useUpdateCinemaMutation,
+} = cinemasApi;
+export { cinemasApi };

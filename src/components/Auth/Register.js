@@ -33,7 +33,7 @@ const Register = () => {
       repassword: values.repassword,
     });
 
-  const { isLoading, error, sendRequest } = useHttp(userLogin);
+  const { error, sendRequest } = useHttp(userLogin);
 
   useEffect(() => {
     setMessage(error);

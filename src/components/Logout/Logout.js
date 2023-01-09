@@ -9,7 +9,7 @@ const Logout = () => {
   const navigate = useNavigate();
   const { user, userLogout } = useContext(AuthCotnext);
 
-  const {sendRequest } = useHttp(userLogout);
+  const { sendRequest } = useHttp(userLogout);
 
   useEffect(() => {
     sendRequest({
@@ -23,7 +23,6 @@ const Logout = () => {
     localStorage.clear();
     navigate('/');
   });
-
 
   return null;
 };

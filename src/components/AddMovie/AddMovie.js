@@ -1,22 +1,20 @@
 import { useNavigate } from 'react-router-dom';
 
-import styles from './AddMovie.module.css';
-
 import { useContext, useEffect, useState } from 'react';
 
 import { AuthCotnext } from '../../contexts/AuthContext';
-import { addMovie } from '../../services/movieServices';
 
 import Button from '../Button/Button';
 import FormInput from '../AddForm/FormInput';
 import Form from '../AddForm/Form';
 import setChangedValue from '../Utils/changeHandler';
-import useHttp from '../../hooks/useHttp';
+import { useAddMovieMutation } from '../../store';
 
 const AddMovie = () => {
   const navigate = useNavigate();
 
   const { user } = useContext(AuthCotnext);
+  const [addMovie, results] = useAddMovieMutation();
 
   useEffect(() => {
     if (!user.isAdmin) {
@@ -39,19 +37,12 @@ const AddMovie = () => {
     setChangedValue(e, setValues);
   };
 
-  const { isLoading, error, sendRequest } = useHttp();
-
   const submitHandler = (e) => {
     e.preventDefault();
 
-    sendRequest({
-      endpoint: '/movies',
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${user.token}`,
-      },
-      body: {
+    const userToken = user.token;
+    addMovie({
+      payload: {
         title: values.title,
         director: values.director,
         actors: values.actors,
@@ -61,9 +52,10 @@ const AddMovie = () => {
         price: values.price,
         trailer: values.trailer,
       },
-    });
-
-    navigate('/');
+      userToken,
+    })
+      .unwrap()
+      .then(() => navigate('/'));
   };
 
   return (

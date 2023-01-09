@@ -2,7 +2,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 
 import { useContext, useState } from 'react';
 
-import styles from './EditMovie.module.css';
+import styles from './EditCinema.module.css';
 
 import { AuthCotnext } from '../../contexts/AuthContext';
 
@@ -11,13 +11,13 @@ import Dialog from '../Dialog/Dialog';
 import setChangedValue from '../Utils/changeHandler';
 import AddForm from '../AddForm/Form';
 import FormInput from '../AddForm/FormInput';
-import { useRemoveMovieMutation, useUpdateMovieMutation } from '../../store';
+import { useRemoveCinemaMutation, useUpdateCinemaMutation } from '../../store';
 
-const EditMovie = () => {
+const EditCinema = () => {
   const { user } = useContext(AuthCotnext);
 
-  const [removeMovie] = useRemoveMovieMutation();
-  const [updateMovie] = useUpdateMovieMutation();
+  const [removeCinema] = useRemoveCinemaMutation();
+  const [updateCinema] = useUpdateCinemaMutation();
 
   const [showDialog, setShowDialog] = useState(false);
 
@@ -29,15 +29,15 @@ const EditMovie = () => {
     setShowDialog(false);
   };
 
-  const deleteMovie = () => {
+  const deleteCinema = () => {
     const userToken = user.token;
-    removeMovie({ id, userToken });
-    navigate('/movies-list');
+    removeCinema({ id, userToken });
+    navigate('/cinemas-list');
   };
 
   const action = (
     <div className="dialogs-btns">
-      <Button rounded green onClick={deleteMovie}>
+      <Button rounded green onClick={deleteCinema}>
         YES
       </Button>
       <Button rounded danger onClick={handleClose}>
@@ -47,16 +47,13 @@ const EditMovie = () => {
   );
 
   const [values, setValues] = useState({
-    title: '',
-    director: '',
-    actors: '',
-    poster: '',
-    overview: '',
-    runtime: '',
-    trailer: '',
-    price: '',
+    city: '',
+    location: '',
+    name: '',
+    features: '',
+    phone: '',
+    imgUrl: '',
   });
-
   const { id } = useParams();
 
   const navigate = useNavigate();
@@ -73,21 +70,20 @@ const EditMovie = () => {
 
     const userToken = user.token;
 
-    updateMovie({
-      data: {
-        title: values.title,
-        director: values.director,
-        actors: values.actors,
-        poster: values.poster,
-        overview: values.overview,
-        runtime: values.runtime,
-        price: values.price,
-        trailer: values.trailer,
+    updateCinema({
+      payload: {
+        city: values.city,
+        location: values.location,
+        name: values.name,
+        features: values.features,
+        phone: values.phone,
+        imgUrl: values.imgUrl,
       },
       id,
       userToken,
     });
-    navigate('/movies-list');
+
+    navigate('/cinemas');
   };
 
   const dialog = (
@@ -96,94 +92,68 @@ const EditMovie = () => {
     </Dialog>
   );
   return (
-    <div className={styles['add-movie']}>
+    <div className={styles['add-cinema']}>
       <AddForm handler={submitHandler}>
-        <h2>Edit Movie</h2>
+        <h2>Edit Cinema</h2>
         <FormInput
           element="input"
-          name="title"
+          name="city"
           type="text"
-          label="Movie Title"
-          placeholder="Movie Title"
-          htmlFor="title"
+          label="City"
+          placeholder="City"
+          htmlFor="city"
+          value={values.name}
+          handler={changeHandler}
+        />
+        <FormInput
+          element="input"
+          name="location"
+          type="text"
+          label="Location"
+          placeholder="Location"
+          htmlFor="location"
+          value={values.name}
+          handler={changeHandler}
+        />
+        <FormInput
+          element="input"
+          name="name"
+          type="text"
+          label="Name"
+          placeholder="Name"
+          htmlFor="name"
+          value={values.name}
+          handler={changeHandler}
+        />
+        <FormInput
+          element="input"
+          name="features"
+          type="text"
+          label="Features"
+          placeholder="Features"
+          htmlFor="features"
           value={values.name}
           handler={changeHandler}
         />
 
         <FormInput
           element="input"
-          name="director"
+          name="phone"
           type="text"
-          label="Director"
-          htmlFor="director"
-          placeholder="Director"
+          label="Phone"
+          placeholder="Phone"
+          htmlFor="phone"
           value={values.name}
           handler={changeHandler}
         />
 
         <FormInput
           element="input"
-          name="actors"
+          name="imgUrl"
           type="text"
-          label="Actors"
-          placeholder="Actors"
-          htmlFor="actors"
-          value={values.name}
-          handler={changeHandler}
-        />
-
-        <FormInput
-          element="input"
-          name="poster"
-          type="text"
-          label="Poster URL"
-          htmlFor="poster"
-          placeholder="Poster URL"
-          value={values.name}
-          handler={changeHandler}
-        />
-
-        <FormInput
-          element="input"
-          name="runtime"
-          type="text"
-          label="Runtime"
-          htmlFor="runtime"
-          placeholder="Runtime"
-          value={values.name}
-          handler={changeHandler}
-        />
-
-        <FormInput
-          element="input"
-          name="price"
-          type="number"
-          label="Price"
-          htmlFor="price"
-          placeholder="Price"
-          value={values.name}
-          handler={changeHandler}
-        />
-
-        <FormInput
-          element="input"
-          name="trailer"
-          type="text"
-          label="Trailer"
-          htmlFor="trailer"
-          placeholder="Trailer"
-          value={values.name}
-          handler={changeHandler}
-        />
-
-        <FormInput
-          element="textearea"
-          name="overview"
-          type="text"
-          rows="6"
-          label="Overview"
-          htmlFor="overview"
-          placeholder="Overview"
+          label="Image URL"
+          placeholder="Image URL"
+          htmlFor="imgUrl"
           value={values.name}
           handler={changeHandler}
         />
@@ -203,4 +173,4 @@ const EditMovie = () => {
   );
 };
 
-export default EditMovie;
+export default EditCinema;

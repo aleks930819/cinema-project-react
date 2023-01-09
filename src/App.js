@@ -25,6 +25,9 @@ import ReserveTickets from './components/ReserveTickets/ReserveTickets';
 import GetAllUsers from './components/GetAllUsers/GetAllUsers';
 import UserTickets from './components/UserTickets/UserTickets';
 import MoviesList from './components/MoviesList/MoviesList';
+import CinemasList from './components/CinemasList/CinemasList';
+import EditCinema from './components/EditCinema/EditCinema';
+import ProtectedRoute from './components/Utils/ProtectedRoute';
 
 function App() {
   return (
@@ -40,18 +43,78 @@ function App() {
               <Route path="/register" element={<Register />} />
               <Route path="/login" element={<Login />} />
               <Route path="/logout" element={<Logout />} />
-              <Route path="/add-movie" element={<AddMovie />} />
               <Route path="/contact-us" element={<ContactUs />} />
-              <Route path="/edit/:id" element={<EditMovie />} />
+              <Route
+                path="/add-movie"
+                element={
+                  <ProtectedRoute>
+                    <AddMovie />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/edit-movie/:id"
+                element={
+                  <ProtectedRoute>
+                    <EditMovie />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/edit-cinema/:id"
+                element={
+                  <ProtectedRoute>
+                    <EditCinema />
+                  </ProtectedRoute>
+                }
+              />
+
               <Route path="/message-sent" element={<MessageSend />} />
               <Route path="/cinemas" element={<Cinemas />} />
-              <Route path="/add-cinema" element={<AddCinema />} />
+              <Route
+                path="/add-cinema"
+                element={
+                  <ProtectedRoute>
+                    <AddCinema />
+                  </ProtectedRoute>
+                }
+              />
               <Route path="/ticket/:id" element={<Ticket />} />
               <Route path="/profile" element={<UserProfile />} />
               <Route path="/profile/edit" element={<EditUser />} />
-              <Route path="/reserve-tickets" element={<ReserveTickets />} />
-              <Route path="/users-list" element={<GetAllUsers />} />
-              <Route path="/movies-list" element={<MoviesList />} />
+              <Route
+                path="/reserve-tickets"
+                element={
+                  <ProtectedRoute>
+                    <ReserveTickets />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/users-list"
+                element={
+                  <ProtectedRoute>
+                    <GetAllUsers />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/movies-list"
+                element={
+                  <ProtectedRoute>
+                    <MoviesList />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/cinemas-list"
+                element={
+                  <ProtectedRoute>
+                    <CinemasList />
+                  </ProtectedRoute>
+                }
+              />
+
               <Route path="/trailer/:id" element={<Trailer />} />
               <Route path="/my-tickets" element={<UserTickets />} />
               <Route path="*" element={<ErrorPage />} />

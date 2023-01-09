@@ -10,25 +10,29 @@ import setChangedValue from '../Utils/changeHandler';
 import FormInput from '../AddForm/FormInput';
 import Form from '../AddForm/Form';
 import Panel from '../Panel/Panel';
-import useHttp from '../../hooks/useHttp';
 import Button from '../Button/Button';
 import Table from '../Table/Table';
+import { useGetTicketsQuery } from '../../store';
+import { useDispatch, useSelector } from 'react-redux';
+import { searchForUserTickets } from '../../features/searchTickets';
+import LoadingSpinner from '../Spinner/Spinner';
 
 const ReserveTickets = () => {
   const { user } = useContext(AuthCotnext);
+  const userToken = user.token;
+  const { searchQuery } = useSelector((state) => state.searchTicket);
 
-  const [tickets, setTickets] = useState([]);
+  const dispatch = useDispatch();
 
   const [values, setValues] = useState({
     name: '',
   });
 
-  const navigate = useNavigate();
-
-  const { isLoading, error, sendRequest } = useHttp(setTickets);
-  if (!user.isAdmin) {
-    navigate('/');
-  }
+  const {
+    data: tickets,
+    error,
+    isLoading,
+  } = useGetTicketsQuery({ userToken, searchQuery });
 
   const changeHandler = (e) => {
     setChangedValue(e, setValues);
@@ -36,13 +40,7 @@ const ReserveTickets = () => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    sendRequest({
-      endpoint: `/tickets/search?name=${values.name}`,
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${user.token}`,
-      },
-    });
+    dispatch(searchForUserTickets(values.name));
   };
 
   const config = [
@@ -68,7 +66,11 @@ const ReserveTickets = () => {
         <Button rounded>Search</Button>
       </Form>
       <Panel>
-        <Table data={tickets} config={config} />
+        {isLoading ? (
+          <LoadingSpinner />
+        ) : (
+          <Table data={tickets} config={config} />
+        )}
       </Panel>
       ;
     </>

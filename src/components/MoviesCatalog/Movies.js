@@ -1,13 +1,26 @@
-import { useEffect, useState } from 'react';
-
 import styles from './Movie.module.css';
 
 import LoadingSpinner from '../Spinner/Spinner';
 import Card from '../Card/Card';
 import { useGetMoviesQuery } from '../../store/apis/moviesApi';
+import { useContext } from 'react';
+import { AuthCotnext } from '../../contexts/AuthContext';
 
 const MoviesData = () => {
-  const { data: movies, error, isLoading } = useGetMoviesQuery();
+  const { user } = useContext(AuthCotnext);
+
+  if (user.email) {
+    console.log('yes');
+  }
+
+  if (!user.email) {
+    console.log('no');
+  }
+  const {
+    data: movies,
+    error,
+    isLoading,
+  } = useGetMoviesQuery({ refetchOnMountOrArgChange: true });
 
   return (
     <>
@@ -15,8 +28,8 @@ const MoviesData = () => {
         <LoadingSpinner />
       ) : (
         <div className={styles['movies-box']}>
-          {movies?.map((x) => (
-            <Card key={x._id} movie={x} />
+          {movies?.map((movie) => (
+            <Card key={movie._id} movie={movie} />
           ))}
         </div>
       )}

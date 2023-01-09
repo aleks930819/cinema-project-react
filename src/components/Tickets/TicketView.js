@@ -10,11 +10,13 @@ import LoginRedirect from '../LoginRedirect/LoginRedirect';
 import Button from '../Button/Button';
 import useTicketsCount from '../../hooks/useTicketsCount';
 import useHttp from '../../hooks/useHttp';
+import { useAddTicketMutation } from '../../store';
 
 const TicketView = (props) => {
   const { user } = useContext(AuthCotnext);
 
   const { count, total, increaseCount, decreaseCount } = useTicketsCount(props);
+  const [addTicket] = useAddTicketMutation();
   const { sendRequest } = useHttp();
 
   const navigate = useNavigate();
@@ -25,22 +27,17 @@ const TicketView = (props) => {
       return;
     }
 
-    sendRequest({
-      endpoint: '/tickets',
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${user.token}`,
-      },
-      body: {
+    const userToken = user.token;
+    addTicket({
+      payload: {
         movieName: props.title,
         count: count,
         user: user._id,
         userName: user.name,
         total: total,
       },
+      userToken,
     });
-
     navigate('/my-tickets');
   };
 

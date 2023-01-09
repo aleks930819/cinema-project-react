@@ -8,18 +8,13 @@ import Button from '../Button/Button';
 import AddForm from '../AddForm/Form';
 import FormInput from '../AddForm/FormInput';
 import setChangedValue from '../Utils/changeHandler';
-import useHttp from '../../hooks/useHttp';
+import { useAddCinemaMutation } from '../../store';
 
 const AddCinema = () => {
   const navigate = useNavigate();
 
   const { user } = useContext(AuthCotnext);
-
-  useEffect(() => {
-    if (!user.isAdmin) {
-      navigate('/');
-    }
-  }, [user, navigate]);
+  const [addCinema] = useAddCinemaMutation();
 
   const [values, setValues] = useState({
     city: '',
@@ -34,19 +29,12 @@ const AddCinema = () => {
     setChangedValue(e, setValues);
   };
 
-  const { sendRequest } = useHttp();
-
   const submitHandler = (e) => {
     e.preventDefault();
 
-    sendRequest({
-      endpoint: '/cinemas',
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${user.token}`,
-      },
-      body: {
+    const userToken = user.token;
+    addCinema({
+      payload: {
         city: values.city,
         location: values.location,
         name: values.name,
@@ -54,6 +42,7 @@ const AddCinema = () => {
         phone: values.phone,
         imgUrl: values.imgUrl,
       },
+      userToken,
     });
 
     navigate('/cinemas');

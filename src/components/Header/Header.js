@@ -1,4 +1,4 @@
-import { Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { FiAlignJustify } from 'react-icons/fi';
 import { BsFacebook, BsTwitter, BsInstagram, BsYoutube } from 'react-icons/bs';
 
