@@ -2,11 +2,10 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import useValidators from '../../hooks/useValidators';
-import Form from '../AddForm/Form';
 
 import Button from '../Button/Button';
 import setChangedValue from '../Utils/changeHandler';
-import ValidationMessage from '../Validation/ValidationMessage';
+import ValidationMessage from '../ValidationMessage/ValidationMessage';
 import styles from './ContactUs.module.css';
 
 const ContactUs = () => {
@@ -26,7 +25,7 @@ const ContactUs = () => {
     text: values.message,
   });
 
-  const disabled = values.email && values.message && !message;
+  const disabled = !values.email || !values.message || message;
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -65,7 +64,7 @@ const ContactUs = () => {
         </div>
         {message && <ValidationMessage>{message}</ValidationMessage>}
 
-        <Button disabled={!disabled} rounded>
+        <Button disabled={disabled} rounded>
           Send
         </Button>
       </form>

@@ -30,15 +30,7 @@ const UserTickets = () => {
     setTotalCost(getTotalCost(tickets));
   }, [tickets]);
 
-  // const deleteTicketHandler = (id) =>
-  //   // sendRequest({
-  //   //   endpoint: `/tickets/${id}`,
-  //   //   method: 'DELETE',
-  //   //   headers: {
-  //   //     'Content-Type': 'application/json',
-  //   //     Authorization: `Bearer ${user.token}`,
-  //   //   },
-  //   });
+
 
   const config = [
     { label: 'Name', render: (user) => user.movieName },

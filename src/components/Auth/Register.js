@@ -6,7 +6,7 @@ import Button from '../Button/Button';
 import setChangedValue from '../Utils/changeHandler';
 import Form from '../AddForm/Form';
 import FormInput from '../AddForm/FormInput';
-import ValidationMessage from '../Validation/ValidationMessage';
+import ValidationMessage from '../ValidationMessage/ValidationMessage';
 import useHttp from '../../hooks/useHttp';
 import useValidators from '../../hooks/useValidators';
 

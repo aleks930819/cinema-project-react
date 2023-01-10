@@ -1,7 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
 
 import { AuthProvider } from './contexts/AuthContext';
-import { MovieProvider } from './contexts/MovieContext';
 
 import AddMovie from './components/AddMovie/AddMovie';
 import ContactUs from './components/ContactUs/ContactUs';
@@ -33,94 +32,92 @@ function App() {
   return (
     <>
       <AuthProvider>
-        <MovieProvider>
-          <Header />
-          <main>
-            <ScrollToTop />
-            <Routes>
-              <Route path="/" element={<MoviesData />} />
-              <Route path="/weekly-program" element={<MoviesData />} />
-              <Route path="/register" element={<Register />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/logout" element={<Logout />} />
-              <Route path="/contact-us" element={<ContactUs />} />
-              <Route
-                path="/add-movie"
-                element={
-                  <ProtectedRoute>
-                    <AddMovie />
-                  </ProtectedRoute>
-                }
-              />
-              <Route
-                path="/edit-movie/:id"
-                element={
-                  <ProtectedRoute>
-                    <EditMovie />
-                  </ProtectedRoute>
-                }
-              />
-              <Route
-                path="/edit-cinema/:id"
-                element={
-                  <ProtectedRoute>
-                    <EditCinema />
-                  </ProtectedRoute>
-                }
-              />
+        <Header />
+        <main>
+          <ScrollToTop />
+          <Routes>
+            <Route path="/" element={<MoviesData />} />
+            <Route path="/weekly-program" element={<MoviesData />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/logout" element={<Logout />} />
+            <Route path="/contact-us" element={<ContactUs />} />
+            <Route
+              path="/add-movie"
+              element={
+                <ProtectedRoute>
+                  <AddMovie />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/edit-movie/:id"
+              element={
+                <ProtectedRoute>
+                  <EditMovie />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/edit-cinema/:id"
+              element={
+                <ProtectedRoute>
+                  <EditCinema />
+                </ProtectedRoute>
+              }
+            />
 
-              <Route path="/message-sent" element={<MessageSend />} />
-              <Route path="/cinemas" element={<Cinemas />} />
-              <Route
-                path="/add-cinema"
-                element={
-                  <ProtectedRoute>
-                    <AddCinema />
-                  </ProtectedRoute>
-                }
-              />
-              <Route path="/ticket/:id" element={<Ticket />} />
-              <Route path="/profile" element={<UserProfile />} />
-              <Route path="/profile/edit" element={<EditUser />} />
-              <Route
-                path="/reserve-tickets"
-                element={
-                  <ProtectedRoute>
-                    <ReserveTickets />
-                  </ProtectedRoute>
-                }
-              />
-              <Route
-                path="/users-list"
-                element={
-                  <ProtectedRoute>
-                    <GetAllUsers />
-                  </ProtectedRoute>
-                }
-              />
-              <Route
-                path="/movies-list"
-                element={
-                  <ProtectedRoute>
-                    <MoviesList />
-                  </ProtectedRoute>
-                }
-              />
-              <Route
-                path="/cinemas-list"
-                element={
-                  <ProtectedRoute>
-                    <CinemasList />
-                  </ProtectedRoute>
-                }
-              />
+            <Route path="/message-sent" element={<MessageSend />} />
+            <Route path="/cinemas" element={<Cinemas />} />
+            <Route
+              path="/add-cinema"
+              element={
+                <ProtectedRoute>
+                  <AddCinema />
+                </ProtectedRoute>
+              }
+            />
+            <Route path="/ticket/:id" element={<Ticket />} />
+            <Route path="/profile" element={<UserProfile />} />
+            <Route path="/profile/edit" element={<EditUser />} />
+            <Route
+              path="/reserve-tickets"
+              element={
+                <ProtectedRoute>
+                  <ReserveTickets />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/users-list"
+              element={
+                <ProtectedRoute>
+                  <GetAllUsers />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/movies-list"
+              element={
+                <ProtectedRoute>
+                  <MoviesList />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/cinemas-list"
+              element={
+                <ProtectedRoute>
+                  <CinemasList />
+                </ProtectedRoute>
+              }
+            />
 
-              <Route path="/trailer/:id" element={<Trailer />} />
-              <Route path="/my-tickets" element={<UserTickets />} />
-              <Route path="*" element={<ErrorPage />} />
-            </Routes>
-          </main>
-        </MovieProvider>
+            <Route path="/trailer/:id" element={<Trailer />} />
+            <Route path="/my-tickets" element={<UserTickets />} />
+            <Route path="*" element={<ErrorPage />} />
+          </Routes>
+        </main>
       </AuthProvider>
     </>
   );

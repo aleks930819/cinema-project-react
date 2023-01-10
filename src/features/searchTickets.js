@@ -8,7 +8,6 @@ export const searchTicket = createSlice({
 
   reducers: {
     searchForUserTickets: (state, action) => {
-      console.log(action);
       state.searchQuery = action.payload;
     },
   },

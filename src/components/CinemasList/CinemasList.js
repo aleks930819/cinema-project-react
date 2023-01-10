@@ -12,8 +12,6 @@ const CinemasList = () => {
     isLoading,
   } = useGetCinemasQuery({ refetchOnMountOrArgChange: true });
 
-  console.log(cinemas);
-
   const config = [
     { label: 'Name', render: (cinema) => cinema.name },
     {

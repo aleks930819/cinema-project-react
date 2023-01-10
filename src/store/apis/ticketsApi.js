@@ -49,8 +49,6 @@ const ticketsApi = createApi({
         providesTags: ['Tickets'],
       }),
 
-  
-
       addTicket: builder.mutation({
         query: ({ payload, userToken }) => {
           return {
@@ -68,8 +66,6 @@ const ticketsApi = createApi({
 
       removeTicket: builder.mutation({
         query: ({ id, userToken }) => {
-          console.log(id);
-          console.log(userToken);
           return {
             url: `/tickets/${id}`,
             method: 'DELETE',

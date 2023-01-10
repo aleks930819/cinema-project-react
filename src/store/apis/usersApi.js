@@ -9,8 +9,7 @@ const usersApi = createApi({
   endpoints(builder) {
     return {
       getUsers: builder.query({
-        query: ({ userToken }) => {
-          console.log(userToken);
+        query: (userToken) => {
           return {
             url: '/users',
             method: 'GET',

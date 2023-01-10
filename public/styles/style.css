@@ -2,19 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 
 @import url('reset.css');
-@import url('contact-us.css');
-@import url('add-movie.css');
-@import url('form.css');
-@import url('spinner.css');
-@import url('not-found.css');
-@import url('search.css');
-@import url('icons.css');
-@import url('header.css');
 @import url('main.css');
-@import url('card.css');
-@import url('details.css');
-@import url('weekly-program.css');
-@import url('video.css');
 
 
 
@@ -26,8 +14,8 @@
     --color-header: #374A95;
     --color-details: #374A95;
 
-    --color-dark:#1A181B;
-    --box-shadow:0px 5px 35px rgba(0, 0, 0, 0.641);
+    --color-dark: #1A181B;
+    --box-shadow: 0px 5px 35px rgba(0, 0, 0, 0.641);
 
     --color-white: #FAFAFF;
     --f-family: 'PT Sans Narrow', sans-serif;

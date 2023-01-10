@@ -1,7 +1,6 @@
 import './Trailer.css';
 import Video from './Video';
-import { useContext, useRef } from 'react';
-import { MovieContext } from '../../contexts/MovieContext';
+import { useRef } from 'react';
 import Dialog from '../Dialog/Dialog';
 import { useGetMoviesQuery } from '../../store';
 

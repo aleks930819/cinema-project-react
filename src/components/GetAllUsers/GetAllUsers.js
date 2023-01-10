@@ -13,12 +13,14 @@ import Table from '../Table/Table';
 import { useGetUsersQuery, useRemoveUserMutation } from '../../store';
 const GetAllUsers = () => {
   const { user } = useContext(AuthCotnext);
+
+  const userToken = user.token;
+
   const [showDialog, setShowDialog] = useState(false);
   const [currentUserId, setCurrentUserId] = useState('');
 
   const [removeUser] = useRemoveUserMutation();
-  const userToken = user.token;
-  const { data: users, isLoading } = useGetUsersQuery({ userToken });
+  const { data: users, isLoading } = useGetUsersQuery(userToken);
 
   const handleClick = () => {
     setShowDialog(true);
@@ -29,7 +31,6 @@ const GetAllUsers = () => {
   };
 
   const deleteUser = (id) => {
-    const userToken = user.token;
     removeUser({ id, userToken });
   };
 

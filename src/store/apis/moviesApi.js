@@ -35,8 +35,6 @@ const moviesApi = createApi({
 
       removeMovie: builder.mutation({
         query: ({ id, userToken }) => {
-          console.log(id);
-          console.log(userToken);
           return {
             url: `/movies/${id}`,
             method: 'DELETE',
