@@ -53,9 +53,7 @@ const AddMovie = () => {
         trailer: values.trailer,
       },
       userToken,
-    })
-      .unwrap()
-      .then(() => navigate('/'));
+    });
   };
 
   return (
