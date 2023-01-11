@@ -54,6 +54,7 @@ const AddMovie = () => {
       },
       userToken,
     });
+    navigate('/');
   };
 
   return (
