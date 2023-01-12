@@ -56,6 +56,7 @@ const AddMovie = () => {
     });
     navigate('/');
   };
+  
 
   return (
     <Form handler={submitHandler}>

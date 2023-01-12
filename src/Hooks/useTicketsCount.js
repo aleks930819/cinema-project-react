@@ -5,17 +5,17 @@ const useTicketsCount = (props) => {
   let [total, setTotal] = useState(0);
 
   const increaseCount = () => {
-    setCount(count + 1);
-    setTotal(total + props.price);
+    setCount((count) => count + 1);
+    setTotal((total) => total + props.price);
   };
 
   const decreaseCount = () => {
     if (count > 1) {
-      setCount(count - 1);
-      setTotal(total - props.price);
+      setCount((count) => count - 1);
+      setTotal((total) => total - props.price);
     }
   };
-  
+
   return {
     count,
     total,
