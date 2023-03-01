@@ -5,7 +5,7 @@ Technologies used:
 
 * React JS
 * HTML & CSS
-* Redux Toolkit
+* Redux 
 * React Icons
 
 ## Functionality
